@@ -35,6 +35,7 @@ public class OrderAction extends HttpServlet {
 			throws ServletException, IOException {
 		String action = request.getParameter("action");
 		OrderDAO orderDAO = new OrderDAO();
+		SendEmail mail = new SendEmail();
 
 		if (action != null) {
 			if (action.trim().equals("confim")) {
@@ -46,7 +47,7 @@ public class OrderAction extends HttpServlet {
 						+ order.getProductName() + " đã được xác nhận.\n\n"
 						+ "Đơn hàng sẽ được giao đến quý khách một ngày sớm nhất.\n\nCảm ơn quý khách đã tin tưởng!. <3";
 
-				SendEmail.sendEmail(order.getEmail(), subject, content);
+				mail.sendEmail(order.getEmail(), subject, content);
 
 				request.setAttribute("access", "yes");
 				request.getRequestDispatcher("/order?action=accept").forward(request, response);
