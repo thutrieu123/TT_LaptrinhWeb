@@ -34,38 +34,20 @@
 						<div class="card" style="border-radius: 15px;">
 						<a href="HomeController" class="p-3"><i class="ti-angle-left"></i>Quay về</a>
 							<div class="card-body p-3">
-							<c:if test="${error != null }">
-										<p style="color:red;">Vui lòng đăng nhập</p></c:if>
-							
-								<h2 class="text-uppercase text-center mb-5">Đăng Nhập</h2>
-								<form action="login" method="post">
+					
+								<h2 class="text-uppercase text-center mb-5">Quên Mật Khẩu</h2>
+								<form action="forget" method="get">
 									<div class="form-outline">
-										<label class="form-label" for="form3Example1cg">Tài
-											khoản(*):</label> <input type="text" id="form3Example1cg"
+										<label class="form-label" for="form3Example1cg">Nhập Tài
+											khoản(*):</label> <input type="text"
 											class="form-control " required name = "userName" value ="<%=userName %>" />
 									</div>
 									<p style ="color:red;">${message.get("userError")}</p>
 
-									<div class="form-outline mt-3">
-										<label class="form-label" for="form3Example4cg">Mật
-											khẩu(*):</label> <input type="password" id="form3Example4cg"
-											class="form-control " name = "password" required  value = "<%=password%>"/>
-
-									</div>
-									<p style ="color:red;">${message.get("passwordError")}</p>
-									<a href="#" class="fw-bold ">Quên mật khẩu?</a>
-
-
 									<div class="d-flex justify-content-center mt-4">
 										<button type="submit"
-											class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Đăng
-											Nhập</button>
+											class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Xác nhận</button>
 									</div>
-
-									<p class="text-center text-muted mt-3 mb-0">
-										Bạn chưa có tài khoản? <a href="register.jsp" class="fw-bold text-body"><u>Đăng
-												ký tại đây</u></a>
-									</p>
 
 								</form>
 

@@ -2,22 +2,23 @@ package support;
 
 import java.util.Properties;
 
-import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.*;
-import javax.activation.*;
+
 
 
 
 public class SendEmail {
+	private String from = "nguyenngocphuong11072002@gmail.com";
+	private String password = "xyaultomellyhnzc";
 	
-	public static void sendEmail(String sendTo,String subject,String content) {
-		String to = "phuongnguyen112002@gmail.com";
+	public void sendEmail(String sendTo,String subject,String content) {
+//		String to = "phuongnguyen112002@gmail.com";
 		
 
 	      // Sender's email ID needs to be mentioned
-	      String from = "nguyenngocphuong11072002@gmail.com";
-	      String password = "xyaultomellyhnzc";
+//	      String from = "nguyenngocphuong11072002@gmail.com";
+//	      String password = "xyaultomellyhnzc";
 
 	      // Assuming you are sending email from localhost
 	     // String host = "localhost";
@@ -66,5 +67,5 @@ public class SendEmail {
 	      }
 	}
 	
-
 }
+
