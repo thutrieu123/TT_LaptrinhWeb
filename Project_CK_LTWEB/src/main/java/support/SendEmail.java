@@ -11,6 +11,7 @@ import javax.mail.internet.*;
 public class SendEmail {
 	private String from = "nguyenngocphuong11072002@gmail.com";
 	private String password = "xyaultomellyhnzc";
+	private String nameShop = "";
 	
 	public void sendEmail(String sendTo,String subject,String content) {
 //		String to = "phuongnguyen112002@gmail.com";
@@ -66,6 +67,19 @@ public class SendEmail {
 	         mex.printStackTrace();
 	      }
 	}
+
+	public void setFrom(String from) {
+		this.from = from;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public void setNameShop(String nameShop) {
+		this.nameShop = nameShop;
+	}
+	
 	
 }
 
