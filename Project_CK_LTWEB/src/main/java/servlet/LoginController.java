@@ -45,6 +45,7 @@ public class LoginController extends HttpServlet {
 		String password = request.getParameter("password");
 		String logOut = request.getParameter("logOut");
 		String error = request.getParameter("error");
+		String access = request.getParameter("access");
 
 		User user = userDAO.getUser(userName);
 		System.out.println(userName);
@@ -52,10 +53,15 @@ public class LoginController extends HttpServlet {
 
 		if (logOut != null) {
 			request.removeAttribute("message");
-			session.removeAttribute("user");
+//			session.removeAttribute("user");
+			session.invalidate();
 			response.sendRedirect("HomeController");
 		} else if (error != null) {
 			request.setAttribute("error", error);
+			request.getRequestDispatcher("/login.jsp").forward(request, response);
+			
+		} else if (access != null) {
+			request.setAttribute("access","Đổi mật khẩu thành công!");
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
 
 		} else if (user != null) {

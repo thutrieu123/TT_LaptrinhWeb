@@ -163,6 +163,31 @@ public class UserDAO {
 			return 0;
 		}
 	}
+	
+	public int changPassword(String userName,String  newPass) {
+		DBContext db = new DBContext();
+		try {
+			connect = db.getConnection();
+			String query = "UPDATE user SET user.password =? where user.userName = ?;";
+			ps = connect.prepareStatement(query);
+			ps.setString(1, newPass);
+			ps.setString(2, userName);
+			int numberRowUpdate = ps.executeUpdate();
+
+			ps.close();
+			connect.close();
+			return numberRowUpdate;
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+
+			e.printStackTrace();
+			return 0;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return 0;
+		}
+	}
 
 	public int deleteUser(int id) {
 		DBContext db = new DBContext();
@@ -190,7 +215,7 @@ public class UserDAO {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(new UserDAO().getUser("admin"));
+		System.out.println(new UserDAO().changPassword("anhphuong012", "anhphuong"));
 	}
 
 }

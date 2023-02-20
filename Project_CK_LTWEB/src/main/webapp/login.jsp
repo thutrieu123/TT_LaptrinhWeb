@@ -36,6 +36,7 @@
 							<div class="card-body p-3">
 							<c:if test="${error != null }">
 										<p style="color:red;">Vui lòng đăng nhập</p></c:if>
+									<c:if test="${access != null }"><p style="color:green;">${access}</p></c:if>
 							
 								<h2 class="text-uppercase text-center mb-5">Đăng Nhập</h2>
 								<form action="login" method="post">
@@ -53,7 +54,7 @@
 
 									</div>
 									<p style ="color:red;">${message.get("passwordError")}</p>
-									<a href="#" class="fw-bold ">Quên mật khẩu?</a>
+									<a href="forget.jsp" class="fw-bold ">Quên mật khẩu?</a>
 
 
 									<div class="d-flex justify-content-center mt-4">
