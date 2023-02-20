@@ -47,9 +47,12 @@ public class SendEmail {
 	      try {
 	         // Create a default MimeMessage object.
 	         MimeMessage message = new MimeMessage(session);
+	         
+	         message.setHeader("Content-Type", "text/html; charset=UTF-8");
 
 	         // Set From: header field of the header.
 	         message.setFrom(new InternetAddress(from));
+	         
 
 	         // Set To: header field of the header.
 	         message.addRecipient(Message.RecipientType.TO, new InternetAddress(sendTo));
@@ -58,7 +61,13 @@ public class SendEmail {
 	         message.setSubject(subject);
 
 	         // Now set the actual message
-	         message.setText(content);
+//	         message.setText(content);
+//	         message.setContent(content,"text/html");
+	         
+	         message.setText(content, "utf-8", "html");
+	         
+	         
+	        
 
 	         // Send message
 	         Transport.send(message);

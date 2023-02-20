@@ -9,10 +9,21 @@
 .mr-top-20 {
 	margin-top: 20px;
 }
+.mr-b-50{
+	margin-bottom: 50px;
+}
 .carousel-item {
 	max-height: 250px;
 }
 
+.box-item {
+	width: 30px;
+	margin: 0px 10px;
+	padding-left: 8px;
+}
+.text-center {
+	text-align: center;
+}
 .caroisel-row {
 	margin-left: -20px;
 	margin-top: 15px;
@@ -34,6 +45,7 @@
     position: absolute;
     right: 15px !important;
 }
+
 .show_txt{
     display: inline-block;
     width: 100%;
@@ -41,6 +53,9 @@
     overflow: hidden !important;
     text-overflow: ellipsis;
 }
+.non-display{
+	display: none !important;
+}	
 .card-img-top {
 	height:230px!important;
 	max-height:230px !important;
