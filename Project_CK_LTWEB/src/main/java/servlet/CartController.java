@@ -42,10 +42,11 @@ public class CartController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+//		response.getWriter().append("Served at: ").append(request.getContextPath());
 		String iAction = request.getParameter("action");
 		HttpSession session = request.getSession();
 		Object objUser = session.getAttribute("user");
+		System.out.println(iAction);
 
 		if (iAction != null && !iAction.equals("")) {
 			if (iAction.equals("delete")) {
@@ -119,6 +120,7 @@ public class CartController extends HttpServlet {
 			user = (User) objUser;
 		}
 
+		System.out.println(iSTT);
 		cartBean.deleteCart(iSTT);
 		cartdb.deleteCart(user.getId(), Integer.parseInt(pro_id), Integer.parseInt(quantity));
 	}
@@ -228,8 +230,15 @@ public class CartController extends HttpServlet {
 		} else {
 			cartBean = new Cart();
 		}
-		cartBean.updateCart(iSTT, iQuantity);
-		db.updateTempcart(user.getId(), Integer.parseInt(pro_id), Integer.parseInt(iQuantity));
+		int status = Integer.parseInt(iQuantity);//Sua loi
+//		cartBean.updateCart(iSTT, iQuantity);
+//		db.updateTempcart(user.getId(), Integer.parseInt(pro_id), Integer.parseInt(iQuantity));
+		int quanlity = cartBean.updateQuanlity(iSTT, status);
+		//Kiem tra xem neu so luong = 0 thi xoa khoi gio hang
+		if(quanlity == 0) {
+			db.delete(user.getId(), Integer.parseInt(pro_id));
+		}else 
+			db.updateTempcart(user.getId(), Integer.parseInt(pro_id), quanlity);	
 
 	}
 

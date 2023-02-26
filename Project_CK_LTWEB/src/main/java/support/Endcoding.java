@@ -12,11 +12,5 @@ public class Endcoding {
 		return result;
 	}
 	
-	public static void main(String[] args) {
-		String email = "phuongnguyen1120002@st.hcmuaf.edu.vn";
-		
-		Endcoding end = new Endcoding();
-		System.out.println(end.decodeEmail(email));
-	}
 
 }

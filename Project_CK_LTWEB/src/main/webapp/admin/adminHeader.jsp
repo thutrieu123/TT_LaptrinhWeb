@@ -27,6 +27,7 @@
 </head>
 
 <body>
+	<div id ="main">
 	<fmt:setLocale value="${sessionScope.langName}" />
 	<fmt:setBundle basename="i18n.lang" var="lang" />
 	<div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5"
@@ -262,7 +263,7 @@
 		<!-- End Page wrapper  -->
 		<!-- ============================================================== -->
 	</div>
-
+</div>
 	<script src="/Project_CK_LTWEB/admin/js/jquery.min.js"></script>
 	<!-- Bootstrap tether Core JavaScript -->
 	<script src="/Project_CK_LTWEB/admin/js/bootstrap.bundle.min.js"></script>
@@ -290,13 +291,6 @@
 		}
 	</script>
 	
-	<script type="text/javascript">
-		function  changeIcon() {
-			var e = document.getElementById('icon-toggle');
-			e.remove
-			
-		}
-	</script>
 </body>
 
 </html>

@@ -14,16 +14,7 @@ public class SendEmail {
 	private String nameShop = "";
 	
 	public void sendEmail(String sendTo,String subject,String content) {
-//		String to = "phuongnguyen112002@gmail.com";
-		
-
-	      // Sender's email ID needs to be mentioned
-//	      String from = "nguyenngocphuong11072002@gmail.com";
-//	      String password = "xyaultomellyhnzc";
-
-	      // Assuming you are sending email from localhost
-	     // String host = "localhost";
-
+	
 	      // Get system properties
 	      Properties properties = new Properties();
 	      properties.put("mail.smtp.host", "smtp.gmail.com");

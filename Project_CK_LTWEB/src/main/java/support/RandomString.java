@@ -10,10 +10,8 @@ public class RandomString {
     private static final String ALPHA_NUMERIC = alpha + alphaUpperCase + digits;
  
     private Random generator = new Random();
- 
-    /**
-     * Random string with a-zA-Z0-9, not included special characters
-     */
+    
+    //Ham random ki tu bat ki
     public String randomAlphaNumeric(int numberOfCharactor) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < numberOfCharactor; i++) {
@@ -26,11 +24,5 @@ public class RandomString {
     public  int randomNumber(int min, int max) {
         return generator.nextInt((max - min) + 1) + min;
     }
-    
-    public static void main(String[] args) {
-    	RandomString rd = new RandomString();
-    	System.out.println(rd.randomAlphaNumeric(4));
-
-	}
 
 }

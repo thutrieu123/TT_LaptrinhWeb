@@ -9,7 +9,26 @@ public class CartItem {
 	private String image;
 	private int catId;
 	private int quantity;
-	private int TotalCost;
+
+	
+	
+
+	public CartItem(String id, String name, String description, int price, String image, int catId, int quantity) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.price = price;
+		this.image = image;
+		this.catId = catId;
+		this.quantity = quantity;
+	}
+
+	
+	public CartItem() {
+		super();
+	}
+
 
 	public String getId() {
 		return id;
@@ -66,14 +85,22 @@ public class CartItem {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+	
+	//Phuong thuc tinh tong tien
 
-	public double getTotalCost() {
-		return TotalCost;
+	public int getTotalCost() {
+		return this.quantity*this.price;
 	}
 
-	public void setTotalCost(int totalCost) {
-		TotalCost = totalCost;
+	
+	public void increment() {
+		this.quantity ++;
 	}
+	public void descrement() {
+		this.quantity --;
+	}
+	
+	//Phuong thuc format gia de hien thi
 	public  String formatPrice() {
 		String fm = price + "";
 		String result = "";
@@ -88,8 +115,9 @@ public class CartItem {
 		}
 		return result;
 	}
+	//Phuong thuc format tong  gia de hien thi
 	public  String formatTotal() {
-		String fm = TotalCost + "";
+		String fm = getTotalCost() + "";
 		String result = "";
 		int count = 0;
 		for (int i = fm.length() - 1; i >= 0; i--) {

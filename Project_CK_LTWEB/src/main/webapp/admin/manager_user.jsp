@@ -72,8 +72,6 @@
 										bundle="${lang }"></fmt:message></th>
 											<th class="border-top-0"><fmt:message key="user.userName"
 										bundle="${lang }"></fmt:message></th>
-											<th class="border-top-0"><fmt:message key="user.password"
-										bundle="${lang }"></fmt:message></th>
 											<th class="border-top-0"><fmt:message key="user.role"
 										bundle="${lang }"></fmt:message></th>
 											<th class="border-top-0"><fmt:message key="user.function"
@@ -88,7 +86,6 @@
 												<td>${eUser.fullName }</td>
 												<td>${eUser.numberPhone }</td>
 												<td>${eUser.userName }</td>
-												<td>${eUser.password }</td>
 												<td>${eUser.rolId == 1 ? "Admin":"User" }</td>
 												<td><a
 													href="/Project_CK_LTWEB/manager_user?action=edit&eUserId=${eUser.id}"

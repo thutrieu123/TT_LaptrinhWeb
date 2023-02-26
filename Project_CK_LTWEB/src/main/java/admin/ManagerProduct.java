@@ -73,7 +73,7 @@ public class ManagerProduct extends HttpServlet {
 				return;
 			} else if (action.equals("trash")) {
 				String proId = request.getParameter("proId");
-				String path = "D:\\Web\\Project_CK\\Project_CK\\Project_CK_LTWEB\\src\\main\\webapp\\";
+				String path = "D:\\Web\\Project_CK\\Project_CK\\Project_CK_LTWEB\\src\\main\\webapp\\"; // Cho nay la lay duong dan thu muc luu hinh anh
 
 				Product product = productDAO.getProductById(Integer.parseInt(proId));
 				path = path + product.getImage();
@@ -82,7 +82,7 @@ public class ManagerProduct extends HttpServlet {
 
 				productDAO.delete(product.getId());
 				//message.put("success", "Xoá thành công");
-				response.sendRedirect("/Project_CK_LTWEB/manager_product");
+				response.sendRedirect("/Project_CK_LTWEB/manager_product?access=yes");
 			} else if (action.equals("add")) {
 				List<Category> listCate = cateDAO.getAllCategory();
 				request.setAttribute("listCate", listCate);
@@ -100,7 +100,7 @@ public class ManagerProduct extends HttpServlet {
 			String proKind = request.getParameter("productKind");
 			System.out.println("id"+proId + "name"+proName +"img"+proImage +"des"+proDes + "price"+proPrice +"kind"+proKind);
 
-			String upLoadFolder = "C:\\Users\\van06\\Downloads\\";
+			String upLoadFolder = "F:\\TT_LTW\\TT_LaptrinhWeb\\Project_CK_LTWEB\\src\\main\\webapp\\Image\\";// Cho nay la lay duong dan thu muc luu hinh anh
 			Path upLoadPath = Paths.get(upLoadFolder);
 			Part image = request.getPart("uploadImage");
 
@@ -110,7 +110,7 @@ public class ManagerProduct extends HttpServlet {
 				File file = new File(upLoadFolder + File.separator + imageFileName);
 				System.out.println(file.getAbsolutePath());
 				if (!file.exists()) {
-					File deleteFile = new File("C:\\Users\\van06\\Downloads\\" + proImage);
+					File deleteFile = new File("F:\\TT_LTW\\TT_LaptrinhWeb\\Project_CK_LTWEB\\src\\main\\webapp\\Image\\" + proImage);
 					proImage = "Image/" + imageFileName;
 					image.write(Paths.get(upLoadPath.toString(), imageFileName).toString());
 					deleteFile.delete();
@@ -142,7 +142,7 @@ public class ManagerProduct extends HttpServlet {
 			String proPrice = request.getParameter("productPrice");
 			String proKind = request.getParameter("productKind");
 
-			String upLoadFolder = "C:\\Users\\van06\\Downloads\\";
+			String upLoadFolder = "F:\\TT_LTW\\TT_LaptrinhWeb\\Project_CK_LTWEB\\src\\main\\webapp\\Image\\";// Cho nay la lay duong dan thu muc luu hinh anh
 			Path upLoadPath = Paths.get(upLoadFolder);
 			Part image = request.getPart("uploadImage");
 
