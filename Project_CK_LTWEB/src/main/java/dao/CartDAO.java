@@ -143,6 +143,31 @@ public class CartDAO {
 			e.printStackTrace();
 		}
 	}
+	//Xoa bo san pham khoi gio
+	public int delete(int user_id,int pro_id) {
+		DBContext db = new DBContext();
+		int numberRowUpdate = 0;
+		try {
+			connect = db.getConnection();
+			String query = "Delete from cart where user_id=? and pro_id=?;";
+			ps = connect.prepareStatement(query);
+
+			ps.setInt(1, user_id);
+			ps.setInt(2, pro_id);
+			numberRowUpdate = ps.executeUpdate();
+
+			ps.close();
+			connect.close();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return numberRowUpdate;
+	}
 
 	public static void main(String[] args) {
 		

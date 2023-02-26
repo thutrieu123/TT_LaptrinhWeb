@@ -40,22 +40,46 @@ public class Cart {
 		}
 	}
 
-	public void updateCart(String stt, String quantity) {
+//	public void updateCart(String stt, String quantity) {
+//		int iSTT = Integer.parseInt(stt);
+//		CartItem cartItem = (CartItem) list.get(iSTT - 1);
+//		int iPrice = cartItem.getPrice();
+//		int iQuantity = Integer.parseInt(quantity);
+//		try {
+//			if (iQuantity > 0) {
+//				cartItem.setQuantity(iQuantity);
+//				cartItem.setTotalCost(iPrice * iQuantity);
+//				calculateOrderTotal();
+//			}
+//		} catch (NumberFormatException nfe) {
+//			System.out.println("Error while updating cart: " + nfe.getMessage());
+//			nfe.printStackTrace();
+//		}
+//
+//	}
+	
+	public int updateQuanlity(String stt,int status) {
 		int iSTT = Integer.parseInt(stt);
 		CartItem cartItem = (CartItem) list.get(iSTT - 1);
-		int iPrice = cartItem.getPrice();
-		int iQuantity = Integer.parseInt(quantity);
 		try {
-			if (iQuantity > 0) {
-				cartItem.setQuantity(iQuantity);
-				cartItem.setTotalCost(iPrice * iQuantity);
-				calculateOrderTotal();
+			if (status > 0) {
+				cartItem.increment();	
+			}else {
+				cartItem.descrement();
 			}
+			
+			if(cartItem.getQuantity() == 0) {
+				list.remove(iSTT - 1);
+			}
+			calculateOrderTotal();
+			System.out.println(cartItem.getQuantity());
+			return cartItem.getQuantity();
 		} catch (NumberFormatException nfe) {
 			System.out.println("Error while updating cart: " + nfe.getMessage());
 			nfe.printStackTrace();
 		}
-
+		return 0;
+		
 	}
 
 	public void addCart(String pro_id, String name, String image, String desciption, int price, String quantity) {
@@ -78,7 +102,7 @@ public class Cart {
 				cartItem.setImage(image);
 				cartItem.setDescription(desciption);
 				cartItem.setQuantity(iQuantity);
-				cartItem.setTotalCost(price * iQuantity);
+//				cartItem.setTotalCost(price * iQuantity);
 				list.add(cartItem);
 				calculateOrderTotal();
 				}

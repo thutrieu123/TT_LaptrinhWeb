@@ -15,7 +15,7 @@
 <body>
 
 	<div
-		class="container-fluid container-footer justify-content-around bg-primary">
+		class="container-fluid container-footer justify-content-around bg-primary text-center">
 		<div class="container">
 			<div class="row text-white">
 				<div class="col-md-3 item-footer">

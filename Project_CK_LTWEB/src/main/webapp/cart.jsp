@@ -9,6 +9,19 @@
 <title></title>
 
 <style type="text/css">
+.btn-in_decrement{
+	background-color: #ccc;
+}
+.quanlity{
+	max-width: 70px !important; 
+	width: 50px !important; 
+	background-color: #fff !important;
+
+
+}
+.quanlity:hover{
+	cusor:none;
+}
 .table {
 	
 }
@@ -86,6 +99,8 @@ td {
 </style>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link href="/Project_CK_LTWEB/themify-icons/themify-icons.css"
+	rel="stylesheet">	
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
@@ -103,7 +118,7 @@ td {
 				<tr>
 					<th style="width: 50%">Tên sản phẩm</th>
 					<th style="width: 10%">Giá</th>
-					<th style="width: 8%">Số lượng</th>
+					<th style="width: 8%;text-align:center;">Số lượng</th>
 					<th style="width: 22%" class="text-center">Thành tiền</th>
 					<th style="width: 10%"></th>
 				</tr>
@@ -119,7 +134,7 @@ td {
 										value='<c:out value="${counter.count}"/>'>
 									<div class="col-sm-2 hidden-xs">
 										<img src="${cartItem.image}" class="img-responsive"
-											width="100">
+											width="100" height="100">
 									</div>
 									<input type="hidden" name="cart_pro_id" value="${cartItem.id}" />
 									<div class="col-sm-10">
@@ -130,16 +145,16 @@ td {
 							</td>
 							<td data-th="Price">${cartItem.formatPrice()}VNĐ.</td>
 							<input type="hidden" name="price" value="${cartItem.price}" />
-							<td data-th="Quantity"><input
-								class="form-control text-center" name="quan" value="${cartItem.quantity}"
-								type="number">
-								<button class="btn btn-success btn-block" name="action"
+							<td data-th="Quantity" style="display: inline-flex"><a href="CartController?action=update&quan=1&stt=${counter.count}&cart_pro_id=${cartItem.id}" class="btn btn-in_decrement"><i class="ti-plus"></i></a><input
+								class="form-control text-center quanlity" name="quan" value="${cartItem.quantity}"
+								type="text" readonly><a href="CartController?action=update&quan=-1&stt=${counter.count}&cart_pro_id=${cartItem.id}" class=" btn btn-in_decrement"><i class="ti-minus"></i></a>
+								<!-- <button class="btn btn-success btn-block" name="action"
 									value="update">
 									<i class="fa fa-trash-o">Cập nhật</i>
-								</button>
+								</button> -->
 								</td>
 							<td data-th="Subtotal" class="text-center">${cartItem.formatTotal()}
-								VNĐ.đ</td>
+								VNĐ</td>
 							<td class="actions" data-th="">
 								<button class="btn btn-info btn-sm" name="action" value="oder"
 									onclick="oder()">
