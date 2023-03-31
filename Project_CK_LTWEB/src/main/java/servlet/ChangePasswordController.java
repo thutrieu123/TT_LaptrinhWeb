@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.UserDAO;
+import support.Endcoding;
 
 /**
  * Servlet implementation class ChangePasswordController
@@ -53,6 +54,7 @@ public class ChangePasswordController extends HttpServlet {
 		
 		System.out.println(userName);
 		if(newPass.equals(rePass)) {
+			newPass = Endcoding.encrypt(newPass);
 			userDAO.changPassword(userName,newPass);
 			response.sendRedirect("/Project_CK_LTWEB/login?access=Đổi mật khẩu thành công");
 		}else {

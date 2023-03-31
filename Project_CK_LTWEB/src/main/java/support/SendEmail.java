@@ -43,6 +43,8 @@ public class SendEmail {
 
 	         // Set From: header field of the header.
 	         message.setFrom(new InternetAddress(from));
+//	         message.setFrom("Tiệm Bánh Handmade");
+	         
 	         
 
 	         // Set To: header field of the header.
@@ -79,6 +81,8 @@ public class SendEmail {
 	public void setNameShop(String nameShop) {
 		this.nameShop = nameShop;
 	}
+	
+	
 	
 	
 }
