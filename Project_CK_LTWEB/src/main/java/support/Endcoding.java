@@ -12,5 +12,9 @@ public class Endcoding {
 		return result;
 	}
 	
+	public String encypt(String s) {
+		String result = "";
+	}
+	
 
 }
