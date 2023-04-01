@@ -73,7 +73,7 @@ a {
 	position: absolute;
 	display: inline-flex;
 	top: 0;
-	right: -50px;
+	right: -10px;
 }
 
 .login .login-item {
@@ -160,6 +160,16 @@ a {
 .search {
 	max-width: 180px !important;
 }
+.name-user {
+	line-height: 2.0;
+    margin-left: 10px
+}
+.btn-user {
+	color:#000 !important;
+	background-color: #fff !important;
+	border-radius: 50% !important;
+	padding: 3px !important;
+}
 
 .badge {
 	position: absolute;
@@ -167,6 +177,7 @@ a {
 	right: 3px;
 	color:white !important;
 }
+
 
 @media screen and (max-width:576px) {
 	.media-reponsive {

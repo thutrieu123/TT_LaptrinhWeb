@@ -15,6 +15,7 @@ import dao.AddressDAO;
 import dao.UserDAO;
 import model.Address;
 import model.User;
+import support.Endcoding;
 
 /**
  * Servlet implementation class LoginController
@@ -52,7 +53,7 @@ public class LoginController extends HttpServlet {
 		request.setAttribute("message", message);
 
 		if (logOut != null) {
-			request.removeAttribute("message");
+//			request.removeAttribute("message");
 //			session.removeAttribute("user");
 			session.invalidate();
 			response.sendRedirect("HomeController");
@@ -65,6 +66,7 @@ public class LoginController extends HttpServlet {
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
 
 		} else if (user != null) {
+			password = Endcoding.encrypt(password);
 			if (user.getPassword().equals(password)) {
 				session.setAttribute("user", user);
 				CartController cart = new CartController();

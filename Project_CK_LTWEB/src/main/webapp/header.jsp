@@ -10,11 +10,14 @@
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css"
 	href="themify-icons/themify-icons.css">
+ 
+ 
+<script src="js/jquery.slim.min.js"></script>
+ <script src="js/popper.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 
 
-<script type="text/javascript" src="js/popper.min.js"></script>
-<script type="text/javascript" src="js/jquery.slim.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
 
 <title></title>
 </head>
@@ -50,7 +53,7 @@
 					<a href="HomeController"><img id="logo" class="media-reponsive"
 						src="Image/logo.png" class="col-sm-3"></a>
 					<h1 class="name-shop">Shop Đồ Ăn Vặt Handmade</h1>
-					<form class="form-inline" action="search" method="post">
+					<form class="form-inline mt-4" action="search" method="post">
 						<input class="form-control media-reponsive search" type="search"
 							placeholder="Tìm kiếm..." aria-label="Search" name="search">
 						<button class="ti-search btn btn-success my-2 my-sm-0"
@@ -67,14 +70,29 @@
 							</div>
 						</c:if>
 						<c:if test="${user !=null}">
+							<c:set var="logOut" scope="session" value="logOut" />
 							<!-- Dang nhap/ Dang ky -->
-							<div class="login reponse-out">
-								<span class="text-white">Chào ${user.userName }</span>
-								<div class="ti-shift-left  icon_white"></div>
-								<c:set var="logOut" scope="session" value="logOut" />
-								<a class="login-item item" href="login?logOut=${logOut}"
-									style="margin-right: 60px;">Đăng Xuất</a>
+							<div class="login reponse-out mb-4 mt-1">
+								<div class="btn dropdown btn-user">
+								  <a  class="dropdown-toggle" data-toggle="dropdown">
+								    <i class = 'ti-user'></i>
+								  </a>
+								  <div class="dropdown-menu">
+								    <a class="dropdown-item" href="#">Thông tin</a>
+								    <a class="dropdown-item" href="#">Đổi mật khẩu</a>
+								    <a class="dropdown-item" href="login?logOut=${logOut}">Đăng xuất</a>
+								  </div>
+								</div>
+								<span class="text-white name-user">${user.userName }</span>
+								<!--<div class="ti-shift-left  icon_white"></div> -->
+
+								<!-- <a class="login-item item" href="login?logOut=${logOut}"
+									style="margin-right: 60px;">Đăng Xuất</a> -->
+									
 							</div>
+							
+						
+						
 						</c:if>
 
 					</form>
@@ -141,4 +159,7 @@
 	</div>
 
 </body>
+
+<script>
+$('.dropdown-toggle').dropdown()</script>
 </html>

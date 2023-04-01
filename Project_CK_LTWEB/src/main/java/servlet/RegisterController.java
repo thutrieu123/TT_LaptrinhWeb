@@ -16,6 +16,7 @@ import dao.AddressDAO;
 import dao.UserDAO;
 import model.Address;
 import model.User;
+import support.Endcoding;
 
 /**
  * Servlet implementation class RegisterController
@@ -80,7 +81,8 @@ public class RegisterController extends HttpServlet {
 				Address ward = addressDAO.getWard(request.getParameter("ward"));
 				String address = request.getParameter("addressDetail") + "," + ward.toString() + ","
 						+ ditricts.toString() + "," + city.toString();
-
+				
+				password = Endcoding.encrypt(password);
 				User newUser = new User(fullName, phone, address, userName, password, 2,email);
 				int id = userDAO.insertUser(newUser);
 				newUser.setId(id);
