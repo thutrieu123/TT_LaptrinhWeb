@@ -95,7 +95,7 @@
 				<b><%=request.getAttribute("maintitle")%></b>
 			</h3>
 			<div class="row mr-top-20 justify-content-center">
-				<c:forEach var="product" items="${listProduct}">
+				<c:forEach var="product" items="${ListAllProduct}">
 					<div class="row">
 						<form method="POST" action="CartController">
 							<div class="col-md-4 col-sm-2 product">
@@ -124,6 +124,17 @@
 			</div>
 
 		</div>
+		<div>
+			<ul class="pagination">
+				<c:forEach begin="1" end="${endP}" var="i">
+					<li class="page-item"><a class="page-link"
+						href="HomeController?index=${i}">${i}</a></li>
+				</c:forEach>
+			</ul>
+
+
+		</div>
+
 
 	</div>
 	<!-- End Body -->

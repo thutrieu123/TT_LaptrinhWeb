@@ -272,6 +272,84 @@ public class ProductDAO {
 			return 0;
 		}
 	}
+	public int getTotalProduct() {
+		DBContext db = new DBContext();
+		String query = "select COUNT(*) from product";
+		try {
+			connect = db.getConnection();
+			ps = connect.prepareStatement(query);
+			result = ps.executeQuery();
+			while (result.next()) {
+				return result.getInt(1);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return 0;
+
+	}
+	
+	public int getTotalFood() {
+		DBContext db = new DBContext();
+		String query = "select COUNT(*) from product WHERE product.DanhMuc_id = 1";
+		try {
+			connect = db.getConnection();
+			ps = connect.prepareStatement(query);
+			result = ps.executeQuery();
+			while (result.next()) {
+				return result.getInt(1);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return 0;
+
+	}
+	
+
+	public List<Product> pagingProduct(int index) {
+		List<Product> list = new ArrayList<>();
+		DBContext db = new DBContext();
+		String query = "SELECT * FROM product LIMIT ?,8;";
+		try {
+			connect = db.getConnection();
+			ps = connect.prepareStatement(query);
+			ps.setInt(1, (index - 1) * 8);
+			result = ps.executeQuery();
+			while (result.next()) {
+				list.add(new Product(result.getInt(1), 
+						result.getString(2), 
+						result.getString(3), 
+						result.getInt(4), 
+						result.getString(5)));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return list;
+	}
+	
+	public List<Product> pagingCake(int index) {
+		List<Product> list = new ArrayList<>();
+		DBContext db = new DBContext();
+		String query = "SELECT * FROM product WHERE product.DanhMuc_id = 1  LIMIT ?,12";
+		try {
+			connect = db.getConnection();
+			ps = connect.prepareStatement(query);
+			ps.setInt(1, (index - 1) * 12);
+			result = ps.executeQuery();
+			while (result.next()) {
+				list.add(new Product(result.getInt(1), 
+						result.getString(2), 
+						result.getString(3), 
+						result.getInt(4), 
+						result.getString(5)));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return list;
+	}
 // hello anh phú
 
 }
