@@ -10,10 +10,10 @@
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css"
 	href="themify-icons/themify-icons.css">
- 
- 
+
+
 <script src="js/jquery.slim.min.js"></script>
- <script src="js/popper.min.js"></script>
+<script src="js/popper.min.js"></script>
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 
@@ -74,25 +74,26 @@
 							<!-- Dang nhap/ Dang ky -->
 							<div class="login reponse-out mb-4 mt-1">
 								<div class="btn dropdown btn-user">
-								  <a  class="dropdown-toggle" data-toggle="dropdown">
-								    <i class = 'ti-user'></i>
-								  </a>
-								  <div class="dropdown-menu">
-								    <a class="dropdown-item" href="#">Thông tin</a>
-								    <a class="dropdown-item" href="#">Đổi mật khẩu</a>
-								    <a class="dropdown-item" href="login?logOut=${logOut}">Đăng xuất</a>
-								  </div>
+									<a class="dropdown-toggle" data-toggle="dropdown"> <i
+										class='ti-user'></i>
+									</a>
+									<div class="dropdown-menu">
+										<a class="dropdown-item" href="#">Thông tin</a> <a
+											class="dropdown-item" href="#">Đổi mật khẩu</a> <a
+											class="dropdown-item" href="login?logOut=${logOut}">Đăng
+											xuất</a>
+									</div>
 								</div>
 								<span class="text-white name-user">${user.userName }</span>
 								<!--<div class="ti-shift-left  icon_white"></div> -->
 
 								<!-- <a class="login-item item" href="login?logOut=${logOut}"
 									style="margin-right: 60px;">Đăng Xuất</a> -->
-									
+
 							</div>
-							
-						
-						
+
+
+
 						</c:if>
 
 					</form>
@@ -103,13 +104,15 @@
 			<div class=" cart reponse-cart">
 				<c:if test="${user !=null}">
 					<form method="POST" action="CartController">
-							<button
-								class="ti-shopping-cart btn btn-success my-2 my-sm-0 btn-cart"
-								name="action" value="usercart"></button> 
-								<c:if test="${cart != null}">
-								<span class="badge bg-danger">${cart.getLineItemCount()}</span></c:if>
-								<c:if test="${cart == null}">
-								<span class="badge bg-danger">0</span></c:if>
+						<button
+							class="ti-shopping-cart btn btn-success my-2 my-sm-0 btn-cart"
+							name="action" value="usercart"></button>
+						<c:if test="${cart != null}">
+							<span class="badge bg-danger">${cart.getLineItemCount()}</span>
+						</c:if>
+						<c:if test="${cart == null}">
+							<span class="badge bg-danger">0</span>
+						</c:if>
 					</form>
 				</c:if>
 				<c:if test="${user ==null}">
@@ -149,6 +152,8 @@
 							ăn</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="DrinkController">Đồ uống</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="CakeController">Bánh Ngọt</a></li>
 					<li class="nav-item"><a class="nav-link" href="feedback.jsp">Phản
 							hồi</a></li>
 
@@ -161,5 +166,6 @@
 </body>
 
 <script>
-$('.dropdown-toggle').dropdown()</script>
+	$('.dropdown-toggle').dropdown()
+</script>
 </html>

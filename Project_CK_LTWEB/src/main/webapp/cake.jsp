@@ -6,19 +6,30 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="css/main.css">
-<title>Đồ uống</title>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css"
+	href="themify-icons/themify-icons.css">
+
+
+<script src="js/jquery.slim.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+
+<title>Bánh Ngọt</title>
 </head>
 <body>
-	<jsp:include page="/header.jsp"></jsp:include>
+	<jsp:include page="header.jsp"></jsp:include>
 
 
 	<div class="container-fluid">
 		<div class="body">
 			<h3 style="text-align: center;">
-				<b>ĐỒ UỐNG</b>
+				<b>BÁNH NGỌT</b>
 			</h3>
 			<div class="row mr-top-20 justify-content-center">
-				<c:forEach var="product" items="${listDrink}">
+				<c:forEach var="product" items="${listCake}">
 					<div class="row">
 						<form method="POST" action="CartController">
 							<div class="col-md-4 col-sm-2 product">
@@ -46,19 +57,21 @@
 				</c:forEach>
 			</div>
 
-		</div>
-	</div>
-	
-	<div style="margin-top: 50px">
+			<div style="margin-top: 50px">
 				<div class="container" style="padding-left: 400px">
 					<ul class="pagination pagination-lg">
-						<c:forEach begin="1" end="${endPDrink}" var="i">
+						<c:forEach begin="1" end="${endPcake}" var="i">
 							<li class="page-item"><a class="page-link"
-								href="DrinkController?index=${i}">${i}</a></li>
+								href="CakeController?index=${i}">${i}</a></li>
 						</c:forEach>
 					</ul>
 				</div>
 			</div>
+
+
+
+		</div>
+	</div>
 	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

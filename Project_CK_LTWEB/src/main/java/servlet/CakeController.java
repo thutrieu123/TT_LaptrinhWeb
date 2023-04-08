@@ -12,12 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 import dao.ProductDAO;
 import model.Product;
 
-@WebServlet("/FoodController")
-public class FoodController extends HttpServlet {
+@WebServlet("/CakeController")
+public class CakeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
    
-    public FoodController() {
+    public CakeController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,17 +32,17 @@ public class FoodController extends HttpServlet {
 		}
 		int index = Integer.parseInt(indexPage);
 		
-		int count = productDAO.getTotalFood();
+		int count = productDAO.getTotalCake();
 		int endPage = count / 12;
 		if (count % 12 != 0) {
 			endPage++;
 		}
 		
-		List<Product> listAllFood = productDAO.pagingFood(index);
+		List<Product> listCake = productDAO.pagingCake(index);
 		
-		request.setAttribute("listAllFood", listAllFood);
-		request.setAttribute("endP", endPage);
-		request.getRequestDispatcher("/food.jsp").forward(request, response);
+		request.setAttribute("listCake", listCake);
+		request.setAttribute("endPcake", endPage);
+		request.getRequestDispatcher("/cake.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

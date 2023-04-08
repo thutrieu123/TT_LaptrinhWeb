@@ -57,13 +57,15 @@
 				</c:forEach>
 			</div>
 
-			<div>
-				<ul class="pagination">
-					<c:forEach begin="1" end="${endP}" var="i">
-						<li class="page-item"><a class="page-link"
-							href="FoodController?index=${i}">${i}</a></li>
-					</c:forEach>
-				</ul>
+			<div style="margin-top: 50px">
+				<div class="container" style="padding-left: 400px">
+					<ul class="pagination pagination-lg">
+						<c:forEach begin="1" end="${endP}" var="i">
+							<li class="page-item"><a class="page-link"
+								href="FoodController?index=${i}">${i}</a></li>
+						</c:forEach>
+					</ul>
+				</div>
 			</div>
 
 

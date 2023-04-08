@@ -16,12 +16,14 @@
 <title>Đăng Nhập</title>
 </head>
 <body>
-	<% String userName = request.getParameter("userName"); 
-		String password = request.getParameter("password");
-		
-		if(userName == null) userName ="";
-		if(password == null) password ="";
-	
+	<%
+	String userName = request.getParameter("userName");
+	String password = request.getParameter("password");
+
+	if (userName == null)
+		userName = "";
+	if (password == null)
+		password = "";
 	%>
 
 	<section class="vh-100 bg-image"
@@ -32,28 +34,34 @@
 					class="row d-flex justify-content-center align-items-center h-100">
 					<div class="col-12 col-md-9 col-lg-7 col-xl-6">
 						<div class="card" style="border-radius: 15px;">
-						<a href="HomeController" class="p-3"><i class="ti-angle-left"></i>Quay về</a>
+							<a href="HomeController" class="p-3"><i class="ti-angle-left"></i>Quay
+								về</a>
 							<div class="card-body p-3">
-							<c:if test="${error != null }">
-										<p style="color:red;">Vui lòng đăng nhập</p></c:if>
-									<c:if test="${access != null }"><p style="color:green;">${access}</p></c:if>
-							
+								<c:if test="${error != null }">
+									<p style="color: red;">Vui lòng đăng nhập</p>
+								</c:if>
+								<c:if test="${access != null }">
+									<p style="color: green;">${access}</p>
+								</c:if>
+
 								<h2 class="text-uppercase text-center mb-5">Đăng Nhập</h2>
 								<form action="login" method="post">
 									<div class="form-outline">
 										<label class="form-label" for="form3Example1cg">Tài
 											khoản(*):</label> <input type="text" id="form3Example1cg"
-											class="form-control " required name = "userName" value ="<%=userName %>" />
+											class="form-control " required name="userName"
+											value="<%=userName%>" />
 									</div>
-									<p style ="color:red;">${message.get("userError")}</p>
+									<p style="color: red;">${message.get("userError")}</p>
 
 									<div class="form-outline mt-3">
 										<label class="form-label" for="form3Example4cg">Mật
 											khẩu(*):</label> <input type="password" id="form3Example4cg"
-											class="form-control " name = "password" required  value = "<%=password%>"/>
+											class="form-control " name="password" required
+											value="<%=password%>" />
 
 									</div>
-									<p style ="color:red;">${message.get("passwordError")}</p>
+									<p style="color: red;">${message.get("passwordError")}</p>
 									<a href="forget.jsp" class="fw-bold ">Quên mật khẩu?</a>
 
 
@@ -62,10 +70,18 @@
 											class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Đăng
 											Nhập</button>
 									</div>
+									
+									<div class="container" align="center">		
+									<h1></h1>	
+									<h1></h1>							
+										<button type="button" class="btn btn-primary">Đăng nhập bằngFacebook</button>
+										<button type="button" class="btn btn-danger">Đăng nhập bằng Google</button>
+										
+									</div>
 
 									<p class="text-center text-muted mt-3 mb-0">
-										Bạn chưa có tài khoản? <a href="register.jsp" class="fw-bold text-body"><u>Đăng
-												ký tại đây</u></a>
+										Bạn chưa có tài khoản? <a href="register.jsp"
+											class="fw-bold text-body"><u>Đăng ký tại đây</u></a>
 									</p>
 
 								</form>

@@ -306,6 +306,40 @@ public class ProductDAO {
 
 	}
 	
+	public int getTotalCake() {
+		DBContext db = new DBContext();
+		String query = "select COUNT(*) from product WHERE product.DanhMuc_id = 2";
+		try {
+			connect = db.getConnection();
+			ps = connect.prepareStatement(query);
+			result = ps.executeQuery();
+			while (result.next()) {
+				return result.getInt(1);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return 0;
+
+	}
+	
+	public int getTotalDrink() {
+		DBContext db = new DBContext();
+		String query = "select COUNT(*) from product WHERE product.DanhMuc_id = 3";
+		try {
+			connect = db.getConnection();
+			ps = connect.prepareStatement(query);
+			result = ps.executeQuery();
+			while (result.next()) {
+				return result.getInt(1);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return 0;
+
+	}
+	
 
 	public List<Product> pagingProduct(int index) {
 		List<Product> list = new ArrayList<>();
@@ -328,8 +362,7 @@ public class ProductDAO {
 		}
 		return list;
 	}
-	
-	public List<Product> pagingCake(int index) {
+	public List<Product> pagingFood(int index) {
 		List<Product> list = new ArrayList<>();
 		DBContext db = new DBContext();
 		String query = "SELECT * FROM product WHERE product.DanhMuc_id = 1  LIMIT ?,12";
@@ -350,6 +383,51 @@ public class ProductDAO {
 		}
 		return list;
 	}
-// hello anh phú
+	
+	public List<Product> pagingCake(int index) {
+		List<Product> list = new ArrayList<>();
+		DBContext db = new DBContext();
+		String query = "SELECT * FROM product WHERE product.DanhMuc_id = 2  LIMIT ?,12";
+		try {
+			connect = db.getConnection();
+			ps = connect.prepareStatement(query);
+			ps.setInt(1, (index - 1) * 12);
+			result = ps.executeQuery();
+			while (result.next()) {
+				list.add(new Product(result.getInt(1), 
+						result.getString(2), 
+						result.getString(3), 
+						result.getInt(4), 
+						result.getString(5)));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return list;
+	}
+	
+	
+	public List<Product> pagingDrink(int index) {
+		List<Product> list = new ArrayList<>();
+		DBContext db = new DBContext();
+		String query = "SELECT * FROM product WHERE product.DanhMuc_id = 3  LIMIT ?,12";
+		try {
+			connect = db.getConnection();
+			ps = connect.prepareStatement(query);
+			ps.setInt(1, (index - 1) * 12);
+			result = ps.executeQuery();
+			while (result.next()) {
+				list.add(new Product(result.getInt(1), 
+						result.getString(2), 
+						result.getString(3), 
+						result.getInt(4), 
+						result.getString(5)));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return list;
+	}
+
 
 }

@@ -12,39 +12,40 @@ import javax.servlet.http.HttpServletResponse;
 import dao.ProductDAO;
 import model.Product;
 
-/**
- * Servlet implementation class DrinkController
- */
 @WebServlet("/DrinkController")
 public class DrinkController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+    
     public DrinkController() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		ProductDAO productDAO = new ProductDAO();
+		String indexPage = request.getParameter("index");
+		if(indexPage==null) {
+			indexPage="1";
+		}
+		int index = Integer.parseInt(indexPage);
 		
+		int count = productDAO.getTotalDrink();
+		int endPage = count / 12;
+		if (count % 12 != 0) {
+			endPage++;
+		}
 		
-		List<Product> listProduct = productDAO.getProductByCategory(3);
-		request.setAttribute("listProductCate3", listProduct);
+		List<Product> listDrink = productDAO.pagingDrink(index);
+		
+		request.setAttribute("listDrink", listDrink);
+		request.setAttribute("endPDrink", endPage);
 
 		request.getRequestDispatcher("/drink.jsp").forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
