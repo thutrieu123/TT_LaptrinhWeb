@@ -9,6 +9,7 @@ public class User {
 	private String password;
 	private int rolId;
 	private String email;
+	private int status;
 
 	public User(String fullName, String numberPhone, String address, String userName, String password, int rolId) {
 		super();
@@ -62,6 +63,37 @@ public class User {
 		this.password = password;
 		this.rolId = rolId;
 	}
+	
+	
+
+	public User( String fullName, String numberPhone, String address, String userName, String password,
+			int rolId, String email, int status) {
+		super();
+		this.fullName = fullName;
+		this.numberPhone = numberPhone;
+		this.address = address;
+		this.userName = userName;
+		this.password = password;
+		this.rolId = rolId;
+		this.email = email;
+		this.status = status;
+	}
+	
+	
+
+
+
+	public int getStatus() {
+		return status;
+	}
+
+
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+
 
 	public String getFullName() {
 		return fullName;

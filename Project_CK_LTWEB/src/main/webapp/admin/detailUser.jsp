@@ -111,13 +111,13 @@
                                                 class="form-control p-0 border-0" name="eUserName" value ="${eUser.userName}" readonly>
                                         </div>
                                     </div>
-                                    <div class="form-group mb-4">
+                                    <!--  <div class="form-group mb-4">
                                         <label class="col-md-12 p-0"><b><fmt:message key="user.password"
 										bundle="${lang }"></fmt:message></b></label>
                                         <div class="col-md-12 border-bottom p-0">
                                             <input type="password" value="${eUser.password}" class="form-control p-0 border-0" readonly>
                                         </div>
-                                    </div>
+                                    </div>-->
                                     <div class="form-group mb-4">
                                         <label class="col-md-12 p-0"><b><fmt:message key="user.phone"
 										bundle="${lang }"></fmt:message></b></label>

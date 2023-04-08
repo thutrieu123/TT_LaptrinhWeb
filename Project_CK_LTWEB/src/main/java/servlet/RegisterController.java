@@ -83,7 +83,7 @@ public class RegisterController extends HttpServlet {
 						+ ditricts.toString() + "," + city.toString();
 				
 				password = Endcoding.encrypt(password);
-				User newUser = new User(fullName, phone, address, userName, password, 2,email);
+				User newUser = new User(fullName, phone, address, userName, password, 2,email,0);
 				int id = userDAO.insertUser(newUser);
 				newUser.setId(id);
 				session.setAttribute("user", newUser);

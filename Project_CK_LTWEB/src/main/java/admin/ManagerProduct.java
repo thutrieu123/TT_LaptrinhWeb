@@ -23,7 +23,7 @@ import model.Product;
 /**
  * Servlet implementation class ManagerProduct
  */
-@MultipartConfig
+@MultipartConfig(location ="TT_LaptrinhWeb\\Project_CK_LTWEB\\src\\main\\webapp\\Image" )
 @WebServlet("/manager_product")
 public class ManagerProduct extends HttpServlet {
 	private static final long serialVersionUID = 1L;

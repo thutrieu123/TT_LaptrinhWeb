@@ -43,6 +43,35 @@ public class UserDAO {
 		return list;
 
 	}
+	//Lay ra nhung user co rol va status chi dinh
+	public List<User> getUserByRolId(int rolId,int status) {
+		DBContext db = new DBContext();
+		List<User> list = new ArrayList<>();
+		try {
+			connect = db.getConnection();
+
+			String query = "SELECT * FROM `user` WHERE user.rol_id = ? and status = ?";
+			ps = connect.prepareStatement(query);
+			ps.setInt(1, rolId);
+			ps.setInt(2, status);
+			result = ps.executeQuery();
+			while (result.next()) {
+				list.add(new User(result.getInt(1), result.getString(2), result.getString(3), result.getString(4),
+						result.getString(5), result.getString(6), result.getInt(7),result.getString(8)));
+			}
+			ps.close();
+			connect.close();
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+
+	}
 
 	public User getUser(String userName) {
 		DBContext db = new DBContext();
@@ -52,6 +81,33 @@ public class UserDAO {
 			String query = "SELECT * FROM `user` WHERE user.userName = ?";
 			ps = connect.prepareStatement(query);
 			ps.setString(1, userName);
+			result = ps.executeQuery();
+			while (result.next()) {
+				return new User(result.getInt(1),result.getString(2), result.getString(3), result.getString(4), result.getString(5),
+						result.getString(6), result.getInt(7),result.getString(8));
+			}
+			ps.close();
+			connect.close();
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public User getUser(String userName,int status) {
+		DBContext db = new DBContext();
+		try {
+			connect = db.getConnection();
+
+			String query = "SELECT * FROM `user` WHERE user.userName = ? && status = ?";
+			ps = connect.prepareStatement(query);
+			ps.setString(1, userName);
+			ps.setInt(2, status);
 			result = ps.executeQuery();
 			while (result.next()) {
 				return new User(result.getInt(1),result.getString(2), result.getString(3), result.getString(4), result.getString(5),
@@ -172,6 +228,30 @@ public class UserDAO {
 			ps = connect.prepareStatement(query);
 			ps.setString(1, newPass);
 			ps.setString(2, userName);
+			int numberRowUpdate = ps.executeUpdate();
+
+			ps.close();
+			connect.close();
+			return numberRowUpdate;
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+
+			e.printStackTrace();
+			return 0;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return 0;
+		}
+	}
+	public int changStatus(int id,int status) {
+		DBContext db = new DBContext();
+		try {
+			connect = db.getConnection();
+			String query = "UPDATE user SET  user.status= ? where  user.id= ?;";
+			ps = connect.prepareStatement(query);
+			ps.setInt(1,status);
+			ps.setInt(2,id);
 			int numberRowUpdate = ps.executeUpdate();
 
 			ps.close();
