@@ -44,6 +44,8 @@ public class HomeController extends HttpServlet {
 		List<Product> listProductNew = productDAO.getNewProduct();
 		List<Product> listPaging = productDAO.pagingProduct(index);
 		
+		System.out.println(listPaging.size());
+		
 		request.setAttribute("listProductNew", listProductNew);	
 		
 		request.setAttribute("maintitle", "Tất cả sản phẩm");

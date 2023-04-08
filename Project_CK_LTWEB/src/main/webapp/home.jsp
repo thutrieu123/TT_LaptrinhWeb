@@ -106,7 +106,7 @@
 										src="${product.getImage() }" class="card-img-top" alt="..."></a>
 									<div class="card-body">
 										<a href="product?proId=${product.id }"><h5
-												class=" card-title show_txt ">
+												class="card-title show_txt">
 												<b>${product.getName()}</b>
 											</h5></a>
 										<p class="card-text show_txt">${product.getDescreption()}</p>

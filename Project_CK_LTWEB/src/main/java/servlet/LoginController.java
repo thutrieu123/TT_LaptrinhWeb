@@ -47,8 +47,10 @@ public class LoginController extends HttpServlet {
 		String logOut = request.getParameter("logOut");
 		String error = request.getParameter("error");
 		String access = request.getParameter("access");
-
-		User user = userDAO.getUser(userName);
+		
+		
+		//Lay ra User co status = 0 la con quyen duoc vao he thong
+		User user = userDAO.getUser(userName,0);
 		System.out.println(userName);
 		request.setAttribute("message", message);
 

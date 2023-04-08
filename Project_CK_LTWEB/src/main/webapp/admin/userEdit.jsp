@@ -99,6 +99,7 @@
 									</div>
 								</div>
 								
+								<!--  
 								<div class="form-group mb-4">
 									<label for="example-email" class="col-md-12 p-0"><fmt:message key="user.password"
 										bundle="${lang }"></fmt:message></label>
@@ -107,7 +108,7 @@
 											class="form-control p-0 border-0" 
 											value="${eUser.password}" name="userPassword" >
 									</div>
-								</div>
+								</div>-->
 								
 								<div class="form-group mb-4">
 									<label class="col-sm-12"><fmt:message key="user.role"

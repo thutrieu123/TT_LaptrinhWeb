@@ -53,8 +53,12 @@ public class ManagerUser extends HttpServlet {
 
 			} else if (action.equals("trash")) {
 				String eUserId = request.getParameter("eUserId");
-				userDAO.deleteUser(Integer.parseInt(eUserId));
-				response.sendRedirect("/Project_CK_LTWEB/manager_user");
+//				userDAO.deleteUser(Integer.parseInt(eUserId));
+				
+				//Update trang thai cua User trong he thong thay doi trang thai status = 1 la khong hoat dong
+				int numberChang = userDAO.changStatus(Integer.parseInt(eUserId), 1);
+				System.out.println(numberChang);
+				response.sendRedirect("/Project_CK_LTWEB/manager_user?access=yes");
 			}
 			else if(action.equals("detail")) {
 				String eUserId = request.getParameter("eUserId");
@@ -80,7 +84,8 @@ public class ManagerUser extends HttpServlet {
 
 			response.sendRedirect("/Project_CK_LTWEB/manager_user?access=yes");
 		} else {
-			List<User> listUser = userDAO.getUserByRolId(2);
+			//Lay ra danh sach User co rol la User va con hoat dong status = 0
+			List<User> listUser = userDAO.getUserByRolId(2,0);
 			request.setAttribute("listUser", listUser);
 			request.getSession().setAttribute("langeName", "vi_VN");
 			request.getRequestDispatcher("/admin/manager_user.jsp").forward(request, response);
