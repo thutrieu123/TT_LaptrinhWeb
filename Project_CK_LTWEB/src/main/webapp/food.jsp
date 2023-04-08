@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -7,19 +6,30 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="css/main.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css"
+	href="themify-icons/themify-icons.css">
+
+
+<script src="js/jquery.slim.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+
 <title>Đồ ăn</title>
 </head>
 <body>
-	<jsp:include page="/header.jsp"></jsp:include>
+	<jsp:include page="header.jsp"></jsp:include>
 
 
 	<div class="container-fluid">
 		<div class="body">
 			<h3 style="text-align: center;">
-				<b>ĐỒ ĂN VẶT</b>
+				<b>THỨC ĂN</b>
 			</h3>
 			<div class="row mr-top-20 justify-content-center">
-				<c:forEach var="product" items="${listProductCate12}">
+				<c:forEach var="product" items="${listAllFood}">
 					<div class="row">
 						<form method="POST" action="CartController">
 							<div class="col-md-4 col-sm-2 product">
@@ -46,6 +56,17 @@
 					</div>
 				</c:forEach>
 			</div>
+
+			<div>
+				<ul class="pagination">
+					<c:forEach begin="1" end="${endP}" var="i">
+						<li class="page-item"><a class="page-link"
+							href="FoodController?index=${i}">${i}</a></li>
+					</c:forEach>
+				</ul>
+			</div>
+
+
 
 		</div>
 	</div>
