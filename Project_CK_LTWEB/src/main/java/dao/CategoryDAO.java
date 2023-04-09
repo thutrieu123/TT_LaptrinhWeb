@@ -20,7 +20,7 @@ public class CategoryDAO {
 		DBContext db = new DBContext();
 		try {
 			connect = db.getConnection();
-			String query = "SELECT * FROM `danhmuc`;";
+			String query = "SELECT * FROM `categories`;";
 			ps = connect.prepareStatement(query);
 			result = ps.executeQuery();
 			while (result.next()) {

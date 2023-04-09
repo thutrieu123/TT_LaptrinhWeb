@@ -49,12 +49,17 @@
 
 
 				<div class="col-md-12">
+					<div class="alert alert-danger"
+					<c:if test="${ error == null}">style="display: none"</c:if>>
+					<b>${error}</b>
+				</div>
+				
 					<div class="card">
 						<h3 class="text-center text-boil"><fmt:message key="product.add"
 										bundle="${lang }"></fmt:message></h3>
 						<div class="card-body">
 							<form class="form-horizontal form-material"
-								action="manager_product" method="post"
+								action="add_product" method="POST"
 								enctype="multipart/form-data">
 
 								<div class="form-group mb-4">
@@ -62,14 +67,14 @@
 										bundle="${lang }"></fmt:message></label>
 									<div class="col-md-12 border-bottom p-0">
 										<input type="text" class="form-control p-0 border-0"
-											value="${product.name }" name="productName" required="required">
+											name="productName" required="required">
 									</div>
 								</div>
 								<div class="form-group mb-4">
 									<label class="col-md-12 p-0"><fmt:message key="product.img"
 										bundle="${lang }"></fmt:message></label>
 									<div class="col-md-12 border-bottom p-0">
-										<img src="${product.image}" style="width: 80px; height: 80px;"
+										<img  style="width: 80px; height: 80px;"
 											id="picture" name="picture"> <input type="hidden"
 											value="${product.image}" name="productImage"> <input
 											type="file" class="btn btn-info" name="uploadImage"
@@ -83,7 +88,7 @@
 										bundle="${lang }"></fmt:message></label>
 									<div class="col-md-12 border-bottom p-0">
 										<textarea rows="5" class="form-control p-0 border-0"
-											name="productDes" required="required">${product.descreption}</textarea>
+											name="productDes" required="required"></textarea>
 									</div>
 								</div>
 
@@ -92,7 +97,6 @@
 										bundle="${lang }"></fmt:message></label>
 									<div class="col-md-12 border-bottom p-0">
 										<input type="number" class="form-control p-0 border-0"
-											id="example-email" value="${product.price}"
 											name="productPrice" required="required">
 									</div>
 								</div>

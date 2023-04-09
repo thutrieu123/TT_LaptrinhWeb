@@ -55,15 +55,15 @@
 					<div class="card">
 						<div class="card-body">
 							<form class="form-horizontal form-material"
-								action="manager_product" method="post"
+								action="edit_product" method="POST"
 								enctype="multipart/form-data">
 								<div class="form-group mb-4">
 									<label class="col-md-12 p-0"><fmt:message key="product.id"
 										bundle="${lang }"></fmt:message></label>
 									<div class="col-md-12 border-bottom p-0">
-										<input type="text" placeholder="Johnathan Doe"
+										<input type="text" 
 											class="form-control p-0 border-0" readonly
-											value="${product.id }" name="productId">
+											 name="productId" value="${product.id}">
 									</div>
 								</div>
 
@@ -72,10 +72,11 @@
 										bundle="${lang }"></fmt:message></label>
 									<div class="col-md-12 border-bottom p-0">
 										<input type="text" placeholder="Johnathan Doe"
-											class="form-control p-0 border-0" value="${product.name }"
-											name="productName" required="required">
+											class="form-control p-0 border-0" 
+											name="productName" value="${product.name}" required="required" >
 									</div>
 								</div>
+								
 								<div class="form-group mb-4">
 									<label class="col-md-12 p-0"><fmt:message key="product.img"
 										bundle="${lang }"></fmt:message></label>
@@ -104,7 +105,7 @@
 									<div class="col-md-12 border-bottom p-0">
 										<input type="number" 
 											class="form-control p-0 border-0" 
-											value="${product.price}" name="productPrice" required="required">
+											name="productPrice" value="${product.price}"  required="required">
 									</div>
 								</div>
 								<div class="form-group mb-4">
@@ -124,7 +125,7 @@
 								</div>
 								<div class="form-group mb-4">
 									<div class="col-sm-12">
-										<button class="btn btn-success" name="update" type="submit"><fmt:message key="select.update"
+										<button class="btn btn-success"  type="submit"><fmt:message key="select.update"
 										bundle="${lang }"></fmt:message></button>
 										<a class="btn btn-primary"
 											href="/Project_CK_LTWEB/manager_product"><fmt:message key="select.cancel"

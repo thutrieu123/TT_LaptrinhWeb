@@ -23,7 +23,7 @@ import model.Product;
 /**
  * Servlet implementation class ManagerProduct
  */
-@MultipartConfig(location ="TT_LaptrinhWeb\\Project_CK_LTWEB\\src\\main\\webapp\\Image" )
+@MultipartConfig()
 @WebServlet("/manager_product")
 public class ManagerProduct extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -44,15 +44,10 @@ public class ManagerProduct extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		ProductDAO productDAO = new ProductDAO();
-		CategoryDAO cateDAO = new CategoryDAO();
-		HashMap<String,String> message = new HashMap<>();
 
 		List<Product> listProduct = productDAO.getAllProduct();
 		request.setAttribute("listProduct", listProduct);
-		request.setAttribute("message", message);
 		String action = request.getParameter("action");
-		String update = request.getParameter("update");
-		String add = request.getParameter("add");
 		String access = request.getParameter("access");
 		
 		if(access != null) {
@@ -60,120 +55,38 @@ public class ManagerProduct extends HttpServlet {
 		}
 
 		if (action != null) {
-			if (action.equals("edit")) {
-				action = "";
+//			if (action.equals("edit")) {
+//				action = "";
+//				String proId = request.getParameter("proId");
+//				System.out.println(proId);
+//				Product product = productDAO.getProductById(Integer.parseInt(proId));
+//				List<Category> listCate = cateDAO.getAllCategory();
+//				
+//				request.setAttribute("product", product);
+//				request.setAttribute("listCate", listCate);
+//				request.getRequestDispatcher("/admin/productEdit.jsp").forward(request, response);
+//				return;
+//			} else 
+			
+			//Xoa san pham
+			if (action.equals("trash")) {
 				String proId = request.getParameter("proId");
-				System.out.println(proId);
-				Product product = productDAO.getProductById(Integer.parseInt(proId));
-				List<Category> listCate = cateDAO.getAllCategory();
-				
-				request.setAttribute("product", product);
-				request.setAttribute("listCate", listCate);
-				request.getRequestDispatcher("/admin/productEdit.jsp").forward(request, response);
-				return;
-			} else if (action.equals("trash")) {
-				String proId = request.getParameter("proId");
-				String path = "D:\\Web\\Project_CK\\Project_CK\\Project_CK_LTWEB\\src\\main\\webapp\\"; // Cho nay la lay duong dan thu muc luu hinh anh
+				//Nho thay doi duong dan anh de xoa thanh cong
+				String path = "F:\\TT_LTW\\TT_LaptrinhWeb\\Project_CK_LTWEB\\src\\main\\webapp\\"; // Cho nay la lay duong dan thu muc luu hinh anh
 
 				Product product = productDAO.getProductById(Integer.parseInt(proId));
 				path = path + product.getImage();
 				File file = new File(path);
-				file.delete();
+				System.out.println(file.getAbsolutePath());
+				System.out.println(file.exists());
+				System.out.println("Xoá "+ file.delete());
 
 				productDAO.delete(product.getId());
 				//message.put("success", "Xoá thành công");
 				response.sendRedirect("/Project_CK_LTWEB/manager_product?access=yes");
-			} else if (action.equals("add")) {
-				List<Category> listCate = cateDAO.getAllCategory();
-				request.setAttribute("listCate", listCate);
-				request.getRequestDispatcher("/admin/addProduct1.jsp").forward(request, response);
-				return;
-			}
-			return;
-
-		} else if (update != null) {
-			String proId = request.getParameter("productId");
-			String proName = request.getParameter("productName");
-			String proImage = request.getParameter("productImage");
-			String proDes = request.getParameter("productDes");
-			String proPrice = request.getParameter("productPrice");
-			String proKind = request.getParameter("productKind");
-			System.out.println("id"+proId + "name"+proName +"img"+proImage +"des"+proDes + "price"+proPrice +"kind"+proKind);
-
-			String upLoadFolder = "F:\\TT_LTW\\TT_LaptrinhWeb\\Project_CK_LTWEB\\src\\main\\webapp\\Image\\";// Cho nay la lay duong dan thu muc luu hinh anh
-			Path upLoadPath = Paths.get(upLoadFolder);
-			Part image = request.getPart("uploadImage");
-
-			String imageFileName = Path.of(image.getSubmittedFileName()).getFileName().toString();
-
-			if (imageFileName != null && !imageFileName.equals("")) {
-				File file = new File(upLoadFolder + File.separator + imageFileName);
-				System.out.println(file.getAbsolutePath());
-				if (!file.exists()) {
-					File deleteFile = new File("F:\\TT_LTW\\TT_LaptrinhWeb\\Project_CK_LTWEB\\src\\main\\webapp\\Image\\" + proImage);
-					proImage = "Image/" + imageFileName;
-					image.write(Paths.get(upLoadPath.toString(), imageFileName).toString());
-					deleteFile.delete();
-				} else {
-					Product product = productDAO.getProductById(Integer.parseInt(proId));
-					List<Category> listCate = cateDAO.getAllCategory();
-
-					request.setAttribute("product", product);
-					request.setAttribute("listCate", listCate);
-					request.setAttribute("imageError", "File đã tồn tại");
-					update = null;
-					request.getRequestDispatcher("/admin/productEdit.jsp").forward(request, response);
-
-					return;
-				}
-			}
-			Product product = new Product(Integer.parseInt(proId), proName, proDes, Integer.parseInt(proPrice),
-					proImage, Integer.parseInt(proKind));
-			productDAO.update(product);
-			response.sendRedirect("/Project_CK_LTWEB/manager_product?access=yes");
-
-		} else if (add != null) {
-
-			List<Category> listCate = cateDAO.getAllCategory();
-
-			String proName = request.getParameter("productName");
-			String proImage = request.getParameter("productImage");
-			String proDes = request.getParameter("productDes");
-			String proPrice = request.getParameter("productPrice");
-			String proKind = request.getParameter("productKind");
-
-			String upLoadFolder = "F:\\TT_LTW\\TT_LaptrinhWeb\\Project_CK_LTWEB\\src\\main\\webapp\\Image\\";// Cho nay la lay duong dan thu muc luu hinh anh
-			Path upLoadPath = Paths.get(upLoadFolder);
-			Part image = request.getPart("uploadImage");
-
-			String imageFileName = Path.of(image.getSubmittedFileName()).getFileName().toString();
-
-			if (imageFileName != null && !imageFileName.equals("")) {
-				File file = new File(upLoadFolder + File.separator + imageFileName);
-				if (!file.exists()) {
-					proImage = "Image/" + imageFileName;
-					System.out.println(Paths.get(upLoadPath.toString(), imageFileName).toString());
-					image.write(Paths.get(upLoadPath.toString(), imageFileName).toString());
-					productDAO.insert(proName, proDes, Integer.parseInt(proPrice), proImage, Integer.parseInt(proKind));
-					response.sendRedirect("/Project_CK_LTWEB/manager_product?access=yes");
-				} else {
-					request.setAttribute("listCate", listCate);
-					request.setAttribute("imageError", "File đã tồn tại");
-					add = null;
-					request.getRequestDispatcher("/admin/addProduct1.jsp").forward(request, response);
-					return;
-				}
-				
-				//request.getRequestDispatcher("/manager_product").forward(request, response);
-			} else {
-				request.setAttribute("listCate", listCate);
-				request.setAttribute("imageError", "Vui lòng chọn File");
-				request.getRequestDispatcher("/admin/addProduct1.jsp").forward(request, response);
 			}
 
-		}
-
-		else
+		} else
 			request.getRequestDispatcher("/admin/manager_product.jsp").forward(request, response);
 	}
 

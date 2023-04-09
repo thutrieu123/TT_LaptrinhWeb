@@ -22,7 +22,7 @@ public class ProductDAO {
 		try {
 			connect = db.getConnection();
 
-			String query = "SELECT * FROM `product` WHERE product.id = ? ;";
+			String query = "SELECT * FROM `products` WHERE products.id = ? ;";
 			ps = connect.prepareStatement(query);
 			ps.setInt(1, id);
 			result = ps.executeQuery();
@@ -50,7 +50,7 @@ public class ProductDAO {
 		DBContext db = new DBContext();
 		try {
 			connect = db.getConnection();
-			String query = "SELECT * FROM `product`;";
+			String query = "SELECT * FROM `products`;";
 			ps = connect.prepareStatement(query);
 			result = ps.executeQuery();
 			while (result.next()) {
@@ -78,7 +78,7 @@ public class ProductDAO {
 		DBContext db = new DBContext();
 		try {
 			connect = db.getConnection();
-			String query = "SELECT* FROM product WHERE product.DanhMuc_id = ?";
+			String query = "SELECT* FROM products WHERE products.DanhMuc_id = ?";
 			ps = connect.prepareStatement(query);
 			ps.setInt(1, catId);
 			result = ps.executeQuery();
@@ -108,7 +108,7 @@ public class ProductDAO {
 		DBContext db = new DBContext();
 		try {
 			connect = db.getConnection();
-			String query = "SELECT * FROM `product`;";
+			String query = "SELECT * FROM `products`;";
 			ps = connect.prepareStatement(query);
 			result = ps.executeQuery();
 			while (result.next()) {
@@ -136,7 +136,7 @@ public class ProductDAO {
 		DBContext db = new DBContext();
 		try {
 			connect = db.getConnection();
-			String query = "SELECT * FROM `product` order BY id LIMIT 4;";
+			String query = "SELECT * FROM `products` order BY id LIMIT 4;";
 			ps = connect.prepareStatement(query);
 			result = ps.executeQuery();
 			while (result.next()) {
@@ -164,7 +164,7 @@ public class ProductDAO {
 		DBContext db = new DBContext();
 		try {
 			connect = db.getConnection();
-			String query = "SELECT* FROM product WHERE product.name Like ?";
+			String query = "SELECT* FROM products WHERE products.name Like ?";
 			ps = connect.prepareStatement(query);
 			ps.setString(1, "%" + name + "%");
 			result = ps.executeQuery();
@@ -192,7 +192,7 @@ public class ProductDAO {
 		DBContext db = new DBContext();
 		try {
 			connect = db.getConnection();
-			String query = "UPDATE product SET product.name = ?,product.descreption = ?,product.price = ?,product.image =?,product.DanhMuc_id = ? WHERE id = ?;";
+			String query = "UPDATE products SET products.name = ?,products.descreption = ?,products.price = ?,products.image =?,products.DanhMuc_id = ? WHERE id = ?;";
 			ps = connect.prepareStatement(query);
 
 			ps.setString(1, product.getName());
@@ -223,7 +223,7 @@ public class ProductDAO {
 		DBContext db = new DBContext();
 		try {
 			connect = db.getConnection();
-			String query = "Delete from product where id = ?;";
+			String query = "Delete from products where id = ?;";
 			ps = connect.prepareStatement(query);
 
 			ps.setInt(1, id);
@@ -248,7 +248,7 @@ public class ProductDAO {
 		DBContext db = new DBContext();
 		try {
 			connect = db.getConnection();
-			String query = "INSERT INTO product(name,descreption,price,image,DanhMuc_id) VALUES(?,?,?,?,?);";
+			String query = "INSERT INTO products(name,descreption,price,image,DanhMuc_id) VALUES(?,?,?,?,?);";
 			ps = connect.prepareStatement(query);
 
 			ps.setString(1, name);
@@ -274,7 +274,7 @@ public class ProductDAO {
 	}
 	public int getTotalProduct() {
 		DBContext db = new DBContext();
-		String query = "select COUNT(*) from product";
+		String query = "select COUNT(*) from products";
 		try {
 			connect = db.getConnection();
 			ps = connect.prepareStatement(query);
@@ -291,7 +291,7 @@ public class ProductDAO {
 	
 	public int getTotalFood() {
 		DBContext db = new DBContext();
-		String query = "select COUNT(*) from product WHERE product.DanhMuc_id = 1";
+		String query = "select COUNT(*) from products WHERE products.DanhMuc_id = 1";
 		try {
 			connect = db.getConnection();
 			ps = connect.prepareStatement(query);
@@ -310,7 +310,7 @@ public class ProductDAO {
 	public List<Product> pagingProduct(int index) {
 		List<Product> list = new ArrayList<>();
 		DBContext db = new DBContext();
-		String query = "SELECT * FROM product LIMIT ?,8;";
+		String query = "SELECT * FROM products LIMIT ?,8;";
 		try {
 			connect = db.getConnection();
 			ps = connect.prepareStatement(query);
@@ -332,7 +332,7 @@ public class ProductDAO {
 	public List<Product> pagingCake(int index) {
 		List<Product> list = new ArrayList<>();
 		DBContext db = new DBContext();
-		String query = "SELECT * FROM product WHERE product.DanhMuc_id = 1  LIMIT ?,12";
+		String query = "SELECT * FROM products WHERE products.DanhMuc_id = 1  LIMIT ?,12";
 		try {
 			connect = db.getConnection();
 			ps = connect.prepareStatement(query);
