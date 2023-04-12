@@ -22,8 +22,8 @@ public class OrderDAO {
 		DBContext db = new DBContext();
 		try {
 			connect = db.getConnection();
-			String query = "SELECT (order.id),user.userName,user.email,product.name,cthd.price,cthd.quanlity FROM `order`,user,product,cthd\r\n"
-					+ "WHERE (order.user_id) = user.id AND (order.id) = cthd.oder_id AND cthd.product_id = product.id AND (order.status) = ?";
+			String query = "SELECT (order.id),user.userName,user.email,products.name,cthd.price,cthd.quanlity FROM `order`,user,products,cthd\r\n"
+					+ "WHERE (order.user_id) = user.id AND (order.id) = cthd.oder_id AND cthd.product_id = products.id AND (order.status) = ?";
 			ps = connect.prepareStatement(query);
 			ps.setInt(1, status);
 			result = ps.executeQuery();
@@ -52,8 +52,8 @@ public class OrderDAO {
 		DBContext db = new DBContext();
 		try {
 			connect = db.getConnection();
-			String query = "SELECT (order.id),user.userName,user.email,product.name,cthd.price,cthd.quanlity FROM `order`,user,product,cthd\r\n"
-					+ "WHERE (order.user_id) = user.id AND (order.id) = cthd.oder_id AND cthd.product_id = product.id AND (order.id) = ?";
+			String query = "SELECT (order.id),user.userName,user.email,products.name,cthd.price,cthd.quanlity FROM `order`,user,products,cthd\r\n"
+					+ "WHERE (order.user_id) = user.id AND (order.id) = cthd.oder_id AND cthd.product_id = products.id AND (order.id) = ?";
 			ps = connect.prepareStatement(query);
 			ps.setInt(1, id);
 			result = ps.executeQuery();
@@ -81,8 +81,8 @@ public class OrderDAO {
 		DBContext db = new DBContext();
 		try {
 			connect = db.getConnection();
-			String query = "SELECT (order.id),user.userName,user.email,product.name,cthd.price,cthd.quanlity,(order.status) FROM `order`,user,product,cthd\r\n"
-					+ "WHERE (order.user_id) = user.id AND (order.id) = cthd.oder_id AND cthd.product_id = product.id AND (order.user_id) = ?";
+			String query = "SELECT (order.id),user.userName,user.email,products.name,cthd.price,cthd.quanlity,(order.status) FROM `order`,user,products,cthd\r\n"
+					+ "WHERE (order.user_id) = user.id AND (order.id) = cthd.oder_id AND cthd.product_id = products.id AND (order.user_id) = ?";
 			ps = connect.prepareStatement(query);
 			ps.setInt(1, id);
 			result = ps.executeQuery();

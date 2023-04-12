@@ -45,10 +45,12 @@
 			<!-- Container fluid  -->
 			<!-- ============================================================== -->
 			<div class="container-fluid">
+			<!--<c:if test="${message != null}">
 				<div class="alert alert-success"
-					<c:if test="${ message.size() == 0}">style="display: none"</c:if>>
-					<b>${message["success"]}</b>
-				</div>
+					style="display: none">
+					<b><fmt:message key="message.subccess"
+													bundle="${lang }"></fmt:message></b>
+				</div></c:if>-->
 				<!-- ============================================================== -->
 				<!-- Start Page Content -->
 				<!-- ============================================================== -->
@@ -64,10 +66,17 @@
 							<h3 class="box-title text-uppercase text-center">
 								<fmt:message key="menu.MangerProduct" bundle="${lang }"></fmt:message>
 							</h3>
-							<a href="/Project_CK_LTWEB/manager_product?action=add"
+							<!--  <a href="/Project_CK_LTWEB/manager_product?action=add"
+								class="btn btn-success text-white mt-2 mb-2"
+								style="text-align: end; margin-right: 20px;"><fmt:message
+									key="product.add" bundle="${lang }"></fmt:message></a>-->
+									
+									
+									<a href="/Project_CK_LTWEB/add_product"
 								class="btn btn-success text-white mt-2 mb-2"
 								style="text-align: end; margin-right: 20px;"><fmt:message
 									key="product.add" bundle="${lang }"></fmt:message></a>
+									
 							<div class="table-responsive">
 								<table class="table text-nowrap" id="myTable">
 									<thead>
@@ -97,9 +106,15 @@
 												<td><c:if test="${product.catId == 1 }">Đồ ăn vặt</c:if>
 													<c:if test="${product.catId == 2 }">Đồ ăn</c:if> <c:if
 														test="${product.catId == 3 }">Nước Uống</c:if></td>
-												<td><a
+												<td>
+												<!-- <a
 													href="/Project_CK_LTWEB/manager_product?action=edit&proId=${product.id }"
-													class="btn btn-primary"><i class="ti-pencil-alt"></i></a> <a
+													class="btn btn-primary"><i class="ti-pencil-alt"></i></a>  -->
+													<a
+													href="/Project_CK_LTWEB/edit_product?proId=${product.id}"
+													class="btn btn-primary"><i class="ti-pencil-alt"></i></a>
+													
+													<a
 													href="/Project_CK_LTWEB/manager_product?action=trash&proId=${product.id }"
 													class="btn btn-danger text-white"><i class="ti-trash"></i></a>
 												</td>
