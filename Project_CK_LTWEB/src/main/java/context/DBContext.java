@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import bean.AbBean;
+
 public class DBContext {
 	private final String serverName = "localhost";
 	private final String dbName = "web";
@@ -16,9 +18,14 @@ public class DBContext {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		return DriverManager.getConnection(url, user, password);
 	}
+
+//	public boolean insert(AbBean bean) {
+//		return bean.insert(JDBiConnector.me());
+//	}
+
 	public static void main(String[] args) {
-		DBContext db  = new DBContext();
-		
+		DBContext db = new DBContext();
+
 		try {
 			Connection connect = db.getConnection();
 			System.out.println(connect.getCatalog());

@@ -36,7 +36,7 @@
 		phone = "";
 	if (addressDetail == null)
 		addressDetail = "";
-	if(email == null)
+	if (email == null)
 		email = "";
 	%>
 
@@ -59,49 +59,45 @@
 
 									<div class="form-outline ">
 										<label class="form-label" for="form3Example1cg">Tài
-											khoản(*):</label> <input type="text" 
-											class="form-control " required name="userName"
-											value="<%=userName%>" />
+											khoản(*):</label> <input type="text" class="form-control " required
+											name="userName" value="<%=userName%>" />
 									</div>
 									<p style="color: red;">${message.get("userError")}</p>
 
 									<div class="form-outline mt-4">
 										<label class="form-label" for="form3Example4cg">Mật
-											khẩu(*):</label> <input type="password" 
-											class="form-control " required name="password"
-											value="<%=password%>" />
+											khẩu(*):</label> <input type="password" class="form-control "
+											required name="password" value="<%=password%>" />
 
 									</div>
 									<p style="color: red;">${message.get("password")}</p>
 
 									<div class="form-outline mt-4">
 										<label class="form-label" for="form3Example4cdg">Nhập
-											lại mật khẩu(*):</label> <input type="password" 
-											class="form-control" required name="rePassword"
-											value="<%=rePassword%>" />
+											lại mật khẩu(*):</label> <input type="password" class="form-control"
+											required name="rePassword" value="<%=rePassword%>" />
 
 									</div>
 									<p style="color: red;">${message.get("passwordError")}</p>
 
 									<div class="form-outline mb-4">
 										<label class="form-label" for="form3Example4cdg">Họ và
-											tên(*):</label> <input type="text" 
-											class="form-control" required name="fullName"
-											value="<%=fullName%>" />
+											tên(*):</label> <input type="text" class="form-control" required
+											name="fullName" value="<%=fullName%>" />
 
 									</div>
 
 									<div class="form-outline mb-4">
 										<label class="form-label" for="form3Example3cg">SĐT(*):</label>
-										<input type="text"  class="form-control"
-											required name="phone" value="<%=phone%>" />
+										<input type="text" class="form-control" required name="phone"
+											value="<%=phone%>" />
 
 									</div>
-									
+
 									<div class="form-outline mb-4">
 										<label class="form-label" for="form3Example3cg">Email(*):</label>
-										<input type="email"  class="form-control"
-											required name="email" value="<%=email%>" />
+										<input type="email" class="form-control" required name="email"
+											value="<%=email%>" />
 
 									</div>
 

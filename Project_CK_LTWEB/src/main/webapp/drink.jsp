@@ -48,17 +48,17 @@
 
 		</div>
 	</div>
-	
+
 	<div style="margin-top: 50px">
-				<div class="container" style="padding-left: 400px">
-					<ul class="pagination pagination-lg">
-						<c:forEach begin="1" end="${endPDrink}" var="i">
-							<li class="page-item"><a class="page-link"
-								href="DrinkController?index=${i}">${i}</a></li>
-						</c:forEach>
-					</ul>
-				</div>
-			</div>
+		<div class="container" style="padding-left: 400px">
+			<ul class="pagination pagination-lg">
+				<c:forEach begin="1" end="${endPDrink}" var="i">
+					<li class="page-item"><a class="page-link"
+						href="DrinkController?index=${i}">${i}</a></li>
+				</c:forEach>
+			</ul>
+		</div>
+	</div>
 	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>
