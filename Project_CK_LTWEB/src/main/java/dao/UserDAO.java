@@ -157,7 +157,7 @@ public class UserDAO {
 		int id = 0;
 		try {
 			connect = db.getConnection();
-			String query = "INSERT INTO user(fullname,phone,address,userName,password,rol_id,email) VALUES(?,?,?,?,?,2,?);";
+			String query = "INSERT INTO user(fullname,phone,address,userName,password,rol_id,email,status) VALUES(?,?,?,?,?,2,?,?);";
 			ps = connect.prepareStatement(query);
 
 			ps.setString(1, user.getFullName());
@@ -166,6 +166,7 @@ public class UserDAO {
 			ps.setString(4, user.getUserName());
 			ps.setString(5, user.getPassword());
 			ps.setString(6, user.getEmail());
+			ps.setInt(7, user.getStatus());
 			ps.executeUpdate();
 			ps.clearParameters();
 			
