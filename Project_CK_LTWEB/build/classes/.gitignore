@@ -1,2 +1,8 @@
-/support/
 /admin/
+/context/
+/dao/
+/filter/
+/i18n/
+/model/
+/servlet/
+/support/

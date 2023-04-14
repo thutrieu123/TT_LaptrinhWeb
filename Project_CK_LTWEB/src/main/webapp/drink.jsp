@@ -18,7 +18,7 @@
 				<b>ĐỒ UỐNG</b>
 			</h3>
 			<div class="row mr-top-20 justify-content-center">
-				<c:forEach var="product" items="${listProductCate3}">
+				<c:forEach var="product" items="${listAllDrink}">
 					<div class="row">
 						<form method="POST" action="CartController">
 							<div class="col-md-4 col-sm-2 product">
@@ -44,6 +44,17 @@
 						</form>
 					</div>
 				</c:forEach>
+			</div>
+			
+			<div style="padding-top: 50px">
+				<div style="padding-left: 750px">
+					<ul class="pagination">
+						<c:forEach begin="1" end="${endPDrink}" var="i">
+							<li class="page-item"><a class="page-link"
+								href="DrinkController?index=${i}">${i}</a></li>
+						</c:forEach>
+					</ul>
+				</div>
 			</div>
 
 		</div>
