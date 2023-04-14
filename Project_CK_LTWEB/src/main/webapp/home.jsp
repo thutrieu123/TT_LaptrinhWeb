@@ -124,15 +124,16 @@
 			</div>
 
 		</div>
-		<div>
-			<ul class="pagination">
-				<c:forEach begin="1" end="${endP}" var="i">
-					<li class="page-item"><a class="page-link"
-						href="HomeController?index=${i}">${i}</a></li>
-				</c:forEach>
-			</ul>
-
-
+		
+		<div style="padding-top: 50px">
+			<div style="padding-left: 450px">
+				<ul class="pagination">
+					<c:forEach begin="1" end="${endP}" var="i">
+						<li class="page-item"><a class="page-link"
+							href="HomeController?index=${i}">${i}</a></li>
+					</c:forEach>
+				</ul>
+			</div>
 		</div>
 
 

@@ -1,1 +1,12 @@
+<<<<<<< HEAD
 /api/
+=======
+/admin/
+/context/
+/dao/
+/filter/
+/i18n/
+/model/
+/servlet/
+/support/
+>>>>>>> 4189af64fb586200f087250a0e7e4cfa77859576
