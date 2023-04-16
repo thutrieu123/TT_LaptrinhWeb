@@ -68,7 +68,7 @@ public class LoginController extends HttpServlet {
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
 
 		} else if (user != null) {
-			password = Endcoding.encrypt(password);
+//			password = Endcoding.encrypt(password);
 			if (user.getPassword().equals(password)) {
 				session.setAttribute("user", user);
 				CartController cart = new CartController();
