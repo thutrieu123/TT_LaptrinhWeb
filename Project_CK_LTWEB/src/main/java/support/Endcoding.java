@@ -3,6 +3,7 @@ package support;
 import java.security.MessageDigest;
 import java.util.Arrays;
 
+
 import org.apache.tomcat.util.codec.binary.Base64;
 
 
@@ -84,7 +85,7 @@ public class Endcoding {
         return sb.toString();
     }
 	public static void main(String[] args) {
-		System.out.println(convertUTF_8("Phường nè"));
+		System.out.println(encrypt("Phường nè"));
 	}
 
 }
