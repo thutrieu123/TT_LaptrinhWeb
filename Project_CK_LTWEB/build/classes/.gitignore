@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-/api/
-=======
-=======
->>>>>>> 4189af64fb586200f087250a0e7e4cfa77859576
 /admin/
+/api/
 /context/
 /dao/
 /filter/
@@ -12,7 +7,3 @@
 /model/
 /servlet/
 /support/
-<<<<<<< HEAD
->>>>>>> 4189af64fb586200f087250a0e7e4cfa77859576
-=======
->>>>>>> 4189af64fb586200f087250a0e7e4cfa77859576

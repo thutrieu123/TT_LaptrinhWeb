@@ -78,7 +78,7 @@
 										class='ti-user'></i>
 									</a>
 									<div class="dropdown-menu">
-										<a class="dropdown-item" href="#">Thông tin</a> <a
+										<a class="dropdown-item" href="detailInfor.jsp">Thông tin</a> <a
 											class="dropdown-item" href="#">Đổi mật khẩu</a> <a
 											class="dropdown-item" href="login?logOut=${logOut}">Đăng
 											xuất</a>
