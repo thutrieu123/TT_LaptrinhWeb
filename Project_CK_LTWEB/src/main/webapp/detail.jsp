@@ -26,7 +26,7 @@
 		<div class=" cart">
 			<button
 				class="ti-shopping-cart btn btn-success my-2 my-sm-0 btn-cart"></button>
-			<span class="badge bg-danger">0</span>
+			<span class="badge bg-danger">${cart.getLineItemCount()}</span>
 		</div>
 	</div>
 
