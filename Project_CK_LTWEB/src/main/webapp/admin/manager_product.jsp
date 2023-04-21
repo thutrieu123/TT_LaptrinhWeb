@@ -114,9 +114,11 @@
 													href="/Project_CK_LTWEB/edit_product?proId=${product.id}"
 													class="btn btn-primary"><i class="ti-pencil-alt"></i></a>
 													
-													<a
-													href="/Project_CK_LTWEB/manager_product?action=trash&proId=${product.id }"
-													class="btn btn-danger text-white"><i class="ti-trash"></i></a>
+													<!--  <a
+													href="/Project_CK_LTWEB/change_s?action=trash&proId=${product.id }"
+													class="btn btn-danger text-white"><i class="ti-trash"></i></a>-->
+													
+													<button onclick="changeStatus(${product.id})" class = "btn btn-danger text-white"><i class="ti-trash"></i></button>
 												</td>
 
 											</tr>
@@ -157,6 +159,20 @@
 		$(document).ready(function() {
 			$('#myTable').DataTable();
 		});
+	</script>
+	<script >
+		function changeStatus(proId){
+			$.ajax({
+				url : "/Project_CK_LTWEB/change_status",
+				data:{
+					id:proId,
+					status:1
+				},
+				success: function(data){
+					
+				}
+			});
+		}
 	</script>
 
 
