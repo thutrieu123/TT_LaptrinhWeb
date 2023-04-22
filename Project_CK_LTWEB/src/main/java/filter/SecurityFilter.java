@@ -25,17 +25,19 @@ public class SecurityFilter implements Filter {
 
 		String uri = rq.getRequestURI();
 		User user = (User) rq.getSession().getAttribute("user");
-		String error = "";
-
+//		String error = "";
+		int error = 0;
 		if (user == null) {
-			error = resp.encodeURL("Vui lòng đăng nhập");
-		} else if (user.getRolId() != 1 && uri.contains("/amin/")) {
-			error = resp.encodeURL("Vui lòng đăng nhập với vai trò admin");
+//			error = resp.encodeURL("Vui lòng đăng nhập");
+			error = 1; //Vui long dang nhap khi vao url admin
+		} else if (user.getRolId() != 1 ) { //&& uri.contains("/amin/")
+//			error = resp.encodeURL("Vui lòng đăng nhập với vai trò admin");
+			error = 2;//Dang nhap voi tai khoan vai tro admin
 		}
 
-		if (!error.isEmpty()) {
+		if (error != 0) {//!error.isEmpty()
 			rq.setAttribute("securi", uri);
-			resp.sendRedirect("/Project_CK_LTWEB/login?error=" + resp.encodeURL(error));
+			resp.sendRedirect("/Project_CK_LTWEB/login?error=" + error);
 		} else {
 			chain.doFilter(rq, resp);
 		}

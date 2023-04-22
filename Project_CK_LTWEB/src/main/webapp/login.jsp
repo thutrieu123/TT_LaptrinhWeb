@@ -35,7 +35,11 @@
 						<a href="HomeController" class="p-3"><i class="ti-angle-left"></i>Quay về</a>
 							<div class="card-body p-3">
 							<c:if test="${error != null }">
-										<p style="color:red;">Vui lòng đăng nhập</p></c:if>
+										<p style="color:red;">
+										<c:if test="${error == 1 }">Vui lòng đăng nhập</c:if>
+										<c:if test="${error == 2 }">Vui lòng đăng nhập với vai trò là admin</c:if>
+										</p>
+										</c:if>
 									<c:if test="${access != null }"><p style="color:green;">${access}</p></c:if>
 							
 								<h2 class="text-uppercase text-center mb-5">Đăng Nhập</h2>
