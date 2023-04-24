@@ -1,8 +1,13 @@
+<<<<<<< HEAD
 /admin/
-/dao/
 /api/
+/context/
+/dao/
 /filter/
 /i18n/
 /model/
 /servlet/
 /support/
+=======
+/servlet/
+>>>>>>> 2db0d18ecb6a8858c63df23ef7ff6e976c1a56eb
