@@ -245,6 +245,11 @@ a:not([href]):not([class]), a:not([href]):not([class]):hover {
   text-decoration: none;
 }
 
+a.active{
+	color: green;
+	font-weight: bold;
+}
+
 pre,
 code,
 kbd,

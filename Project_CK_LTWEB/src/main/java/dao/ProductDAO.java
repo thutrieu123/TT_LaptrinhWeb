@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import context.DBContext;
+import model.Category;
 import model.Product;
 
 public class ProductDAO {
@@ -418,6 +419,57 @@ public class ProductDAO {
 			// TODO: handle exception
 		}
 		return list;
+	}
+	
+	public List<Product> getProductByCateID(String cid) {
+		List<Product> list = new ArrayList<>();
+		DBContext db = new DBContext();
+		String query = "SELECT * FROM products where danhmuc_id=?";
+		try {
+			connect = db.getConnection();
+			ps = connect.prepareStatement(query);
+			ps.setString(1, cid);
+			result = ps.executeQuery();
+			while (result.next()) {
+				list.add(new Product(result.getInt(1), 
+						result.getString(2), 
+						result.getString(3), 
+						result.getInt(4), 
+						result.getString(5)));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return list;
+	}
+	
+	public List<Category> getCatetogy() {
+		List<Category> list = new ArrayList<>();
+		DBContext db = new DBContext();
+		String query = "SELECT * FROM categories";
+		try {
+			connect = db.getConnection();
+			ps = connect.prepareStatement(query);		
+			result = ps.executeQuery();
+			while (result.next()) {
+				list.add(new Category(result.getInt(1), result.getString(2)));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return list;
+	}
+	
+	
+	
+	
+	public static void main(String[] args) {
+		ProductDAO productDAO = new ProductDAO();
+//		List<Product> list = productDAO.getProductByCateID("3");
+		List<Category> list = productDAO.getCatetogy();
+		for(Category o : list) {
+			System.out.println(o);
+		}
 	}
 
 
