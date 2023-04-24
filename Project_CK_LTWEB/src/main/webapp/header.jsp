@@ -78,8 +78,8 @@
 										class='ti-user'></i>
 									</a>
 									<div class="dropdown-menu">
-										<a class="dropdown-item" href="detailInfor.jsp">Thông tin</a> <a
-											class="dropdown-item" href="#">Đổi mật khẩu</a> <a
+										<a class="dropdown-item" href="detailInfor.jsp">Thông tin</a>
+										<a class="dropdown-item" href="#">Đổi mật khẩu</a> <a
 											class="dropdown-item" href="login?logOut=${logOut}">Đăng
 											xuất</a>
 									</div>
@@ -152,6 +152,8 @@
 							ăn</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="DrinkController">Đồ uống</a></li>
+					<li class="nav-item"><a class="nav-link" href="CakeController">Bánh
+							Ngọt</a></li>
 					<li class="nav-item"><a class="nav-link" href="feedback.jsp">Phản
 							hồi</a></li>
 
