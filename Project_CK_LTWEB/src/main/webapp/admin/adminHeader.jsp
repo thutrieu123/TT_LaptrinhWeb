@@ -133,6 +133,44 @@
 								class="ti-info" aria-hidden="true"></i> <span class="hide-menu"><fmt:message
 										key="menu.Infor" bundle="${lang }"></fmt:message></span>
 						</a></li>
+						
+						<!-- <li class="sidebar-item pt-2"><a
+							class="sidebar-link waves-effect waves-dark sidebar-link"
+							href="/Project_CK_LTWEB/statistical" aria-expanded="false"> <i
+								class="ti-receipt" aria-hidden="true"></i> <span class="hide-menu"><fmt:message
+										key="menu.ManagerStatistical" bundle="${lang }"></fmt:message></span>
+						</a></li> -->
+												
+						
+						<!-- Thong ke -->
+							
+									<li class="sidebar-item"><a
+							class="sidebar-link  waves-dark sidebar-link"
+							aria-expanded="false" data-toggle="collapse"
+							href="#demo" role="button" aria-expanded="false"
+							aria-controls="#demo"> <i
+								class="ti-receipt" aria-hidden="true"></i> <span class="hide-menu"><fmt:message
+										key="menu.ManagerStatistical" bundle="${lang }"></fmt:message></span>
+						</a></li>
+
+						<ul class="collapse" id="demo">
+							<li class="sidebar-item" style="margin-left: 5px"><a
+								class="sidebar-link waves-effect waves-dark sidebar-link"
+								href="/Project_CK_LTWEB/statistical?page=sta_product" aria-expanded="false"> <i
+									class="ti-control-record" aria-hidden="true"></i> <span
+									class="hide-menu"><fmt:message key="sta.product"
+											bundle="${lang }"></fmt:message></span>
+							</a></li>
+							<li class="sidebar-item" style="margin-left: 5px"><a
+								class="sidebar-link waves-effect waves-dark sidebar-link"
+								href="/Project_CK_LTWEB//statistical?page=revenue" aria-expanded="false"> <i
+									class="ti-control-record" aria-hidden="true"></i> <span
+									class="hide-menu"><fmt:message key="sta.revenue"
+											bundle="${lang }"></fmt:message></span>
+							</a></li>
+							
+						</ul>
+						<!--end thong ke  -->
 
 						<li class="sidebar-item pt-2"><a
 							class="sidebar-link waves-effect waves-dark sidebar-link"
