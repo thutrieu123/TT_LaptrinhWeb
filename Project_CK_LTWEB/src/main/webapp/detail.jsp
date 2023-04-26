@@ -1,81 +1,84 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+<html lang="vi" class="h-100">
+
 <head>
-<meta charset="utf-8" />
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="css/main.css">
 <meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<title>Shop Item - Start Bootstrap Template</title>
-<link rel="stylesheet" type="text/css"
-	href="themify-icons/themify-icons.css">
-<link href="css/styles.css" rel="stylesheet" />
-<link href="css/detail.css" rel="stylesheet" />
-<link href="css/bootstrap.min.css" rel="stylesheet" />
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Trang chi tiết sản phẩm</title>
+<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" href="css/product-detail.css" type="text/css">
 </head>
+
 <body>
 
-	<div class="container d-flex">
-		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="HomeController">Trang
-					chủ</a></li>
-			<li class="breadcrumb-item active" aria-current="page">Chi tiết
-				sản phẩm ${product.name}</li>
-		</ol>
+	<jsp:include page="/header.jsp"></jsp:include>
 
-		<div class=" cart">
-			<button
-				class="ti-shopping-cart btn btn-success my-2 my-sm-0 btn-cart"></button>
-			<span class="badge bg-danger">${cart.getLineItemCount()}</span>
+	<div style="padding-top: 10px" class="container ">
+		<div class="row">
+			<div class="col">
+				<div class="card">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="images p-3">
+								<div class="text-center p-4">
+									<img id="main-image" src="${product.image}" width="250" />
+								</div>
+								<div class="thumbnail text-center">
+									<img onclick="change_image(this)" src="${product.image}"
+										width="70"> <img onclick="change_image(this)"
+										src="${product.image}" width="70">
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="product ">
+								<div class="mt-4 mb-3">
+									<h6 class="text-uppercase">Chi tiết sản phẩm</h6>
+								</div>
+								<form method="POST" action="CartController">
+									<h2 class="text-uppercase">${product.name}</h2>
+									<h6 class="text-uppercase">Mô tả:</h6>
+									<p class="about">${product.getDescreption()}</p>
+									<h6 class="text-uppercase">Loại:</h6>
+									<label class="radio"> <input type="radio" name="size"
+										value="S" checked> <span>Lớn</span>
+									</label> <label class="radio"> <input type="radio" name="size"
+										value="M"> <span>Vừa</span>
+									</label> </label> <label class="radio"> <input type="radio" name="size"
+										value="M"> <span>Nhỏ</span>
+									</label>
+									<h6>Số lượng:</h6>
+									<input class="form-control text-center me-3"
+										name="inputQuantity" type="number" value="1"
+										style="max-width: 3rem" />
+									<div>
+										<div class="price">Giá :${product.formatPrice()} vnđ</div>
+									</div>
+
+									<div style="padding-top: 20px">
+										<button class="btn btn-danger text-uppercase mr-2 px-4"
+											type="submit">Thêm vào giỏ hàng</button>
+										<i class="fa fa-heart text-muted"></i> <i
+											class="fa fa-share-alt text-muted"></i>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 
+	<jsp:include page="/footer.jsp"></jsp:include>
 
-	<section class="">
-		<form method="POST" action="CartController">
-			<div class="container px-4 px-lg-5 my-5">
-				<div class="row gx-4 gx-lg-5 align-items-center">
-					<div class="col-md-6">
-						<img class="card-img-top mb-5 mb-md-0" src="${product.image}"
-							alt="..." />
-					</div>
-
-
-					<div class="col-md-6">
-						<div class="small mb-1" >SKU: ${product.id}</div>
-						<input type=  "hidden" name = "proId" value ="${product.id}">
-						<h1 class="display-5 fw-bolder">${product.name}</h1>
-						<div class="fs-5 mb-5">
-							<span>Giá: ${product.formatPrice()} VNĐ.</span>
-						</div>
-						<p class="lead">${product.getDescreption()}</p>
-						<div class="d-flex">
-							<input class="form-control text-center me-3" name="inputQuantity"
-								type="number" value="1" style="max-width: 3rem" />
-							<button class="btn btn-outline-dark flex-shrink-0" type="submit">
-								<!-- <a href="CartController?proId=${product.id}"> -->
-								<i class="ti-shopping-cart me-1"></i> Add to Cart
-								<!--  </a>-->
-							</button>
-						</div>
-					</div>
-
-				</div>
-			</div>
-		</form>
-	</section>
-	<!-- Related items section-->
-
-	<!-- Footer-->
-	<footer class="py-3 bg-dark">
-		<div class="container">
-			<p class="m-0 text-center text-white">Sản phẩm đi đôi với chất
-				lượng</p>
-		</div>
-	</footer>
-	<!-- Bootstrap core JS-->
-	<script src="js/bootstrap.bundle.min.js"></script>
-	<!-- Core theme JS-->
-	<script src="js/scripts.js"></script>
 </body>
+
 </html>
+
