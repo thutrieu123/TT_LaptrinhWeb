@@ -1,3 +1,4 @@
+
 package dao;
 
 import java.sql.Connection;
@@ -506,5 +507,6 @@ public class ProductDAO {
 //		List<Product> list = productDAO.getProductByCateID("3");
 
 	}
+
 
 }
