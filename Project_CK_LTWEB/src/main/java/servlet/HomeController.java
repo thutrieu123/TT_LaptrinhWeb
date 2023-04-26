@@ -13,9 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import dao.ProductDAO;
 import model.Product;
 
-/**
- * Servlet implementation class HomeController
- */
 @WebServlet("/HomeController")
 public class HomeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -51,8 +48,8 @@ public class HomeController extends HttpServlet {
 		request.setAttribute("maintitle", "Tất cả sản phẩm");
 		request.setAttribute("ListAllProduct", listPaging);
 		request.setAttribute("endP", endPage);
-
-		request.getRequestDispatcher("/home.jsp").forward(request, response);
+		request.setAttribute("tag", index);
+		request.getRequestDispatcher("home.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
