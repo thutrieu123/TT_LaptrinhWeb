@@ -1,6 +1,10 @@
-/support/
+/admin/
+/api/
+/filter/
 /dao/
 /admin/
 /i18n/
 /model/
-/filter/
+/servlet/
+/support/
+
