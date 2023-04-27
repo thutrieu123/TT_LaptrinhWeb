@@ -104,7 +104,7 @@
 										<div class="col-md-12 border-bottom p-0">
 											<input type="text" placeholder="Johnathan Doe"
 												class="form-control p-0 border-0" value="${user.fullName }"
-												name="fullName" readonly>
+												name="fullName" id ="fullName" readonly>
 										</div>
 									</div>
 									<div class="form-group mb-4">
@@ -118,9 +118,9 @@
 									<div class="form-group mb-4">
 										<label class="col-md-12 p-0"><b><fmt:message
 													key="user.password" bundle="${lang }"></fmt:message></b></label>
-										<div class="col-md-12 border-bottom p-0">
+										<div class="col-md-12 border-bottom p-0" style="display: inline-flex;">
 											<input type="password" value="${user.password}"
-												class="form-control p-0 border-0" readonly>
+												class="form-control p-0 border-0"  readonly>
 										</div>
 									</div>
 									<div class="form-group mb-4">
@@ -147,6 +147,7 @@
 										</div>
 									</div>
 								</form>
+																				<button class ="btn btn-primary" onclick="edit()">Sửa Thông tin</button>
 							</div>
 						</div>
 					</div>
@@ -173,5 +174,13 @@
 	<script src="/Project_CK_LTWEB/admin/js/custom.js"></script>
 	<script src="/Project_CK_LTWEB/admin/js/jquery.dataTables.min.js"></script>
 </body>
+
+<script type="text/javascript">
+	function edit(){
+		var fullName = $("#fullName");
+		
+		fullName.removeAttribute('readonly');
+	}
+</script>
 
 </html>
