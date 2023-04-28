@@ -32,14 +32,14 @@ public class HomeController extends HttpServlet {
 		}
 		int index = Integer.parseInt(indexPage);
 		
-		int count = productDAO.getTotalProduct();
+		int count = productDAO.getTotalProduct(0);
 		int endPage = count / 8;
 		if (count % 8 != 0) {
 			endPage++;
 		}
 
-		List<Product> listProductNew = productDAO.getNewProduct();
-		List<Product> listPaging = productDAO.pagingProduct(index);
+		List<Product> listProductNew = productDAO.getNewProduct(0);
+		List<Product> listPaging = productDAO.pagingProduct(index,0);
 		
 		System.out.println(listPaging.size());
 		

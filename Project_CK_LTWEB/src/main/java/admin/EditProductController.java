@@ -75,9 +75,9 @@ public class EditProductController extends HttpServlet {
 		System.out.println("id " + proId + " name " + proName + " img " + proImage + " des " + proDes + " price " + proPrice
 				+ " kind " + proKind);
 
-		String upLoadFolder = "F:\\TT_LTW\\TT_LaptrinhWeb\\Project_CK_LTWEB\\src\\main\\webapp\\Image\\";// Cho nay la
-																											// lay duong
-																											// dan thu																									// muc luu
+//		String upLoadFolder = "F:\\TT_LTW\\TT_LaptrinhWeb\\Project_CK_LTWEB\\src\\main\\webapp\\Image\\";// Cho nay la
+		//Lay realpath cua server																			// lay duong
+		String upLoadFolder = request.getServletContext().getRealPath("/Image");																									// dan thu																									// muc luu
 																											// hinh anh
 		Path upLoadPath = Paths.get(upLoadFolder);
 		Part image = request.getPart("uploadImage");

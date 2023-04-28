@@ -120,7 +120,7 @@
 										<button class="btn btn-success" name="add" type="submit"><fmt:message key="product.add"
 										bundle="${lang }"></fmt:message></button>
 										<a class="btn btn-primary"
-											href="/Project_CK_LTWEB/manager_product"><fmt:message key="select.cancel"
+											href="/Project_CK_LTWEB/manager_product?action=main"><fmt:message key="select.cancel"
 										bundle="${lang }"></fmt:message></a>
 									</div>
 								</div>

@@ -42,7 +42,7 @@ public class Search extends HttpServlet {
 		String name = request.getParameter("search");
 		String result = "Không tìm thấy kết quả cho '" + name + "'";
 		
-		List<Product> listProduct = productDAO.getProductByName(name);
+		List<Product> listProduct = productDAO.getProductByName(name,0);
 		if (listProduct.size() > 0) {
 			result = "Kết quả có liên quan cho '" + name + "'";
 		}
@@ -50,7 +50,7 @@ public class Search extends HttpServlet {
 		request.setAttribute("maintitle", result);
 		request.setAttribute("listProduct", listProduct);
 
-		List<Product> listProductNew = productDAO.getNewProduct();
+		List<Product> listProductNew = productDAO.getNewProduct(0);
 		request.setAttribute("listProductNew", listProductNew);
 
 		request.getRequestDispatcher("/home.jsp").forward(request, response);

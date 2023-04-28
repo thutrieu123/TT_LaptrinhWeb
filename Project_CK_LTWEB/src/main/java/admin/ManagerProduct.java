@@ -44,16 +44,37 @@ public class ManagerProduct extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		ProductDAO productDAO = new ProductDAO();
+		CategoryDAO cateDAO = new CategoryDAO();
+		
+		String action = request.getParameter("action");
 
-		List<Product> listProduct = productDAO.getAllProduct(0);
-		request.setAttribute("listProduct", listProduct);
+		List<Product> listProduct ;
 		String access = request.getParameter("access");
+		
+		System.out.println(request.getServletContext().getRealPath(""));
 		
 		if(access != null) {
 			request.setAttribute("access", access);
 		}
+		
+		if(action != null) {
+			
+			request.setAttribute("categories", cateDAO.getAllCategory());
+			
+			if(action.equals("main")) {
+				//Lay ra cac san pham khong o trang thai xoa
+				listProduct = productDAO.getAllProduct(0);
+				request.setAttribute("listProduct", listProduct);
+				request.getRequestDispatcher("/admin/manager_product.jsp").forward(request, response);
+			}else if(action.equals("trash")) {
+				//Lay ra cac san pham o trang thai xoa
+				listProduct = productDAO.getAllProduct(1);
+				request.setAttribute("listProduct", listProduct);
+				request.getRequestDispatcher("/admin/trash_product.jsp").forward(request, response);
+			}
+		}
 
-			request.getRequestDispatcher("/admin/manager_product.jsp").forward(request, response);
+
 	}
 
 	/**
