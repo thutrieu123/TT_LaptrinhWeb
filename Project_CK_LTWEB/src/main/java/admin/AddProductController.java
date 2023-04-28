@@ -69,8 +69,8 @@ public class AddProductController extends HttpServlet {
 		String proPrice = request.getParameter("productPrice");
 		String proKind = request.getParameter("productKind");
 
-		String upLoadFolder = "F:\\TT_LTW\\TT_LaptrinhWeb\\Project_CK_LTWEB\\src\\main\\webapp\\Image\\";// Cho nay la
-																											// lay duong
+//		String upLoadFolder = "F:\\TT_LTW\\TT_LaptrinhWeb\\Project_CK_LTWEB\\src\\main\\webapp\\Image\\";// Cho nay la
+		String upLoadFolder = request.getServletContext().getRealPath("/Image");																								// lay duong
 																											// dan thu																											// muc luu
 																											// hinh anh
 		Path upLoadPath = Paths.get(upLoadFolder);

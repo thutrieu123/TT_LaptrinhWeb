@@ -174,7 +174,7 @@
 
 						<li class="sidebar-item pt-2"><a
 							class="sidebar-link waves-effect waves-dark sidebar-link"
-							href="/Project_CK_LTWEB/manager_product" aria-expanded="false">
+							href="/Project_CK_LTWEB/manager_product?action=main" aria-expanded="false">
 								<i class="ti-palette" aria-hidden="true"></i> <span
 								class="hide-menu"><fmt:message key="menu.MangerProduct"
 										bundle="${lang }"></fmt:message></span>

@@ -34,7 +34,7 @@ public class DrinkController extends HttpServlet {
 		}
 		int index = Integer.parseInt(indexPage);
 		
-		int count = productDAO.getTotalDrink();
+		int count = productDAO.getTotalDrink(0);
 		int endPage = count / 12;
 		if (count % 12 != 0) {
 			endPage++;

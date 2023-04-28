@@ -32,7 +32,7 @@ public class FoodController extends HttpServlet {
 		}
 		int index = Integer.parseInt(indexPage);
 		
-		int count = productDAO.getTotalFood();
+		int count = productDAO.getTotalFood(0);
 		int endPage = count / 12;
 		if (count % 12 != 0) {
 			endPage++;

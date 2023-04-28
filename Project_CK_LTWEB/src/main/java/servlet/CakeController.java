@@ -31,7 +31,8 @@ public class CakeController extends HttpServlet {
 		}
 		int index = Integer.parseInt(indexPage);
 		
-		int count = productDAO.getTotalCake();
+		//Lay ra cac san pham co status = 0 la con duoc bay ban
+		int count = productDAO.getTotalCake(0);
 		int endPage = count / 12;
 		if (count % 12 != 0) {
 			endPage++;

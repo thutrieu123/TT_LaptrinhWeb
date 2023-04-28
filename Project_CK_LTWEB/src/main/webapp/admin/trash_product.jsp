@@ -17,11 +17,11 @@
 	rel="stylesheet">
 <link href="/Project_CK_LTWEB/admin/css/jquery.dataTables.min.css"
 	rel="stylesheet">
-<link href="/Project_CK_LTWEB/admin/css/main.css"
-	rel="stylesheet">
+
 
 <link rel="stylesheet" type="text/css"
 	href="/Project_CK_LTWEB/themify-icons/themify-icons.css">
+	
 </head>
 
 <body>
@@ -66,24 +66,19 @@
 							</c:if>
 
 							<h3 class="box-title text-uppercase text-center">
-								<fmt:message key="menu.MangerProduct" bundle="${lang }"></fmt:message>
+								<fmt:message key="product.trash" bundle="${lang }"></fmt:message>
 							</h3>
 							<!--  <a href="/Project_CK_LTWEB/manager_product?action=add"
 								class="btn btn-success text-white mt-2 mb-2"
 								style="text-align: end; margin-right: 20px;"><fmt:message
 									key="product.add" bundle="${lang }"></fmt:message></a>-->
 									
-									<div class = "justify_bettwen">
-										<a href="/Project_CK_LTWEB/add_product"
-									class="btn btn-success text-white mt-2 mb-2"
-									style="text-align: end; margin-right: 20px;"><fmt:message
-										key="product.add" bundle="${lang }"></fmt:message></a>
-										
-										<a href="/Project_CK_LTWEB/manager_product?action=trash"
-									class="btn btn-danger text-white mt-2 mb-2"
-									style="text-align: end; margin-right: 20px;"><fmt:message
-										key="menu.Trash" bundle="${lang }"></fmt:message></a>
-									</div>
+									
+									<a href="/Project_CK_LTWEB/manager_product?action=main"
+								class="btn btn-primary text-white mt-2 mb-2"
+								style="text-align: end; margin-right: 20px;"><fmt:message
+									key="btn.back" bundle="${lang}"></fmt:message></a>
+									
 							<div class="table-responsive">
 								<table class="table text-nowrap" id="myTable">
 									<thead>
@@ -111,24 +106,21 @@
 													style="width: 80px; height: 80px;"></td>
 												<td>${product.formatPrice() }VND</td>
 												<td>
-													<!--<c:if test="${product.catId == 1 }">Đồ ăn vặt</c:if>
+													<!-- <c:if test="${product.catId == 1 }">Đồ ăn vặt</c:if>
 													<c:if test="${product.catId == 2 }">Đồ ăn</c:if> <c:if
-														test="${product.catId == 3 }">Nước Uống</c:if></td> -->
+														test="${product.catId == 3 }">Nước Uống</c:if>-->
 													${categories.get(product.catId-1).getName()}
-													</td>
+												</td>
 												<td>
 												<!-- <a
 													href="/Project_CK_LTWEB/manager_product?action=edit&proId=${product.id }"
 													class="btn btn-primary"><i class="ti-pencil-alt"></i></a>  -->
-													<a
-													href="/Project_CK_LTWEB/edit_product?proId=${product.id}"
-													class="btn btn-primary"><i class="ti-pencil-alt"></i></a>
 													
 													<!--  <a
 													href="/Project_CK_LTWEB/change_s?action=trash&proId=${product.id }"
 													class="btn btn-danger text-white"><i class="ti-trash"></i></a>-->
 													
-													<button onclick="changeStatus(this,${product.id})" class = "btn btn-danger text-white"><i class="ti-trash"></i></button>
+													<button onclick="changeStatus(this,${product.id})" class = "btn btn-primary text-white"><i class="ti-reload"></i></button>
 												</td>
 
 											</tr>
@@ -177,7 +169,7 @@
 				url : "/Project_CK_LTWEB/change_status",
 				data:{
 					id:proId,
-					status:1
+					status:0
 				},
 				success: function(data){
 					
