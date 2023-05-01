@@ -24,31 +24,17 @@ public class HomeController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		ProductDAO productDAO = new ProductDAO();
-		String indexPage = request.getParameter("index");
-		if(indexPage==null) {
-			indexPage="1";
-		}
-		int index = Integer.parseInt(indexPage);
-		
-		int count = productDAO.getTotalProduct(0);
-		int endPage = count / 8;
-		if (count % 8 != 0) {
-			endPage++;
-		}
 
 		List<Product> listProductNew = productDAO.getNewProduct(0);
-		List<Product> listPaging = productDAO.pagingProduct(index,0);
-		
-		System.out.println(listPaging.size());
-		
-		request.setAttribute("listProductNew", listProductNew);	
-		
+		List<Product> list = productDAO.getTop8Product();
+
+		request.setAttribute("listProductNew", listProductNew);
+
 		request.setAttribute("maintitle", "Tất cả sản phẩm");
-		request.setAttribute("ListAllProduct", listPaging);
-		request.setAttribute("endP", endPage);
-		request.setAttribute("tag", index);
+		request.setAttribute("ListAllProduct", list);
+
 		request.getRequestDispatcher("home.jsp").forward(request, response);
 	}
 
