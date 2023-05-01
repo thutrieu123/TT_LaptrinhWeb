@@ -509,11 +509,46 @@ public class ProductDAO {
 		}
 		return list;
 	}
+	
+	public List<Product> getTop8Product() {
+		List<Product> list = new ArrayList<>();
+		DBContext db = new DBContext();
+		String query = "SELECT * FROM products WHERE  products.status = 0 LIMIT 8";
+		try {
+			connect = db.getConnection();
+			ps = connect.prepareStatement(query);			
+			result = ps.executeQuery();
+			while (result.next()) {
+				list.add(new Product(result.getInt(1), result.getString(2), result.getString(3), result.getInt(4),
+						result.getString(5)));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return list;
+	}
+	
+	public List<Product> getNext4Product(int amount) {
+		List<Product> list = new ArrayList<>();
+		DBContext db = new DBContext();
+		String query = "SELECT * FROM products WHERE  products.status = 0 LIMIT ?,4";
+		try {
+			connect = db.getConnection();
+			ps = connect.prepareStatement(query);		
+			ps.setInt(1, amount);
+			result = ps.executeQuery();
+			while (result.next()) {
+				list.add(new Product(result.getInt(1), result.getString(2), result.getString(3), result.getInt(4),
+						result.getString(5)));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return list;
+	}
 
 	public static void main(String[] args) {
-		ProductDAO productDAO = new ProductDAO();
-//		List<Product> list = productDAO.getProductByCateID("3");
-
+		
 	}
 
 
