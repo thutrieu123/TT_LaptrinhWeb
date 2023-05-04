@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -20,29 +21,19 @@ import model.Product;
 import model.TempCart;
 import model.User;
 
-/**
- * Servlet implementation class CartController
- */
 @WebServlet("/CartController")
 public class CartController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 	public CartController() {
-		super();
-		// TODO Auto-generated constructor stub
+
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
+		// response.getWriter().append("Served at:
+		// ").append(request.getContextPath());
 		String iAction = request.getParameter("action");
 		HttpSession session = request.getSession();
 		Object objUser = session.getAttribute("user");
@@ -79,21 +70,38 @@ public class CartController extends HttpServlet {
 		HttpSession session = request.getSession();
 		OderAndCTHDDAO db = new OderAndCTHDDAO();
 
-		String cartId = request.getParameter("cart_pro_id");
-		String quantity = request.getParameter("quan");
-		String price = request.getParameter("price");
-
 		User user = null;
+		CartDAO cartdb = new CartDAO();
+		ProductDAO pd = new ProductDAO();
 
 		Object objUser = session.getAttribute("user");
 
 		if (objUser != null) {
 			user = (User) objUser;
 		}
-		Long time = System.currentTimeMillis();
-		int temp = db.insertOder(user.getId(), "", new java.sql.Date(time), 1);
-		db.insertCTHD(temp, Integer.parseInt(cartId), Integer.parseInt(price), Integer.parseInt(quantity));
 
+		Cart cartBean = null;
+
+		Object iObject = session.getAttribute("cart");
+
+		if (iObject != null) {
+			cartBean = (Cart) iObject;
+		} else {
+			cartBean = new Cart();
+		}
+
+		List<TempCart> items = cartdb.getCartByUserId(user.getId());
+
+		for (TempCart item : items) {
+			int proId = item.getProId();
+			Product product = pd.getProductById(proId);
+			int quantity = item.getQuantity();
+			int price = product.getPrice();
+
+			Long time = System.currentTimeMillis();
+			int temp = db.insertOder(user.getId(), "", new java.sql.Date(time), 1);
+			db.insertCTHD(temp, proId, price, quantity);
+		}
 	}
 
 	protected void deleteCart(HttpServletRequest request) {
@@ -119,7 +127,6 @@ public class CartController extends HttpServlet {
 		if (objUser != null) {
 			user = (User) objUser;
 		}
-
 		System.out.println(iSTT);
 		cartBean.deleteCart(iSTT);
 		cartdb.deleteCart(user.getId(), Integer.parseInt(pro_id), Integer.parseInt(quantity));
@@ -157,7 +164,6 @@ public class CartController extends HttpServlet {
 			cartBean = new Cart();
 			session.setAttribute("cart", cartBean);
 		}
-
 		cartBean.addCart(pro_id, iname, iimage, idescription, iPrice, iQuantity);
 		if (cartdb.getCartByUserIdAndProductId(user.getId(), Integer.parseInt(pro_id)).size() > 0) {
 			cartdb.updateTempcart(user.getId(), Integer.parseInt(pro_id), Integer.parseInt(iQuantity));
@@ -183,7 +189,6 @@ public class CartController extends HttpServlet {
 		} else {
 			System.out.println("ncc");
 		}
-
 		if (objCartBean != null) {
 			objCartBean = null;
 			cartBean = new Cart();
@@ -192,7 +197,6 @@ public class CartController extends HttpServlet {
 			cartBean = new Cart();
 			session.setAttribute("cart", cartBean);
 		}
-
 		List<TempCart> list = cartdb.getCartByUserId(user.getId());
 		for (TempCart tempCart : list) {
 			Product product = pd.getProductById(tempCart.getProId());
@@ -203,7 +207,6 @@ public class CartController extends HttpServlet {
 			int iPrice = product.getPrice();
 			String iQuantity = "" + tempCart.getQuantity();
 			cartBean.addCart(ipro_id, iname, iimage, idescription, iPrice, iQuantity);
-
 		}
 	}
 
@@ -230,26 +233,21 @@ public class CartController extends HttpServlet {
 		} else {
 			cartBean = new Cart();
 		}
-		int status = Integer.parseInt(iQuantity);//Sua loi
-//		cartBean.updateCart(iSTT, iQuantity);
-//		db.updateTempcart(user.getId(), Integer.parseInt(pro_id), Integer.parseInt(iQuantity));
+		int status = Integer.parseInt(iQuantity);// Sua loi
+		// cartBean.updateCart(iSTT, iQuantity);
+		// db.updateTempcart(user.getId(), Integer.parseInt(pro_id),
+		// Integer.parseInt(iQuantity));
 		int quanlity = cartBean.updateQuanlity(iSTT, status);
-		//Kiem tra xem neu so luong = 0 thi xoa khoi gio hang
-		if(quanlity == 0) {
+		// Kiem tra xem neu so luong = 0 thi xoa khoi gio hang
+		if (quanlity == 0) {
 			db.delete(user.getId(), Integer.parseInt(pro_id));
-		}else 
-			db.updateTempcart(user.getId(), Integer.parseInt(pro_id), quanlity);	
+		} else
+			db.updateTempcart(user.getId(), Integer.parseInt(pro_id), quanlity);
 
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
 }

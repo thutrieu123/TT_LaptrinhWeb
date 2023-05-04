@@ -9,7 +9,6 @@ import java.util.List;
 
 import context.DBContext;
 import model.TempCart;
-import model.User;
 
 public class CartDAO {
 	Connection connect = null;
@@ -34,15 +33,14 @@ public class CartDAO {
 			connect.close();
 
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return list;
 	}
-	public List<TempCart> getCartByUserIdAndProductId(int user_id,int pro_id) {
+
+	public List<TempCart> getCartByUserIdAndProductId(int user_id, int pro_id) {
 		List<TempCart> list = new ArrayList<>();
 		DBContext db = new DBContext();
 
@@ -61,10 +59,8 @@ public class CartDAO {
 			connect.close();
 
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return list;
@@ -85,15 +81,12 @@ public class CartDAO {
 			ps.close();
 			connect.close();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-
 			e.printStackTrace();
-
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+
 	public void updateTempcart(int user_id, int pro_id, int quantity) {
 		DBContext db = new DBContext();
 		try {
@@ -109,18 +102,13 @@ public class CartDAO {
 			ps.close();
 			connect.close();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-
 			e.printStackTrace();
-
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-
-	public void deleteCart(int user_id,int pro_id,int quantity) {
+	public void deleteCart(int user_id, int pro_id, int quantity) {
 		DBContext db = new DBContext();
 		try {
 			connect = db.getConnection();
@@ -135,16 +123,14 @@ public class CartDAO {
 			ps.close();
 			connect.close();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	//Xoa bo san pham khoi gio
-	public int delete(int user_id,int pro_id) {
+
+	// Xoa bo san pham khoi gio
+	public int delete(int user_id, int pro_id) {
 		DBContext db = new DBContext();
 		int numberRowUpdate = 0;
 		try {
@@ -159,18 +145,10 @@ public class CartDAO {
 			ps.close();
 			connect.close();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return numberRowUpdate;
 	}
-
-	public static void main(String[] args) {
-		
-	}
-
 }

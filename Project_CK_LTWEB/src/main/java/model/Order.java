@@ -20,11 +20,6 @@ public class Order {
 		this.status = status;
 	}
 
-
-
-
-
-
 	public Order(int orderId, String userName, String productName, int productPrice, int quanlity) {
 		super();
 		this.orderId = orderId;
@@ -33,8 +28,6 @@ public class Order {
 		this.productPrice = productPrice;
 		this.quanlity = quanlity;
 	}
-
-	
 
 	public Order(int orderId, String userName, String email, String productName, int productPrice, int quanlity) {
 		super();
@@ -46,12 +39,9 @@ public class Order {
 		this.quanlity = quanlity;
 	}
 
-
-
 	public int getOrderId() {
 		return orderId;
 	}
-	
 
 	@Override
 	public String toString() {
@@ -95,13 +85,9 @@ public class Order {
 		this.orderId = orderId;
 	}
 
-
-
 	public String getEmail() {
 		return email;
 	}
-
-
 
 	public void setEmail(String email) {
 		this.email = email;
@@ -111,14 +97,7 @@ public class Order {
 		return status;
 	}
 
-
-
 	public void setStatus(int status) {
 		this.status = status;
 	}
-	
-	
-	
-	
-
 }

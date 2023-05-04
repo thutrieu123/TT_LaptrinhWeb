@@ -1,22 +1,22 @@
 package model;
 
 public class TempCart {
-	private int id;
+	private int userId;
 	private int proId;
 	private int quantity;
 
-	public TempCart(int id, int proId, int quantity) {
+	public TempCart(int userId, int proId, int quantity) {
 		this.proId = proId;
-		this.id = id;
+		this.userId = userId;
 		this.quantity = quantity;
 	}
 
-	public int getId() {
-		return id;
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 	public int getProId() {
@@ -34,5 +34,4 @@ public class TempCart {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-
 }
