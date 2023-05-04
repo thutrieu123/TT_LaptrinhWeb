@@ -6,11 +6,10 @@ public class Cart {
 	private ArrayList<CartItem> items = new ArrayList<>();
 	private int total;
 
-	public void deleteCart(String stt) {
-		int iSTT = 0;
+	// Xoa cart khi nhan dat hang thanh cong
+	public void deleteCart() {
 		try {
-			iSTT = Integer.parseInt(stt);
-			items.remove(iSTT - 1);
+			items.removeAll(items);
 			calculateOrderTotal();
 		} catch (NumberFormatException nfe) {
 			System.out.println("Error while deleting cart item: " + nfe.getMessage());

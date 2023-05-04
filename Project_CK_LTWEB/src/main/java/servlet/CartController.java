@@ -31,7 +31,6 @@ public class CartController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		// response.getWriter().append("Served at:
 		// ").append(request.getContextPath());
 		String iAction = request.getParameter("action");
@@ -104,15 +103,11 @@ public class CartController extends HttpServlet {
 		}
 	}
 
+	// Xoa cart khi nhan dat hang thanh cong
 	protected void deleteCart(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		CartDAO cartdb = new CartDAO();
-		String iSTT = request.getParameter("stt");
-		String pro_id = request.getParameter("cart_pro_id");
-		String quantity = request.getParameter("quan");
-
 		Cart cartBean = null;
-
 		Object iObject = session.getAttribute("cart");
 
 		if (iObject != null) {
@@ -120,16 +115,15 @@ public class CartController extends HttpServlet {
 		} else {
 			cartBean = new Cart();
 		}
-		User user = null;
 
+		User user = null;
 		Object objUser = session.getAttribute("user");
 
 		if (objUser != null) {
 			user = (User) objUser;
 		}
-		System.out.println(iSTT);
-		cartBean.deleteCart(iSTT);
-		cartdb.deleteCart(user.getId(), Integer.parseInt(pro_id), Integer.parseInt(quantity));
+		cartBean.deleteCart();
+		cartdb.deleteCart(user.getId());
 	}
 
 	protected void addToCart(HttpServletRequest request) {
@@ -243,7 +237,6 @@ public class CartController extends HttpServlet {
 			db.delete(user.getId(), Integer.parseInt(pro_id));
 		} else
 			db.updateTempcart(user.getId(), Integer.parseInt(pro_id), quanlity);
-
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

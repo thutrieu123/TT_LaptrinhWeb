@@ -108,16 +108,15 @@ public class CartDAO {
 		}
 	}
 
-	public void deleteCart(int user_id, int pro_id, int quantity) {
+	// Xoa cart khi nhan dat hang thanh cong
+	public void deleteCart(int user_id) {
 		DBContext db = new DBContext();
 		try {
 			connect = db.getConnection();
-			String query = "Delete from cart where user_id=? and pro_id=? and quantity=?;";
+			String query = "Delete from cart where user_id=?;";
 			ps = connect.prepareStatement(query);
 
 			ps.setInt(1, user_id);
-			ps.setInt(2, pro_id);
-			ps.setInt(3, quantity);
 			int numberRowUpdate = ps.executeUpdate();
 
 			ps.close();
