@@ -13,25 +13,31 @@ import javax.servlet.http.HttpServletResponse;
 import dao.ProductDAO;
 import model.Product;
 
-@WebServlet("/loadMore")
-public class LoadMoreController extends HttpServlet {
+/**
+ * Servlet implementation class SearchAjaxController
+ */
+@WebServlet("/SearchAjaxController")
+public class SearchAjaxController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+    
+    public SearchAjaxController() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
-	public LoadMoreController() {
-		super();
-
-	}
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		response.setContentType("text/html; charset=UTF-8");
-		
-		String amount = request.getParameter("exits");
-		int iamount = Integer.parseInt(amount); 
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub	
+		response.setContentType("text/html;charset=UTF-8");
+		request.setCharacterEncoding("utf-8");
 		ProductDAO productDAO = new ProductDAO();
-
-		List<Product> list = productDAO.getNext4Product(iamount);
-
+		
+		String txtSearch = request.getParameter("txt");
+		String result = "";
+		
+		List<Product> listProductNew = productDAO.getNewProduct(0);
+		List<Product> list = productDAO.getProductByName(txtSearch, 0);
+		
+		
 		PrintWriter out = response.getWriter();
 		for (Product o : list) {
 			out.println("<div class=\"product row\">\r\n"
@@ -62,8 +68,7 @@ public class LoadMoreController extends HttpServlet {
 	}
 
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

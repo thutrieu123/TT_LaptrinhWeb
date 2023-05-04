@@ -31,8 +31,7 @@ public class HomeController extends HttpServlet {
 		LogDAO logDB = new LogDAO();
 		
 		List<Product> listProductNew = productDAO.getNewProduct(0);
-		List<Product> list = productDAO.getTop8Product();
-		Log log = new Log(Log.DANGER, 001, "DoMinhPhu", "abc", 0);
+		List<Product> list = productDAO.getTop8Product();		
 		
 		request.setAttribute("listProductNew", listProductNew);
 

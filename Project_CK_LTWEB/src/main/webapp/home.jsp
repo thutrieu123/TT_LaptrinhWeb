@@ -96,7 +96,7 @@
 			</h3>
 			<div id="content" class="row mr-top-20 justify-content-center">
 				<c:forEach var="product" items="${ListAllProduct}">
-					<div class= "product row">
+					<div class="product row">
 						<form method="POST" action="CartController">
 							<div class="col-md-4 col-sm-2 product">
 								<div class="card  is-table-row" style="width: 14.5rem;">
@@ -131,9 +131,7 @@
 					Thêm</button>
 			</div>
 		</div>
-
-
-
+		
 	</div>
 	<!-- End Body -->
 
@@ -150,17 +148,33 @@
 		function loadMore() {
 			var amount = document.getElementsByClassName("product").length;
 			$.ajax({
-				url : "/Project_CK_LTWEB/loadMore",		
-				type : "GET",	
-				data:{
-				    exits : amount
+				url : "/Project_CK_LTWEB/loadMore",
+				type : "GET",
+				data : {
+					exits : amount
 				},
 				success : function(data) {
 					var row = document.getElementById("content");
-					row.innerHTML +=data;
+					row.innerHTML += data;
 
 				},
-				
+
+			});
+		}
+
+		function searchByName(param) {
+			var txtSearch = param.value;
+			$.ajax({
+				url : "/Project_CK_LTWEB/SearchAjaxController",
+				type : "GET",
+				data : {
+					txt : txtSearch
+				},
+				success : function(data) {
+					var row = document.getElementById("content");
+					row.innerHTML = data;
+
+				},
 
 			});
 		}
