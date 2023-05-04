@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.LogDAO;
 import dao.ProductDAO;
+import model.Log;
 import model.Product;
 
 @WebServlet("/HomeController")
@@ -26,16 +28,17 @@ public class HomeController extends HttpServlet {
 			throws ServletException, IOException {
 
 		ProductDAO productDAO = new ProductDAO();
-
+		LogDAO logDB = new LogDAO();
+		
 		List<Product> listProductNew = productDAO.getNewProduct(0);
-		List<Product> list = productDAO.getTop8Product();
-
+		List<Product> list = productDAO.getTop8Product();		
+		
 		request.setAttribute("listProductNew", listProductNew);
 
 		request.setAttribute("maintitle", "Tất cả sản phẩm");
 		request.setAttribute("ListAllProduct", list);
-
 		request.getRequestDispatcher("home.jsp").forward(request, response);
+		logDB.insert(new Log(Log.INFO, 0, getServletName(), getServletInfo(), 0));
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
