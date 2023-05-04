@@ -42,7 +42,6 @@ public class CartController extends HttpServlet {
 			if (iAction.equals("delete")) {
 				deleteCart(request);
 				response.sendRedirect("cart.jsp");
-
 			} else if (iAction.equals("oder")) {
 				addToCTHDandOder(request);
 				deleteCart(request);
@@ -91,14 +90,14 @@ public class CartController extends HttpServlet {
 
 		List<TempCart> items = cartdb.getCartByUserId(user.getId());
 
+		Long time = System.currentTimeMillis();
+		int temp = db.insertOder(user.getId(), "", new java.sql.Date(time), 1);
 		for (TempCart item : items) {
 			int proId = item.getProId();
 			Product product = pd.getProductById(proId);
 			int quantity = item.getQuantity();
 			int price = product.getPrice();
 
-			Long time = System.currentTimeMillis();
-			int temp = db.insertOder(user.getId(), "", new java.sql.Date(time), 1);
 			db.insertCTHD(temp, proId, price, quantity);
 		}
 	}
