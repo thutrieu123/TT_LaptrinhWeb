@@ -1,6 +1,5 @@
 package model;
 
-
 public class CartItem {
 	private String id;
 	private String name;
@@ -9,9 +8,6 @@ public class CartItem {
 	private String image;
 	private int catId;
 	private int quantity;
-
-	
-	
 
 	public CartItem(String id, String name, String description, int price, String image, int catId, int quantity) {
 		super();
@@ -24,11 +20,54 @@ public class CartItem {
 		this.quantity = quantity;
 	}
 
-	
+	// Phuong thuc tinh tong tien
+	public int getTotalCost() {
+		return this.quantity * this.price;
+	}
+
+	public void increment() {
+		this.quantity++;
+	}
+
+	public void descrement() {
+		this.quantity--;
+	}
+
+	// Phuong thuc format gia de hien thi
+	public String formatPrice() {
+		String fm = price + "";
+		String result = "";
+		int count = 0;
+		for (int i = fm.length() - 1; i >= 0; i--) {
+			result = fm.charAt(i) + result;
+			count++;
+			if (count == 3 && i != 0) {
+				result = "." + result;
+				count = 0;
+			}
+		}
+		return result;
+	}
+
+	// Phuong thuc format tong gia de hien thi
+	public String formatTotal() {
+		String fm = getTotalCost() + "";
+		String result = "";
+		int count = 0;
+		for (int i = fm.length() - 1; i >= 0; i--) {
+			result = fm.charAt(i) + result;
+			count++;
+			if (count == 3 && i != 0) {
+				result = "." + result;
+				count = 0;
+			}
+		}
+		return result;
+	}
+
 	public CartItem() {
 		super();
 	}
-
 
 	public String getId() {
 		return id;
@@ -85,50 +124,4 @@ public class CartItem {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	
-	//Phuong thuc tinh tong tien
-
-	public int getTotalCost() {
-		return this.quantity*this.price;
-	}
-
-	
-	public void increment() {
-		this.quantity ++;
-	}
-	public void descrement() {
-		this.quantity --;
-	}
-	
-	//Phuong thuc format gia de hien thi
-	public  String formatPrice() {
-		String fm = price + "";
-		String result = "";
-		int count = 0;
-		for (int i = fm.length() - 1; i >= 0; i--) {
-			result = fm.charAt(i) + result;
-			count++;
-			if (count == 3 && i != 0) {
-				result = "." + result;
-				count = 0;
-			}
-		}
-		return result;
-	}
-	//Phuong thuc format tong  gia de hien thi
-	public  String formatTotal() {
-		String fm = getTotalCost() + "";
-		String result = "";
-		int count = 0;
-		for (int i = fm.length() - 1; i >= 0; i--) {
-			result = fm.charAt(i) + result;
-			count++;
-			if (count == 3 && i != 0) {
-				result = "." + result;
-				count = 0;
-			}
-		}
-		return result;
-	}
-
 }
