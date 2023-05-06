@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -95,9 +94,9 @@
 			<h3 style="text-align: center;">
 				<b><%=request.getAttribute("maintitle")%></b>
 			</h3>
-			<div class="row mr-top-20 justify-content-center">
+			<div id="content" class="row mr-top-20 justify-content-center">
 				<c:forEach var="product" items="${ListAllProduct}">
-					<div class="row">
+					<div class="product row">
 						<form method="POST" action="CartController">
 							<div class="col-md-4 col-sm-2 product">
 								<div class="card  is-table-row" style="width: 14.5rem;">
@@ -106,7 +105,7 @@
 										type="hidden" name="inputQuantity" value="1"> <img
 										src="${product.getImage() }" class="card-img-top" alt="..."></a>
 									<div class="card-body">
-										<a href="product?proId=${product.id }"><h5
+										<a href="product?proId=${product.id}"><h5
 												class="card-title show_txt">
 												<b>${product.getName()}</b>
 											</h5></a>
@@ -127,38 +126,59 @@
 		</div>
 
 		<div style="padding-top: 50px">
-			<div style="padding-left: 400px">
-				<ul class="pagination">
-				<c:if test="${tag >1}">
-				<li class="page-item"><a class="page-link" href="HomeController?index=${tag-1}">Previous</a></li>
-				</c:if>
-					<c:forEach begin="1" end="${endP}" var="i">
-						<li class="${tag==i?"page-item active":""}"><a class="page-link"
-							href="HomeController?index=${i}">${i}</a></li>
-					</c:forEach>
-					<c:if test="${tag < endP}">
-			<li class="page-item"><a class="page-link" href="HomeController?index=${tag+1}">Next</a></li>
-				</c:if>
-					
-				</ul>
+			<div style="padding-left: 500px">
+				<button onclick="loadMore()" class="btn btn-outline-success">Xem
+					Thêm</button>
 			</div>
 		</div>
 		
-
-
 	</div>
 	<!-- End Body -->
 
 
-
+	<script src="jquery-3.6.4.min.js"></script>
 	<script type="text/javascript" src="js/jquery.matchHeight-min.js"></script>
-	<script>
-		$(function() {
-			$('.box').matchHeight(false);
-		});
-	</script>
+
+
 	<jsp:include page="footer.jsp"></jsp:include>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+	<script>
+		function loadMore() {
+			var amount = document.getElementsByClassName("product").length;
+			$.ajax({
+				url : "/Project_CK_LTWEB/loadMore",
+				type : "GET",
+				data : {
+					exits : amount
+				},
+				success : function(data) {
+					var row = document.getElementById("content");
+					row.innerHTML += data;
+
+				},
+
+			});
+		}
+
+		function searchByName(param) {
+			var txtSearch = param.value;
+			$.ajax({
+				url : "/Project_CK_LTWEB/SearchAjaxController",
+				type : "GET",
+				data : {
+					txt : txtSearch
+				},
+				success : function(data) {
+					var row = document.getElementById("content");
+					row.innerHTML = data;
+
+				},
+
+			});
+		}
+	</script>
 </body>
 
 </html>
-

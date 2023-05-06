@@ -249,6 +249,7 @@ public class ProductDAO {
 		return list;
 
 	}
+	
 
 	public int update(Product product) {
 		DBContext db = new DBContext();
@@ -361,6 +362,7 @@ public class ProductDAO {
 		}
 	}
 
+    // Lấy ra tổng số sản phẩm
 	public int getTotalProduct(int status) {
 		DBContext db = new DBContext();
 		String query = "select COUNT(*) from products where products.status = ?";
@@ -378,7 +380,7 @@ public class ProductDAO {
 		return 0;
 
 	}
-
+    // Lấy ra tổng số thức ăn
 	public int getTotalFood(int status ) {
 		DBContext db = new DBContext();
 		String query = "select COUNT(*) from products WHERE products.DanhMuc_id = 3 and products.status = ?";
@@ -396,7 +398,7 @@ public class ProductDAO {
 		return 0;
 
 	}
-
+	// Lấy ra tổng số thức uống
 	public int getTotalDrink(int status) {
 		DBContext db = new DBContext();
 		String query = "select COUNT(*) from products WHERE products.DanhMuc_id = 2 and product.status = ?";
@@ -414,7 +416,7 @@ public class ProductDAO {
 		return 0;
 
 	}
-
+	// Lấy ra tổng số bánh ngọt
 	public int getTotalCake(int status) {
 		DBContext db = new DBContext();
 		String query = "select COUNT(*) from products WHERE products.DanhMuc_id = 1 and products.status = ?";
@@ -509,11 +511,46 @@ public class ProductDAO {
 		}
 		return list;
 	}
+	// Lấy ra top 8 sản phẩm
+	public List<Product> getTop8Product() {
+		List<Product> list = new ArrayList<>();
+		DBContext db = new DBContext();
+		String query = "SELECT * FROM products WHERE  products.status = 0 LIMIT 8";
+		try {
+			connect = db.getConnection();
+			ps = connect.prepareStatement(query);			
+			result = ps.executeQuery();
+			while (result.next()) {
+				list.add(new Product(result.getInt(1), result.getString(2), result.getString(3), result.getInt(4),
+						result.getString(5)));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return list;
+	}
+	// Lấy ra 4 sản phẩm tiếp theo trong danh sách sản phẩm
+	public List<Product> getNext4Product(int amount) {
+		List<Product> list = new ArrayList<>();
+		DBContext db = new DBContext();
+		String query = "SELECT * FROM products WHERE  products.status = 0 LIMIT ?,4";
+		try {
+			connect = db.getConnection();
+			ps = connect.prepareStatement(query);		
+			ps.setInt(1, amount);
+			result = ps.executeQuery();
+			while (result.next()) {
+				list.add(new Product(result.getInt(1), result.getString(2), result.getString(3), result.getInt(4),
+						result.getString(5)));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return list;
+	}
 
 	public static void main(String[] args) {
-		ProductDAO productDAO = new ProductDAO();
-//		List<Product> list = productDAO.getProductByCateID("3");
-
+		
 	}
 
 
