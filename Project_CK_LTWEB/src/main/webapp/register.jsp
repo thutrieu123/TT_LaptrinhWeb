@@ -185,6 +185,7 @@ promise.then(function (result) {
 function renderCity(data) {
   for (const x of data) {
     citis.options[citis.options.length] = new Option(x.Name, x.Id);
+    
   }
   citis.onchange = function () {
     district.length = 1;

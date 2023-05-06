@@ -497,7 +497,7 @@ public class LogicticAPI {
 		
 		LogicticAPI logic = LogicticAPI.getInstance();
 		
-//		System.out.println(logic.getAllProvince().toJSONString());
+		System.out.println(logic.getAllProvince().toJSONString());
 //		
 //		System.out.println(logic.getProvinceByName("Tỉnh Bến Tre"));
 		
@@ -506,7 +506,7 @@ public class LogicticAPI {
 		
 //		System.out.println(logic.getAllWardOfDistristByID("3158"));
 //		System.out.println(logic.getPrice("2264", "90816", "2270", "231013", 1, 100, 100, 100));
-		System.out.println(logic.registerTransport("2264", "90816", "2270", "231013", 10, 100, 100, 100));
+//		System.out.println(logic.registerTransport("2264", "90816", "2270", "231013", 10, 100, 100, 100));
 
 	}
 	

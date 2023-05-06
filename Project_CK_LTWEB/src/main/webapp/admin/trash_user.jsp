@@ -18,6 +18,8 @@
 	rel="stylesheet">
 <link href="/Project_CK_LTWEB/admin/css/jquery.dataTables.min.css"
 	rel="stylesheet">
+	<link href="/Project_CK_LTWEB/admin/css/main.css"
+	rel="stylesheet">
 
 <link rel="stylesheet" type="text/css"
 	href="/Project_CK_LTWEB/themify-icons/themify-icons.css">
@@ -58,18 +60,15 @@
 									<fmt:message key="message.subccess" bundle="${lang }"></fmt:message>
 								</div>
 							</c:if>
-							<h3 class="box-title text-uppercase text-center mb-3"><fmt:message key="menu.ManagerUser"
+							<h3 class="box-title text-uppercase text-center mb-3"><fmt:message key="menu.Trash"
 										bundle="${lang }"></fmt:message></h3>
 										
-										
-							<div class = "justify_bettwen">
-										
-										<a href="/Project_CK_LTWEB/TrashUser"
-									class="btn btn-danger text-white mt-2 mb-2"
-									style="text-align: end; margin-right: 20px;"><fmt:message
-										key="menu.Trash" bundle="${lang }"></fmt:message></a>
-							</div>
-									
+							<a
+							class="btn btn-info mb-4"
+							href="/Project_CK_LTWEB/manager_user" aria-expanded="false"><span
+								class="hide-menu"><fmt:message key="btn.back"
+										bundle="${lang }"></fmt:message></span>
+							</a>
 							<div class="table-responsive">
 								<table class="table text-nowrap" id="myTable">
 									<thead>
@@ -97,15 +96,7 @@
 												<td>${eUser.numberPhone }</td>
 												<td>${eUser.userName }</td>
 												<td>${eUser.rolId == 1 ? "Admin":"User" }</td>
-												<td><a
-													href="/Project_CK_LTWEB/manager_user?action=edit&eUserId=${eUser.id}"
-													class="btn btn-primary"><i class="ti-pencil-alt"></i></a>
-													<a
-													href="/Project_CK_LTWEB/manager_user?action=detail&eUserId=${eUser.id }"
-													class="btn btn-info text-white"><i class="ti-eye"></i></a>
-													 <a
-													href="/Project_CK_LTWEB/manager_user?action=trash&eUserId=${eUser.id}"
-													class="btn btn-danger text-white"><i class="ti-trash"></i></a>
+												<td><button onclick="changeStatus(this,${eUser.id})" class = "btn btn-primary text-white"><i class="ti-reload"></i></button>
 												</td>
 
 											</tr>
@@ -141,6 +132,27 @@
 		$(document).ready(function() {
 			$('#myTable').DataTable();
 		});
+		
+		function changeStatus(element,eId){
+			element.closest("tr").classList.add("selected");
+			$.ajax({
+				type:"POST",
+				url : "/Project_CK_LTWEB/TrashUser",
+				data:{
+					id:eId,
+					status:0
+				},
+				success: function(data){
+					
+				}
+			});
+			
+			var table = $('#myTable').DataTable();			 
+			var rows = table
+			    .rows( '.selected' )
+			    .remove()
+			    .draw();
+		}
 	</script>
 </body>
 
