@@ -1,11 +1,4 @@
-/admin/
-/dao/
-/api/
-/filter/
-/admin/
-/i18n/
-/model/
-/servlet/
-/support/
 /context/
-/my_enum/
+/servlet/
+/dao/
+/model/
