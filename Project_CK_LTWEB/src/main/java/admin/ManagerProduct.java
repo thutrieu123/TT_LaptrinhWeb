@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import contanst.Status;
 import dao.CategoryDAO;
 import dao.ProductDAO;
 import model.Category;
@@ -63,12 +64,12 @@ public class ManagerProduct extends HttpServlet {
 			
 			if(action.equals("main")) {
 				//Lay ra cac san pham khong o trang thai xoa
-				listProduct = productDAO.getAllProduct(0);
+				listProduct = productDAO.getAllProduct(Status.ACTIVE);
 				request.setAttribute("listProduct", listProduct);
 				request.getRequestDispatcher("/admin/manager_product.jsp").forward(request, response);
 			}else if(action.equals("trash")) {
 				//Lay ra cac san pham o trang thai xoa
-				listProduct = productDAO.getAllProduct(1);
+				listProduct = productDAO.getAllProduct(Status.ENABLE);
 				request.setAttribute("listProduct", listProduct);
 				request.getRequestDispatcher("/admin/trash_product.jsp").forward(request, response);
 			}

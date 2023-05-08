@@ -43,8 +43,6 @@ public class ChangeInforAdmin extends HttpServlet {
 		String fullName = request.getParameter("fullName");
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
-		System.out.println("Pass nè");
-		System.out.println("Pass" + oldPass);
 		
 		UserDAO userDAO = new UserDAO();
 		User user = (User)request.getSession().getAttribute("user");

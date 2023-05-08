@@ -143,17 +143,25 @@
 				</div>
 			</div>
 		</div>
-		<!-- ============================================================== -->
-		<!-- End Page wrapper  -->
-		<!-- ============================================================== -->
 	</div>
+	
+	<div>
+		<div id="toast_message">
+			<div class="toast toast--access">
+				<div class="toast__icon"><i class="fas fa-check-circle"></i></div>
+				<div class="toast__body">
+					<h3 class="toast__title">Success</h3>
+					<p class="toast__msg">Đây là máy vi tính hiện đại nhất ở đây</p>
+				</div>
+				<div class="toast__close"><i class="fas fa-times"></i></div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	
 	<jsp:include page="adminFooter.html"></jsp:include>
-	<!-- ============================================================== -->
-	<!-- End Wrapper -->
-	<!-- ============================================================== -->
-	<!-- ============================================================== -->
-	<!-- All Jquery -->
-	<!-- ============================================================== -->
 	<script src="/Project_CK_LTWEB/admin/js/jquery.min.js"></script>
 	<!-- Bootstrap tether Core JavaScript -->
 	<script src="/Project_CK_LTWEB/admin/js/bootstrap.bundle.min.js"></script>
@@ -180,7 +188,7 @@
 					status:1
 				},
 				success: function(data){
-					
+
 				}
 			});
 			
@@ -189,6 +197,8 @@
 			    .rows( '.selected' )
 			    .remove()
 			    .draw();
+			
+			
 		}
 	</script>
 
