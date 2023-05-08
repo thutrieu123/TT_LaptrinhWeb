@@ -24,7 +24,6 @@ public class ChangeInforController extends HttpServlet {
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
-		// TODO Auto-generated method stub
 		// request.setCharacterEncoding("UTF-8");
 		UserDAO userDAO = new UserDAO();
 		String action = request.getParameter("action");
@@ -60,7 +59,6 @@ public class ChangeInforController extends HttpServlet {
 		} else {
 			request.getSession().setAttribute("langeName", "vi_VN");
 			request.getRequestDispatcher("/detailInfor.jsp").forward(request, response);
-
 		}
 	}
 
