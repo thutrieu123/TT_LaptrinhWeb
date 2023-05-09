@@ -6,33 +6,64 @@ public class Product {
 	private String descreption;
 	private int price;
 	private String image;
+	private int height;
+	private int length;
+	private int width;
+	private int weigth;
 	private int catId;
 
-	public Product(int id, String name, String descreption, int price, String image) {
-		this.id = id;
-		this.name = name;
-		this.descreption = descreption;
-		this.price = price;
-		this.image = image;
-	}
-	
+//	public Product(int id, String name, String descreption, int price, String image) {
+//		this.id = id;
+//		this.name = name;
+//		this.descreption = descreption;
+//		this.price = price;
+//		this.image = image;
+//	}
+//	
+//
+//
+//	public Product(int id, String name, String descreption, int price, String image, int catId) {
+//		super();
+//		this.id = id;
+//		this.name = name;
+//		this.descreption = descreption;
+//		this.price = price;
+//		this.image = image;
+//		this.catId = catId;
+//	}
+//		
 
-
-	public Product(int id, String name, String descreption, int price, String image, int catId) {
+	public Product(int id, String name, String descreption, int price, String image, int height, int length, int width,
+			int weigth, int catId) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.descreption = descreption;
 		this.price = price;
 		this.image = image;
+		this.height = height;
+		this.length = length;
+		this.width = width;
+		this.weigth = weigth;
 		this.catId = catId;
 	}
 
+
+	public int getWeigth() {
+		return weigth;
+	}
+
+
+	public void setWeigth(int weigth) {
+		this.weigth = weigth;
+	}
 
 
 	public int getId() {
 		return id;
 	}
+
+
 
 	public void setId(int id) {
 		this.id = id;
@@ -79,6 +110,42 @@ public class Product {
 
 	public void setCatId(int catId) {
 		this.catId = catId;
+	}
+	
+	
+
+	public int getHeight() {
+		return height;
+	}
+
+
+
+	public void setHeight(int height) {
+		this.height = height;
+	}
+
+
+
+	public int getLength() {
+		return length;
+	}
+
+
+
+	public void setLength(int length) {
+		this.length = length;
+	}
+
+
+
+	public int getWidth() {
+		return width;
+	}
+
+
+
+	public void setWidth(int width) {
+		this.width = width;
 	}
 
 
