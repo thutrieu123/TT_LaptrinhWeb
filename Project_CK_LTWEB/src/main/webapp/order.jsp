@@ -102,7 +102,7 @@ td {
 					<th style="width: 50%">Tên sản phẩm</th>
 					<th style="width: 10%">Giá</th>
 					<th style="width: 8%">Số lượng</th>
-					<th style="width: 10%">Trình trạng</th>
+					<th style="width: 10%">Tình trạng</th>
 				</tr>
 			</thead>
 			<jsp:useBean id="cart" scope="session" class="model.Cart" />
