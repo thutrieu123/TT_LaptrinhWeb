@@ -11,7 +11,7 @@ import context.DBContext;
 import model.TempCart;
 
 public class CartDAO {
-	// a
+	// comment
 	Connection connect = null;
 	PreparedStatement ps = null;
 	ResultSet result = null;
