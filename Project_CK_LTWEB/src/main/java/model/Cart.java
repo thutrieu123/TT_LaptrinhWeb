@@ -16,6 +16,19 @@ public class Cart {
 			nfe.printStackTrace();
 		}
 	}
+	
+	// Xoa san pham khoi gio
+	public void deleteProduct(String stt) {
+		int iSTT = 0;
+		try {
+			iSTT = Integer.parseInt(stt);
+			items.remove(iSTT - 1);
+			calculateOrderTotal();
+		} catch (NumberFormatException nfe) {
+			System.out.println("Error while deleting cart item: " + nfe.getMessage());
+			nfe.printStackTrace();
+		}
+	}
 
 	public int updateQuanlity(String stt, int status) {
 		int iSTT = Integer.parseInt(stt);

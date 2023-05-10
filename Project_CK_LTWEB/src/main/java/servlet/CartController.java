@@ -39,17 +39,27 @@ public class CartController extends HttpServlet {
 		System.out.println(iAction);
 
 		if (iAction != null && !iAction.equals("")) {
+			// Xoa mot san pham khoi gio
 			if (iAction.equals("delete")) {
-				deleteCart(request);
+				deleteProduct(request);
 				response.sendRedirect("cart.jsp");
-			} else if (iAction.equals("oder")) {
+			}
+
+			// Bam submit Dat hang, luu CTHD dong thoi xoa cart
+			else if (iAction.equals("oder")) {
 				addToCTHDandOder(request);
 				deleteCart(request);
 				response.sendRedirect("cart.jsp");
-			} else if (iAction.equals("usercart")) {
+			}
+
+			// Hien thi Cart cua nguoi dung
+			else if (iAction.equals("usercart")) {
 				reCart(request);
 				response.sendRedirect("cart.jsp");
-			} else if (iAction.equals("update")) {
+			}
+
+			// Update so luong va tong gia khi nguoi dung thao tac
+			else if (iAction.equals("update")) {
 				updateCart(request);
 				response.sendRedirect("cart.jsp");
 			}
@@ -123,6 +133,34 @@ public class CartController extends HttpServlet {
 		}
 		cartBean.deleteCart();
 		cartdb.deleteCart(user.getId());
+	}
+
+	// Xoa san pham khoi gio
+	private void deleteProduct(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		CartDAO cartdb = new CartDAO();
+		Cart cartBean = null;
+
+		Object iObject = session.getAttribute("cart");
+
+		String iSTT = request.getParameter("stt");
+		String pro_id = request.getParameter("cart_pro_id");
+
+		if (iObject != null) {
+			cartBean = (Cart) iObject;
+		} else {
+			cartBean = new Cart();
+		}
+		User user = null;
+
+		Object objUser = session.getAttribute("user");
+
+		if (objUser != null) {
+			user = (User) objUser;
+		}
+		System.out.println(iSTT);
+		cartBean.deleteProduct(iSTT);
+		cartdb.deleteProduct(user.getId(), Integer.parseInt(pro_id));
 	}
 
 	protected void addToCart(HttpServletRequest request) {
@@ -233,7 +271,7 @@ public class CartController extends HttpServlet {
 		int quanlity = cartBean.updateQuanlity(iSTT, status);
 		// Kiem tra xem neu so luong = 0 thi xoa khoi gio hang
 		if (quanlity == 0) {
-			db.delete(user.getId(), Integer.parseInt(pro_id));
+			db.deleteProduct(user.getId(), Integer.parseInt(pro_id));
 		} else
 			db.updateTempcart(user.getId(), Integer.parseInt(pro_id), quanlity);
 	}
