@@ -20,6 +20,7 @@
 	href="/Project_CK_LTWEB/admin/plugins/images/favicon.png">
 <!-- Custom CSS -->
 <link href="/Project_CK_LTWEB/admin/css/style.min.css" rel="stylesheet">
+<link href="/Project_CK_LTWEB/admin/css/main.css" rel="stylesheet">
 </head>
 
 <body>
@@ -89,6 +90,50 @@
 									<div class="col-md-12 border-bottom p-0">
 										<textarea rows="5" class="form-control p-0 border-0"
 											name="productDes" required="required"></textarea>
+									</div>
+								</div>
+								
+								<div class="form-group mb-4">
+									<div class="form-group ">
+										<label for="example-email" class="col-md-12 p-0"><fmt:message key="product.parameter"
+											bundle="${lang }"></fmt:message></label>
+									</div>
+									<div class="justify_bettwen ml-3">
+										<div class = "item-para">
+											<label  class=""><fmt:message key="product.height"
+											bundle="${lang }"></fmt:message></label>
+											<div class="col-md-12">
+												<input type="number" class=""
+													name="height" required="required"> cm
+											</div>
+										</div>
+										
+										<div class = "item-para">
+											<label  class=""><fmt:message key="product.length"
+											bundle="${lang }"></fmt:message></label>
+											<div class="col-md-12">
+												<input type="number" class=""
+													name="length" required="required"> cm
+											</div>
+										</div>
+										
+										<div class = "item-para">
+											<label  class=""><fmt:message key="product.width"
+											bundle="${lang }"></fmt:message></label>
+											<div class="col-md-12">
+												<input type="number" class=""
+													name="width" required="required"> cm
+											</div>
+										</div>
+										
+										<div class = "item-para">
+											<label  class=""><fmt:message key="product.weigth"
+											bundle="${lang }"></fmt:message></label>
+											<div class="col-md-12">
+												<input type="number" class=""
+													name="weigth" required="required"> gram
+											</div>
+										</div>
 									</div>
 								</div>
 
