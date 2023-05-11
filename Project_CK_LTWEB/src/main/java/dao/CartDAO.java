@@ -129,7 +129,7 @@ public class CartDAO {
 	}
 
 	// Xoa bo san pham khoi gio
-	public int delete(int user_id, int pro_id) {
+	public int deleteProduct(int user_id, int pro_id) {
 		DBContext db = new DBContext();
 		int numberRowUpdate = 0;
 		try {
