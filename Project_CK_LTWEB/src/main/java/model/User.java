@@ -78,8 +78,23 @@ public class User {
 		this.email = email;
 		this.status = status;
 	}
-	
-	
+		
+
+
+
+	public User(int id, String fullName, String numberPhone, String address, String userName, String password,
+			int rolId, String email, int status) {
+		super();
+		this.id = id;
+		this.fullName = fullName;
+		this.numberPhone = numberPhone;
+		this.address = address;
+		this.userName = userName;
+		this.password = password;
+		this.rolId = rolId;
+		this.email = email;
+		this.status = status;
+	}
 
 
 
@@ -164,7 +179,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", fullName=" + fullName + ", numberPhone=" + numberPhone + ", address=" + address
+		return " fullName=" + fullName + ", numberPhone=" + numberPhone + ", address=" + address
 				+ ", userName=" + userName + ", password=" + password + ", rolId=" + rolId + "]";
 	}
 

@@ -33,6 +33,7 @@ public class ProductDAO {
 				product = new Product(result.getInt(1), result.getString(2), result.getString(3), result.getInt(4),
 						result.getString(5), result.getInt(6),result.getInt(7),result.getInt(8),result.getInt(9),result.getInt(10));
 			}
+			result.close();
 			ps.close();
 			connect.close();
 
@@ -61,6 +62,7 @@ public class ProductDAO {
 						result.getString(5), result.getInt(6),result.getInt(7),result.getInt(8),result.getInt(9),result.getInt(10));
 				list.add(product);
 			}
+			result.close();
 			ps.close();
 			connect.close();
 
@@ -90,6 +92,7 @@ public class ProductDAO {
 						result.getString(5), result.getInt(6),result.getInt(7),result.getInt(8),result.getInt(9),result.getInt(10));
 				list.add(product);
 			}
+			result.close();
 			ps.close();
 			connect.close();
 
@@ -118,6 +121,7 @@ public class ProductDAO {
 						result.getString(5), result.getInt(6),result.getInt(7),result.getInt(8),result.getInt(9),result.getInt(10));
 				list.add(product);
 			}
+			result.close();
 			ps.close();
 			connect.close();
 
@@ -148,6 +152,7 @@ public class ProductDAO {
 						result.getString(5), result.getInt(6),result.getInt(7),result.getInt(8),result.getInt(9),result.getInt(10));
 				list.add(product);
 			}
+			result.close();
 			ps.close();
 			connect.close();
 
@@ -206,6 +211,7 @@ public class ProductDAO {
 						result.getString(5), result.getInt(6),result.getInt(7),result.getInt(8),result.getInt(9),result.getInt(10));
 				list.add(product);
 			}
+			result.close();
 			ps.close();
 			connect.close();
 
@@ -236,6 +242,7 @@ public class ProductDAO {
 						result.getString(5), result.getInt(6),result.getInt(7),result.getInt(8),result.getInt(9),result.getInt(10));
 				list.add(product);
 			}
+			result.close();
 			ps.close();
 			connect.close();
 
@@ -385,6 +392,9 @@ public class ProductDAO {
 			while (result.next()) {
 				return result.getInt(1);
 			}
+			result.close();
+			ps.close();
+			connect.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -403,6 +413,9 @@ public class ProductDAO {
 			while (result.next()) {
 				return result.getInt(1);
 			}
+			result.close();
+			ps.close();
+			connect.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -421,6 +434,9 @@ public class ProductDAO {
 			while (result.next()) {
 				return result.getInt(1);
 			}
+			result.close();
+			ps.close();
+			connect.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -439,6 +455,9 @@ public class ProductDAO {
 			while (result.next()) {
 				return result.getInt(1);
 			}
+			result.close();
+			ps.close();
+			connect.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -460,6 +479,9 @@ public class ProductDAO {
 				list.add(new Product(result.getInt(1), result.getString(2), result.getString(3), result.getInt(4),
 						result.getString(5), result.getInt(6),result.getInt(7),result.getInt(8),result.getInt(9),result.getInt(10)));
 			}
+			result.close();
+			ps.close();
+			connect.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -479,6 +501,9 @@ public class ProductDAO {
 				list.add(new Product(result.getInt(1), result.getString(2), result.getString(3), result.getInt(4),
 						result.getString(5), result.getInt(6),result.getInt(7),result.getInt(8),result.getInt(9),result.getInt(10)));
 			}
+			result.close();
+			ps.close();
+			connect.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -498,6 +523,9 @@ public class ProductDAO {
 				list.add(new Product(result.getInt(1), result.getString(2), result.getString(3), result.getInt(4),
 						result.getString(5), result.getInt(6),result.getInt(7),result.getInt(8),result.getInt(9),result.getInt(10)));
 			}
+			result.close();
+			ps.close();
+			connect.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -517,6 +545,9 @@ public class ProductDAO {
 				list.add(new Product(result.getInt(1), result.getString(2), result.getString(3), result.getInt(4),
 						result.getString(5), result.getInt(6),result.getInt(7),result.getInt(8),result.getInt(9),result.getInt(10)));
 			}
+			result.close();
+			ps.close();
+			connect.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -535,6 +566,9 @@ public class ProductDAO {
 				list.add(new Product(result.getInt(1), result.getString(2), result.getString(3), result.getInt(4),
 						result.getString(5), result.getInt(6),result.getInt(7),result.getInt(8),result.getInt(9),result.getInt(10)));
 			}
+			result.close();
+			ps.close();
+			connect.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -554,6 +588,9 @@ public class ProductDAO {
 				list.add(new Product(result.getInt(1), result.getString(2), result.getString(3), result.getInt(4),
 						result.getString(5), result.getInt(6),result.getInt(7),result.getInt(8),result.getInt(9),result.getInt(10)));
 			}
+			result.close();
+			ps.close();
+			connect.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

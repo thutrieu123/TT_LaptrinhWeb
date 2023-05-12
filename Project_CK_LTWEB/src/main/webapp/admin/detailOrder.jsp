@@ -8,7 +8,7 @@
 <head>
 <meta charset="utf-8">
 
-<title>Order Watting</title>
+<title>Order Detail</title>
 
 <link rel="icon" type="image/png" sizes="16x16"
 	href="/Project_CK_LTWEB/admin/Image/favicon.png">
@@ -55,52 +55,60 @@
 						<div class="white-box">
 							<c:if test="${access != null }">
 								<div class="alert alert-success">
-									<fmt:message key="message.watting" bundle="${lang }"></fmt:message>
+									<fmt:message key="message.delete" bundle="${lang }"></fmt:message>
 								</div>
 							</c:if>
+							<a href = "/Project_CK_LTWEB/order?action=${previous }" class = "btn btn-primary">Quay về</a>
 							<h3 class="box-title text-uppercase text-center mb-3">
-								<fmt:message key="order.wattingMove" bundle="${lang }"></fmt:message>
+								<fmt:message key="order.detail" bundle="${lang }"></fmt:message>
 							</h3>
-							<div class="alert alert-success"
-								<c:if test="${ sucess ==null}">style="display: none"</c:if>>
-								<b>${success}</b>
-							</div>
+							
+							<h5>Mã đơn: #${order.orderId }</h5>
+							<h5>Ngày đặt: ${order.date }</h5>
+							<h5>Tài khoản đặt: ${order.userName }</h5>
+							<h5>Trình trạng:
+								<c:if test="${order.status == 0}">
+									<label class ="badge badge-danger"><fmt:message key="order.destroy" bundle="${lang }"></fmt:message></label>
+								</c:if>
+								<c:if test="${order.status == 1}">
+									<label class ="badge badge-danger"><fmt:message key="order.accept" bundle="${lang }"></fmt:message></label>
+								</c:if>
+								<c:if test="${order.status == 2}">
+									<label class ="badge badge badge-primary"><fmt:message key="order.wattingMove" bundle="${lang }"></fmt:message></label>
+								</c:if>
+								<c:if test="${order.status == 3}">
+									<label class ="badge badge-info"><fmt:message key="order.move" bundle="${lang }"></fmt:message></label>
+								</c:if>
+								<c:if test="${order.status == 4}">
+									<label class ="badge badge-success"><fmt:message key="order.finish" bundle="${lang }"></fmt:message></label>
+								</c:if>
+							</h5>
+							<h5>Phí vận chuyển: ${priceTransport } VND</h5>
+							
 							<div class="table-responsive">
 								<table class="table text-nowrap" id="myTable">
 									<thead>
 										<tr>
 											<th class="border-top-0"><fmt:message
-													key="order.orderId" bundle="${lang }"></fmt:message></th>
+													key="product.name" bundle="${lang }"></fmt:message></th>
 											<th class="border-top-0"><fmt:message
-													key="user.userName" bundle="${lang }"></fmt:message></th>
-											<th class="border-top-0"><fmt:message key="order.date"
+													key="product.img" bundle="${lang }"></fmt:message></th>
+											<th class="border-top-0"><fmt:message key="product.price"
 													bundle="${lang }"></fmt:message></th>
 													
-											<th class="border-top-0"><fmt:message key="order.detail"
+											<th class="border-top-0"><fmt:message key="order.quanlity"
 													bundle="${lang }"></fmt:message></th>
-
-											<th class="border-top-0"><fmt:message key="order.status"
-													bundle="${lang }"></fmt:message></th>
-											<th class="border-top-0"><fmt:message
-													key="user.function" bundle="${lang }"></fmt:message></th>
 
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach var="o" items="${listOrder}">
+										<c:forEach var="orderItem" items="${order.listOrderItem}">
 											<tr>
-												<td>#${o.orderId}</td>
-												<td>${o.userName }</td>
-												<td>${o.date }</td>
-												<td><a href ="/Project_CK_LTWEB/order?action=detail&orderId=${o.orderId }&previous=wating"  class = "btn btn-primary"><i class="ti-eye" title= "<fmt:message key="order.detail"
-													bundle="${lang }"></fmt:message>"></i></a></td>
-												<td><span class="badge badge badge-primary"><fmt:message
-															key="order.wattingMoveName" bundle="${lang }"></fmt:message></span></td>
-												<td><a
-													href="/Project_CK_LTWEB/oderAction?action=ship&orderID=${o.orderId}"
-													class="btn btn-success"><fmt:message key="btn.ship"
-															bundle="${lang }"></fmt:message></a></td>
-
+												 <td>${orderItem.getProduct().getName()}</td>
+												<td><img src="${orderItem.getProduct().getImage()}"
+													style="width: 80px; height: 80px;"></td>
+												<td>${orderItem.getProduct().formatPrice() }</td>
+												<td>${orderItem.getQuanlity() }</td>
 											</tr>
 
 										</c:forEach>
@@ -130,11 +138,6 @@
 	<!--Custom JavaScript -->
 	<script src="/Project_CK_LTWEB/admin/js/custom.js"></script>
 	<script src="/Project_CK_LTWEB/admin/js/jquery.dataTables.min.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#myTable').DataTable();
-		});
-	</script>
 </body>
 
 </html>

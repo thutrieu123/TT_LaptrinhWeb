@@ -27,11 +27,22 @@ public class OrderController extends HttpServlet {
 		OrderDAO orderDAO = new OrderDAO();
 
 		User user = (User) request.getSession().getAttribute("user");
-
-		List<Order> listOrder = orderDAO.getOrderByUserID(user.getId());
-		System.out.println(listOrder.toString());
-		request.setAttribute("listOrder", listOrder);
-		request.getRequestDispatcher("/order.jsp").forward(request, response);
+		String action = request.getParameter("action");
+		
+		if(action == null) {
+			List<Order> listOrder = orderDAO.getOrderByUserID(user.getId());
+			System.out.println(listOrder.toString());
+			request.setAttribute("listOrder", listOrder);
+			request.getRequestDispatcher("/order.jsp").forward(request, response);
+		}else {
+			if(action.trim().equals("detail")) {
+				String orderId = request.getParameter("orderId");
+				Order order = orderDAO.getOrderByID(Integer.parseInt(orderId));
+				request.setAttribute("order", order);
+				request.getRequestDispatcher("/orderDetail.jsp").forward(request, response);
+			}
+		}
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

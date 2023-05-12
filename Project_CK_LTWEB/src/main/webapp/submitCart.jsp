@@ -6,7 +6,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title></title>
+<title>Xác nhận đặt hàng</title>
 
 <style type="text/css">
 .btn-in_decrement{
@@ -22,9 +22,13 @@
 .quanlity:hover{
 	cusor:none;
 }
+#cart {
+	margin-top: 20px;
+}
 .table {
 	
 }
+
 
 ;
 tbody {
@@ -107,12 +111,9 @@ td {
 
 </head>
 <body>
-	<h2 class="text-center">Giỏ Hàng</h2>
+	<h2 class="text-center">Xác nhận đặt hàng</h2>
 	<div class="container">
-		<div>
-			<a href="/Project_CK_LTWEB/orderUser" class="btn btn-info" align="right"><i
-				class="fa fa-angle-left"></i> Đơn đã mua</a>
-		</div>
+		<div><strong>Địa chỉ:</strong> ${user.address }</div>
 		<table id="cart" class="table table-hover table-condensed">
 			<thead>
 				<tr>
@@ -143,56 +144,63 @@ td {
 							</td>
 							<td data-th="Price">${cartItem.formatPrice()}VNĐ.</td>
 							<input type="hidden" name="price" value="${cartItem.getProduct().price}" />
-							<td data-th="Quantity" style="display: inline-flex">
-							<a href="CartController?action=update&quan=1&stt=${counter.count}&cart_pro_id=${cartItem.getProduct().id}" class="btn btn-in_decrement">
-								<i class="ti-plus"></i>
-							</a>
-							
+							<td data-th="Quantity" style="display: inline-flex">							
 							<input class="form-control text-center quanlity" name="quan" value="${cartItem.quantity}" type="text" readonly>
-							<a href="CartController?action=update&quan=-1&stt=${counter.count}&cart_pro_id=${cartItem.getProduct().id}" class=" btn btn-in_decrement">
-								<i class="ti-minus"></i>
-							</a>
 								<!-- <button class="btn btn-success btn-block" name="action"
 									value="update">
 									<i class="fa fa-trash-o">Cập nhật</i>
 								</button> -->
 								</td>
 							<td data-th="Subtotal" class="text-center">${cartItem.formatTotal()} VNĐ</td>
-							<td class="actions" data-th="">								<button class="btn btn-danger btn-sm" name="action"	value="delete">
-									<i class="fa fa-trash-o">Xóa</i>
-								</button>
+							<td class="actions" data-th="">								
 							</td>
 						</tr>
 						</tbody>
 				</form>
 			</c:forEach>
-			<tfoot>
-				<form method="POST" action="CartController">
+		<tfoot>
+			<form method="POST" action="CartController">
 				<tr>
-				<td><a href="HomeController" class="btn btn-warning">
-				<i class="fa fa-angle-left"></i> Tiếp tục mua hàng</a></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td class="hidden-xs"><strong>Phí vận chuyển:</strong> ${priceTransport} VND</td>
+					<td><input type="hidden" value ="${priceTransport}" name ="priceTransport"></td>
+				</tr>			
+					<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td class="hidden-xs"><strong>Dự kiến giao:</strong>${dateSend}</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td class="hidden-xs text-center">
+						<strong>TỔNG:   ${cart.total + priceTransport} VNĐ.</strong></td>
+					<td></td>
+				</tr>
+				<!-- <td><a href="HomeController" class="btn btn-warning">
+				<i class="fa fa-angle-left"></i> Tiếp tục mua hàng</a></td> -->
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
 				<td class="actions" data-th="">
-					<!-- <button class="btn btn-danger" name="action" value="oder" onclick="oder()">
+					<button class="btn btn-danger" style="width: 100%;" name="action" value="oder" onclick="oder()">
 						<i class="fa fa-edit">Đặt hàng</i>
-					</button>  -->
-					<!--  <script type="text/javascript">
+					</button> 
+					<script type="text/javascript">
 						function oder() {
 							alert("Đặt hàng thành công");
 						}
-					</script>--></td>
-				</form>
-				<td></td>
-				<td class="hidden-xs text-center">
-				<strong>TỔNG:${cart.formatTotal()} VNĐ.</strong></td></tr>
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td><c:if test="${cart.list.size() > 0}">
-							<a class ="btn btn-danger" href="CartController?action=submit" >Đặt hàng</a>
-						</c:if></td>
+					</script></td>
+					<td><a href="cart.jsp" class="btn btn-primary">Trở về</a></td>	
 				</tr>
+				</form>
+				
 			</tfoot>
 		</table>
 	</div>

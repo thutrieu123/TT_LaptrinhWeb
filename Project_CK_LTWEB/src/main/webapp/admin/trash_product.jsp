@@ -164,7 +164,7 @@
 	</script>
 	<script >
 		function changeStatus(element,proId){
-			element.closest("tr").classList.add("selected");
+			element.closest("tr").classList.add("delete");
 			$.ajax({
 				url : "/Project_CK_LTWEB/change_status",
 				data:{
@@ -172,15 +172,15 @@
 					status:0
 				},
 				success: function(data){
-					
+					var table = $('#myTable').DataTable();			 
+					var rows = table
+					    .rows( '.delete' )
+					    .remove()
+					    .draw();
 				}
 			});
 			
-			var table = $('#myTable').DataTable();			 
-			var rows = table
-			    .rows( '.selected' )
-			    .remove()
-			    .draw();
+
 		}
 	</script>
 
