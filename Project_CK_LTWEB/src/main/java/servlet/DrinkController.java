@@ -29,11 +29,13 @@ public class DrinkController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		ProductDAO productDAO = new ProductDAO();
 		String indexPage = request.getParameter("index");
+		
 		if(indexPage==null) {
 			indexPage="1";
 		}
 		int index = Integer.parseInt(indexPage);
 		
+		//Lay ra cac san pham co status = 0 la con duoc bay ban
 		int count = productDAO.getTotalDrink(0);
 		int endPage = count / 12;
 		if (count % 12 != 0) {
@@ -44,8 +46,10 @@ public class DrinkController extends HttpServlet {
 		
 		request.setAttribute("listAllDrink", listAllDrink);
 		request.setAttribute("endPDrink", endPage);
+		request.setAttribute("tag", index);
 		request.getRequestDispatcher("/drink.jsp").forward(request, response);
 	}
+	
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

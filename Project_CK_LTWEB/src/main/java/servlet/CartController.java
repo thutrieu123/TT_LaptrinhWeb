@@ -213,9 +213,10 @@ public class CartController extends HttpServlet {
 		CartDAO cartdb = new CartDAO();
 
 		String pro_id = request.getParameter("proId");
+	
 		ProductDAO pd = new ProductDAO();
 		Product product = pd.getProductById(Integer.parseInt(pro_id));
-
+		System.out.println(pro_id);
 		String iname = product.getName();
 		String iimage = product.getImage();
 		String idescription = product.getDescreption();
@@ -333,4 +334,5 @@ public class CartController extends HttpServlet {
 			throws ServletException, IOException {
 		doGet(request, response);
 	}
+	
 }

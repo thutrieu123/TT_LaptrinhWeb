@@ -46,17 +46,22 @@
 				</c:forEach>
 			</div>
 			
-			<div style="padding-top: 50px">
+			?<div style="padding-top: 50px">
 				<div style="padding-left: 750px">
 					<ul class="pagination">
+					<c:if test="${tag >1}">
+						<li class="page-item"><a class="page-link"
+							href="DrinkController?index=${tag-1}">Previous</a></li></c:if>
 						<c:forEach begin="1" end="${endPDrink}" var="i">
-							<li class="page-item"><a class="page-link"
-								href="DrinkController?index=${i}">${i}</a></li>
+							<li class="${tag==i?"page-item active":""}""><a
+								class="page-link" href="DrinkController?index=${i}">${i}</a></li>
 						</c:forEach>
+						<c:if test="${tag < endPDrink}">
+						<li class="page-item"><a class="page-link"
+							href="DrinkController?index=${tag+1}">Next</a></li></c:if>
 					</ul>
 				</div>
 			</div>
-
 		</div>
 	</div>
 	<jsp:include page="footer.jsp"></jsp:include>
