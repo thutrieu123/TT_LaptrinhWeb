@@ -42,6 +42,7 @@ public class FoodController extends HttpServlet {
 		
 		request.setAttribute("listAllFood", listAllFood);
 		request.setAttribute("endPFood", endPage);
+		request.setAttribute("tag", index);
 		request.getRequestDispatcher("/food.jsp").forward(request, response);
 	}
 

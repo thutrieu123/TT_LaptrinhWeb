@@ -38,7 +38,7 @@ public class HomeController extends HttpServlet {
 		request.setAttribute("maintitle", "Tất cả sản phẩm");
 		request.setAttribute("ListAllProduct", list);
 		request.getRequestDispatcher("home.jsp").forward(request, response);
-		logDB.insert(new Log(Log.INFO, 0, getServletName(), getServletInfo(), 0));
+//		logDB.insert(new Log(Log.INFO, 0, getServletName(), getServletInfo(), 0));
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

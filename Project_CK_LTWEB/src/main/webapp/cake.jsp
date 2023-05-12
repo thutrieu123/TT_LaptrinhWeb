@@ -48,7 +48,7 @@
 			</div>
 
 			<div style="padding-top: 50px">
-				<div style="padding-left: 750px">
+				<div style="padding-left: 600px">
 					<ul class="pagination">
 					<c:if test="${tag >1}">
 						<li class="page-item"><a class="page-link"
