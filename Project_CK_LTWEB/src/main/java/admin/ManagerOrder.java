@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import contanst.TransportStatus;
 import dao.OrderDAO;
+import dao.PriceTransportOrderDAO;
 import model.Order;
 
 /**
@@ -27,33 +29,47 @@ public class ManagerOrder extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String action = (String) request.getParameter("action");
+		String action = request.getParameter("action");
 		OrderDAO orderDAO = new OrderDAO();
+		List<Order> listOrder;
 
 		if (action != null) {
 			if (action.trim().equals("accept")) {
-				List<Order> listOrder = orderDAO.getOrderByStatus(1); // Status = 1 la cho xac nhan
+				listOrder = orderDAO.getOrderByStatus(TransportStatus.ACCEPT); // Status = 1 la cho xac nhan
 				request.setAttribute("listOrder", listOrder);
 				request.getRequestDispatcher("/admin/orderAccept.jsp").forward(request, response);
 
-			} else if (action.trim().equals("wating")) {
-				List<Order> listOrder = orderDAO.getOrderByStatus(2);// Status = 2 la cho van chuyen
+			} else if (action.trim().equals("wating")) {				
+				listOrder = orderDAO.getOrderByStatus(TransportStatus.WATTING_MOVE);// Status = 2 la cho van chuyen
 				request.setAttribute("listOrder", listOrder);
 				request.getRequestDispatcher("/admin/orderWatting.jsp").forward(request, response);
 			} else if (action.trim().equals("move")) {
-				List<Order> listOrder = orderDAO.getOrderByStatus(3);// Status = 3 la dang van chuyen
+				listOrder = orderDAO.getOrderByStatus(TransportStatus.MOVE);// Status = 3 la dang van chuyen
 				request.setAttribute("listOrder", listOrder);
 				request.getRequestDispatcher("/admin/orderMoving.jsp").forward(request, response);
 			}
 			else if (action.trim().equals("finish")) {
-				List<Order> listOrder = orderDAO.getOrderByStatus(4);// Status = 4 la da giao thanh cong
+				listOrder = orderDAO.getOrderByStatus(TransportStatus.FISNISH);// Status = 4 la da giao thanh cong
 				request.setAttribute("listOrder", listOrder);
 				request.getRequestDispatcher("/admin/orderFinish.jsp").forward(request, response);
 			}else if (action.trim().equals("destroy")) {
-				List<Order> listOrder = orderDAO.getOrderByStatus(0);// Status = 0 don bi huy
+				listOrder = orderDAO.getOrderByStatus(TransportStatus.CANCEL);// Status = 0 don bi huy
 				request.setAttribute("listOrder", listOrder);
 				request.getRequestDispatcher("/admin/orderTrash.jsp").forward(request, response);
-			}else {
+			}else if(action.trim().equals("detail")) {
+				String orderId = request.getParameter("orderId");
+				Order order = orderDAO.getOrderByID(Integer.parseInt(orderId));
+				String previous = request.getParameter("previous");
+				PriceTransportOrderDAO priceTransportOrderDAO = PriceTransportOrderDAO.getInstance();
+				int priceTransport = priceTransportOrderDAO.getPriceTransportOfOrder(Integer.parseInt(orderId));
+				
+				request.setAttribute("order", order);
+				request.setAttribute("priceTransport", priceTransport);
+				request.setAttribute("previous", previous);
+
+				request.getRequestDispatcher("/admin/detailOrder.jsp").forward(request, response);			
+			}
+			else {
 				response.sendRedirect("/Project_CK_LTWEB/404.html");
 			}
 		}

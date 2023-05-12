@@ -27,6 +27,9 @@ public class FeedbackDAO {
 			ps.setString(3, subject);
 			ps.setString(4, note);
 			int row = ps.executeUpdate();
+			
+			ps.close();
+			connect.close();
 			return row;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

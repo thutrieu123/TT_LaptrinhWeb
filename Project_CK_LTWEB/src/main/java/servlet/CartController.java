@@ -12,11 +12,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.swing.text.html.HTMLDocument.HTMLReader.IsindexAction;
 
+import api.LogicticAPI;
 import dao.OderAndCTHDDAO;
+import dao.PriceTransportOrderDAO;
 import dao.CartDAO;
 import dao.ProductDAO;
 import model.Cart;
 import model.CartItem;
+import model.Location;
 import model.Product;
 import model.TempCart;
 import model.User;
@@ -36,6 +39,7 @@ public class CartController extends HttpServlet {
 		String iAction = request.getParameter("action");
 		HttpSession session = request.getSession();
 		Object objUser = session.getAttribute("user");
+		LogicticAPI logictic = LogicticAPI.getInstance();
 		System.out.println(iAction);
 
 		if (iAction != null && !iAction.equals("")) {
@@ -62,6 +66,43 @@ public class CartController extends HttpServlet {
 			else if (iAction.equals("update")) {
 				updateCart(request);
 				response.sendRedirect("cart.jsp");
+			}else if(iAction.equals("submit")) {
+				Cart cart = (Cart)session.getAttribute("cart");
+				User user = (User)session.getAttribute("user");
+				Location location = (Location)session.getAttribute("shopLocation");
+				
+				System.out.println("Cart:"+cart);
+				System.out.println("User:"+user);
+				
+				if(cart != null && user != null) {
+					String address = user.getAddress();
+					String[] splitAddress = address.split(",");
+					int priceTransport = 0;
+					
+					String shopProvinceId = logictic.getProvinceByName(location.getProvince()).getId();
+					String shopDistristId = logictic.getDistrictByName(location.getDistrist(), shopProvinceId).getId();
+					String shopWardId = logictic.getWardByName(location.getWard(), shopDistristId).getId();
+					
+					String userProvinceId = logictic.getProvinceByName(splitAddress[3]).getId();
+					String userDistristId = logictic.getDistrictByName(splitAddress[2], userProvinceId).getId();
+					String userWardId = logictic.getWardByName(splitAddress[1], userDistristId).getId();
+					
+					for (CartItem item : cart.getList()) {
+						Product product = item.getProduct();
+						priceTransport += logictic.getPrice(shopDistristId, shopWardId, userDistristId, userWardId,product.getHeight(),product.getLength(), product.getWidth(), product.getWeigth());						
+					}
+					Product product = cart.getList().get(0).getProduct();
+					
+					request.setAttribute("priceTransport", priceTransport);
+					request.setAttribute("dateSend", logictic.getDateSend(shopDistristId, shopWardId, userDistristId, userWardId, product.getHeight(),product.getLength(), product.getWidth(), product.getWeigth()));
+					System.out.println(priceTransport);
+//					response.sendRedirect("submitCart.jsp");
+					request.getRequestDispatcher("/submitCart.jsp").forward(request, response);
+				}else {
+					response.sendRedirect("404.html");
+				}
+				
+
 			}
 		} else {
 			if (objUser != null) {
@@ -77,6 +118,8 @@ public class CartController extends HttpServlet {
 	protected void addToCTHDandOder(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		OderAndCTHDDAO db = new OderAndCTHDDAO();
+		PriceTransportOrderDAO priceTransportOrderDAO = PriceTransportOrderDAO.getInstance();
+		int price_Transport = Integer.parseInt(request.getParameter("priceTransport"));
 
 		User user = null;
 		CartDAO cartdb = new CartDAO();
@@ -102,6 +145,8 @@ public class CartController extends HttpServlet {
 
 		Long time = System.currentTimeMillis();
 		int temp = db.insertOder(user.getId(), "", new java.sql.Date(time), 1);
+		
+		priceTransportOrderDAO.insert(temp, price_Transport);
 		for (TempCart item : items) {
 			int proId = item.getProId();
 			Product product = pd.getProductById(proId);
@@ -196,7 +241,11 @@ public class CartController extends HttpServlet {
 			cartBean = new Cart();
 			session.setAttribute("cart", cartBean);
 		}
-		cartBean.addCart(pro_id, iname, iimage, idescription, iPrice, iQuantity);
+		//Old addCart
+//		cartBean.addCart(pro_id, iname, iimage, idescription, iPrice, iQuantity);
+		
+		//new AddCart
+		cartBean.addCart(product, iQuantity);
 		if (cartdb.getCartByUserIdAndProductId(user.getId(), Integer.parseInt(pro_id)).size() > 0) {
 			cartdb.updateTempcart(user.getId(), Integer.parseInt(pro_id), Integer.parseInt(iQuantity));
 		} else {
@@ -238,7 +287,11 @@ public class CartController extends HttpServlet {
 			String idescription = product.getDescreption();
 			int iPrice = product.getPrice();
 			String iQuantity = "" + tempCart.getQuantity();
-			cartBean.addCart(ipro_id, iname, iimage, idescription, iPrice, iQuantity);
+			//Old AddCart
+//			cartBean.addCart(ipro_id, iname, iimage, idescription, iPrice, iQuantity);
+			
+			//newAddCart
+			cartBean.addCart(product, iQuantity);
 		}
 	}
 

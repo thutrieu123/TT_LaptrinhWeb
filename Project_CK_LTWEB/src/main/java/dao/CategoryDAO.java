@@ -27,6 +27,7 @@ public class CategoryDAO {
 				Category cate = new Category(result.getInt(1), result.getString(2));
 				list.add(cate);
 			}
+			result.close();
 			ps.close();
 			connect.close();
 

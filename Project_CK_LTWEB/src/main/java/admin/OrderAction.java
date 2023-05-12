@@ -7,9 +7,17 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import api.LogicticAPI;
 import dao.OrderDAO;
+import dao.TransportDAO;
+import model.Location;
 import model.Order;
+import model.OrderItem;
+import model.Product;
+import model.User;
+import model.api.Transport;
 import support.SendEmail;
 
 /**
@@ -43,11 +51,20 @@ public class OrderAction extends HttpServlet {
 				orderDAO.changeStatusOrder(Integer.parseInt(orderId), 2);
 				Order order = orderDAO.getOrderByID(Integer.parseInt(orderId));
 				String subject = "Shop Đồ Ăn Vặt Handmade";
+				
+				String listProduct = "";
+				int count = 1;
+				
+				for(OrderItem item:order.getListOrderItem()) {
+					listProduct+= count +" " + item.getProduct().getName() +". Số lượng:" + item.getQuanlity() +". \n";
+					count++;
+				}
+				
 				String content = "Dear " + order.getUserName() + "\n\nĐơn hàng (ID order): " + order.getOrderId() + ",Sản phẩm : "
-						+ order.getProductName() + " đã được xác nhận.\n\n"
+						+ listProduct + " đã được xác nhận.\n\n"
 						+ "Đơn hàng sẽ được giao đến quý khách một ngày sớm nhất.\n\nCảm ơn quý khách đã tin tưởng!. <3";
 
-				mail.sendEmail(order.getEmail(), subject, content);
+				mail.sendEmail(orderDAO.getUserOfOrder(order.getOrderId()).getEmail(), subject, content);
 
 				request.setAttribute("access", "yes");
 				request.getRequestDispatcher("/order?action=accept").forward(request, response);
@@ -58,6 +75,34 @@ public class OrderAction extends HttpServlet {
 				request.getRequestDispatcher("/order?action=accept").forward(request, response);
 			} else if (action.trim().equals("ship")) {
 				String orderId = request.getParameter("orderID");
+				HttpSession session = request.getSession();
+				LogicticAPI logictic = LogicticAPI.getInstance();
+				TransportDAO transportDAO = TransportDAO.getInstance();
+				Location location = (Location)session.getAttribute("shopLocation");
+				
+				
+				Order order = orderDAO.getOrderByID(Integer.parseInt(orderId));
+				User user = orderDAO.getUserOfOrder(Integer.parseInt(orderId));
+				
+				String address = user.getAddress();
+				String[] splitAddress = address.split(",");
+				
+				String shopProvinceId = logictic.getProvinceByName(location.getProvince()).getId();
+				String shopDistristId = logictic.getDistrictByName(location.getDistrist(), shopProvinceId).getId();
+				String shopWardId = logictic.getWardByName(location.getWard(), shopDistristId).getId();
+				
+				String userProvinceId = logictic.getProvinceByName(splitAddress[3]).getId();
+				String userDistristId = logictic.getDistrictByName(splitAddress[2], userProvinceId).getId();
+				String userWardId = logictic.getWardByName(splitAddress[1], userDistristId).getId();
+				
+				for (OrderItem item : order.getListOrderItem()) {
+					Product product = item.getProduct();
+					Transport transport = logictic.registerTransport(shopDistristId, shopWardId, userDistristId, userWardId,product.getHeight(),product.getLength(), product.getWidth(), product.getWeigth());
+					transport.setOrder_id(order.getOrderId());
+					transport.setProduct(product);
+					transportDAO.insert(transport);
+				}			
+				
 				orderDAO.changeStatusOrder(Integer.parseInt(orderId), 3);
 				request.setAttribute("access", "yes");
 				request.getRequestDispatcher("/order?action=wating").forward(request, response);

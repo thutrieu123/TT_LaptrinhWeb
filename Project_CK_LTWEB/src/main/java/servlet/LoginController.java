@@ -11,9 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import contanst.MyAddress;
+import contanst.Role;
+import contanst.Status;
 import dao.AddressDAO;
 import dao.UserDAO;
 import model.Address;
+import model.Location;
 import model.User;
 import support.Endcoding;
 
@@ -50,9 +54,11 @@ public class LoginController extends HttpServlet {
 		
 		
 		//Lay ra User co status = 0 la con quyen duoc vao he thong
-		User user = userDAO.getUser(userName,0);
+		User user = userDAO.getUser(userName,Status.ACTIVE);
+		User userTrash = userDAO.getUser(userName, Status.ENABLE);
 		System.out.println(userName);
 		request.setAttribute("message", message);
+		
 
 		if (logOut != null) {
 //			request.removeAttribute("message");
@@ -74,7 +80,7 @@ public class LoginController extends HttpServlet {
 				CartController cart = new CartController();
 				cart.reCart(request);
 				session.setMaxInactiveInterval(5000);
-				if (user.getRolId() == 1)
+				if (user.getRolId() == Role.ADMIN)
 					// request.getRequestDispatcher("/admin/adminHeader.jsp").forward(request,
 					// response);
 					response.sendRedirect("/Project_CK_LTWEB/admin");
@@ -85,7 +91,11 @@ public class LoginController extends HttpServlet {
 				request.getRequestDispatcher("/login.jsp").forward(request, response);
 			}
 		} else {
-			message.put("userError", "Tài khoản không tồn tại");
+			if(userTrash != null) {
+				message.put("userError", "Tài đã bị khoá ");
+			}else {
+				message.put("userError", "Tài khoản không tồn tại");
+			}
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
 
 		}

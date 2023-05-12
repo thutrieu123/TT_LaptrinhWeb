@@ -10,6 +10,7 @@
 
 <style type="text/css">
 .table {
+	margin-top: 20px;
 	
 }
 .mb-10 {
@@ -98,55 +99,55 @@ td {
 	<h2 class="text-center">Đơn đã mua</h2>
 	<div class="container">
 		<div>
-			<a href="cart.jsp" class="btn btn-info mb-10" align="right"><i
-				class="fa fa-angle-left"></i> Giỏ hàng</a>
+			<a href="/Project_CK_LTWEB/orderUser" class="btn btn-info mb-10" align="right"><i
+				class="fa fa-angle-left"></i> Quay về</a>
 		</div>
+		
+		<h5><strong>Mã đơn: #${order.orderId }</strong></h5>
+		<h5><strong>Ngày đặt: ${order.date }</strong></h5>
+		<h5>Trình trạng:
+								<c:if test="${order.status == 1}">
+									<label class ="badge badge-danger">Đang chờ xác nhận</label>
+								</c:if>
+								<c:if test="${order.status == 2}">
+									<label class ="badge badge badge-primary">Đang chờ vận chuyển</label>
+								</c:if>
+								<c:if test="${order.status == 3}">
+									<label class ="badge badge-info">Đang vận chuyển</label>
+								</c:if>
+								<c:if test="${order.status == 4}">
+									<label class ="badge badge-success">Đã giao</label>
+								</c:if>
+							</h5>
 	
 		<table id="cart" class="table table-hover table-condensed">
 			<thead>
 				<tr>
-					<th style="width: 5%">Mã đơn</th>
-					<th style="width: 20%">Ngày đặt</th>
-					<th style="width: 8%">Chi tiết</th>
-					<th style="width: 10%">Tình trạng</th>
+					<th style="width: 10%">Tên sản phẩm</th>
+					<th style="width: 10%">Hình </th>
+					<th style="width: 8%">Giá</th>
+					<th style="width: 10%">Số lượng</th>
 				</tr>
 			</thead>
-			<jsp:useBean id="cart" scope="session" class="model.Cart" />
 			<tbody>
-			<c:forEach var="order" items="${listOrder}" varStatus="counter">
+			<c:forEach var="orderItem" items="${order.listOrderItem}" varStatus="counter">
 						<tr>
 							<td>
 								<div class="row">
 									<div class="col-sm-10">
-										<h4 class="nomargin">#${order.orderId}</h4>
+										<h4 class="nomargin">${orderItem.getProduct().getName()}</h4>
 									</div>
 								</div>
 							</td>
-							<td >${order.date}</td>
-							<td ><a href ="/Project_CK_LTWEB/orderUser?action=detail&orderId=${order.orderId}" class ="btn btn-primary"><i class="ti-eye" title ="Chi tiết"></i></a></td>
-							<c:if test="${order.status == 1 }">
-								<td><span class="badge badge-danger">Đang chờ xác nhận</span></td>
-							</c:if>
-							<c:if test="${order.status == 2 }">
-								<td><span class="badge badge-warning">Đang chờ vận chuyển</span></td>
-							</c:if>
-							<c:if test="${order.status == 3 }">
-								<td><span class="badge badge-info">Đang vận chuyển</span></td>
-							</c:if>
-							<c:if test="${order.status == 4 }">
-								<td><span class="badge badge-success">Đã giao</span></td>
-							</c:if>
+							<td ><img src="${orderItem.getProduct().getImage()}"
+													style="width: 80px; height: 80px;"></td>
+							<td >${orderItem.getProduct().formatPrice() }</td>
+							<td>${orderItem.getQuanlity() }</td>
 							
 						</tr>
 						
 			</c:forEach>
 			</tbody>
-			<tfoot>
-				<td><a href="HomeController" class="btn btn-warning"><i
-						class="fa fa-angle-left"></i> Tiếp tục mua hàng</a></td>
-				<td colspan="2" class="hidden-xs"></td>
-
-			</tfoot>
 		</table>
 	</div>
 	<script src="js/jquery-1.11.1.min.js"></script>

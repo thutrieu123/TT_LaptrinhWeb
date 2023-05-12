@@ -68,12 +68,12 @@
 													key="order.orderId" bundle="${lang }"></fmt:message></th>
 											<th class="border-top-0"><fmt:message
 													key="user.userName" bundle="${lang }"></fmt:message></th>
-											<th class="border-top-0"><fmt:message key="product.name"
+											<th class="border-top-0"><fmt:message key="order.date"
 													bundle="${lang }"></fmt:message></th>
-											<th class="border-top-0"><fmt:message
-													key="product.price" bundle="${lang }"></fmt:message></th>
-											<th class="border-top-0"><fmt:message
-													key="order.quanlity" bundle="${lang }"></fmt:message></th>
+													
+											<th class="border-top-0"><fmt:message key="order.detail"
+													bundle="${lang }"></fmt:message></th>
+
 											<th class="border-top-0"><fmt:message key="order.status"
 													bundle="${lang }"></fmt:message></th>
 
@@ -82,11 +82,12 @@
 									<tbody>
 										<c:forEach var="o" items="${listOrder}">
 											<tr>
-												<td>${o.orderId}</td>
+												<td>#${o.orderId}</td>
 												<td>${o.userName }</td>
-												<td>${o.productName }</td>
-												<td>${o.productPrice }</td>
-												<td>${o.quanlity }</td>
+												<td>${o.date }</td>
+												<td><a href ="/Project_CK_LTWEB/order?action=detail&orderId=${o.orderId }&previous=move" class = "btn btn-primary"><i class="ti-eye" title= "<fmt:message key="order.detail"
+													bundle="${lang }"></fmt:message>"></i></a></td>
+
 												<td><span class="badge badge-info"><fmt:message
 															key="order.moveName" bundle="${lang }"></fmt:message></span></td>
 
