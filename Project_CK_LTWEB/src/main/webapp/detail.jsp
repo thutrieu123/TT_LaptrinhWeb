@@ -15,57 +15,82 @@
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<section class="">
-	<form method="POST" action="CartController">
-		<div style="padding-top: 20px" class="flex-box">
-			<div class="left">
-			<input type=  "hidden" name = "proId" value ="${product.id}">
-			<div class="small mb-1" >SKU: ${product.id}</div>
-				<div class="big-img">
-					<img src="${product.image}">
+		<form method="POST" action="CartController">
+			<div style="padding-top: 20px" class="flex-box">
+				<div class="left">
+					<input type="hidden" name="proId" value="${product.id}">
+					<div class="small mb-1">SKU: ${product.id}</div>
+					<div class="big-img">
+						<img src="${product.image}">
+					</div>
+					<div class="images">
+						<div class="small-img">
+							<img src="${product.image}" onclick="showImg(this.src)">
+						</div>
+						<div class="small-img">
+							<img src="${product.image}" onclick="showImg(this.src)">
+						</div>
+						<div class="small-img">
+							<img src="${product.image}" onclick="showImg(this.src)">
+						</div>
+						<div class="small-img">
+							<img src="${product.image}" onclick="showImg(this.src)">
+						</div>
+					</div>
 				</div>
-				<div class="images">
-					<div class="small-img">
-						<img src="${product.image}" onclick="showImg(this.src)">
+
+				<div class="right">
+					<div class="pname">${product.name}</div>
+					<div class="ratings">
+						<i class="fas fa-star"></i> <i class="fas fa-star"></i> <i
+							class="fas fa-star"></i> <i class="fas fa-star"></i> <i
+							class="fas fa-star-half-alt"></i>
 					</div>
-					<div class="small-img">
-						<img src="${product.image}" onclick="showImg(this.src)">
+					<p class="about">${product.getDescreption()}</p>
+					<div class="price">Giá : ${product.formatPrice()} vnđ</div>
+					<div class="quantity">
+						<p>Quantity :</p>
+						<input name="inputQuantity" type="number" value="1">
 					</div>
-					<div class="small-img">
-						<img src="${product.image}" onclick="showImg(this.src)">
-					</div>
-					<div class="small-img">
-						<img src="${product.image}" onclick="showImg(this.src)">
+					<div class="btn-box">
+						<button type="submit" class="cart-btn">Add to Cart</button>
 					</div>
 				</div>
 			</div>
 
-			<div class="right">
-				<div class="pname">${product.name}</div>
-				<div class="ratings">
-					<i class="fas fa-star"></i> <i class="fas fa-star"></i> <i
-						class="fas fa-star"></i> <i class="fas fa-star"></i> <i
-						class="fas fa-star-half-alt"></i>
+           </form>
+			<div style="padding-top: 80px" class="container mt-3">
+				<h3>Đánh giá sản phẩm</h3>
+				<div class="media border p-3">
+					<div class="media">
+						<img src="img_avatar1.png" class="align-self-start mr-3"
+							style="width: 60px">
+						<div class="media-body">
+							<h4>Media Top</h4>
+							<p>Lorem ipsum...</p>
+						</div>
+					</div>
+
+
 				</div>
-				<p class="about">${product.getDescreption()}</p>
-				<div class="price">Giá :${product.formatPrice()} vnđ</div>
-				<div class="size">
-					<p>Size :</p>
-					<div class="psize active">M</div>
-					<div class="psize">L</div>
-					<div class="psize">XL</div>
-					<div class="psize">XXL</div>
-				</div>
-				<div class="quantity">
-					<p>Quantity :</p>
-					<input name="inputQuantity" type="number" value="1">
-				</div>
-				<div class="btn-box">				
-					<button type="submit" class="cart-btn">Add to Cart</button>									
-				</div>
+				<form>
+					<div class="mb-3">
+						<label for="" class="form-label">Comment</label> 
+						<input type="text" class="form-control"
+							id="" aria-describedby="">
+						<div id="" class="form-text"></div>
+					</div>
+					
+					
+					<button type="" class="btn btn-primary">Comment</button>
+				</form>
 			</div>
-		</div>
-	</form>
+
+
+		
 	</section>
+
+
 	<jsp:include page="footer.jsp"></jsp:include>
 	<script>
 		let bigImg = document.querySelector('.big-img img');

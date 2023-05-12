@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="css/main.css">
-<title>Đồ uống</title>
+<title>Đồ Ăn</title>
 </head>
 <body>
 	<jsp:include page="/header.jsp"></jsp:include>
@@ -23,14 +23,15 @@
 						<form method="POST" action="CartController">
 							<div class="col-md-4 col-sm-2 product">
 								<div class="card  is-table-row" style="width: 14.5rem;">
-									<a href="product?proId=${product.id }"><input type="hidden"
-										name="proId" value="${product.id}"><input
-										type="hidden" name="inputQuantity" value="1"><img
-										src="${product.getImage() }" class="card-img-top" alt="..."></a>
+									<a href="product?proId=${product.id }">
+									<input type="hidden" name="proId" value="${product.id}">
+									<input type="hidden" name="inputQuantity" value="1">
+									<img src="${product.getImage()}" class="card-img-top" alt="..."></a>
 									<div class="card-body">
-										<a href=""><h5 class=" card-title show_txt ">
+										<a href="product?proId=${product.id }">
+										<h5 class=" card-title show_txt ">
 												<b>${product.getName()}</b>
-											</h5></a>
+										</h5></a>
 										<p class="card-text show_txt">${product.getDescreption()}</p>
 										<b>Giá: ${product.formatPrice()} VNĐ.</b>
 
@@ -51,7 +52,7 @@
 					<ul class="pagination">
 					<c:if test="${tag >1}">
 						<li class="page-item"><a class="page-link"
-							href="CakeController?index=${tag-1}">Previous</a></li></c:if>
+							href="FoodController?index=${tag-1}">Previous</a></li></c:if>
 						<c:forEach begin="1" end="${endPFood}" var="i">
 							<li class="${tag==i?"page-item active":""}""><a
 								class="page-link" href="FoodController?index=${i}">${i}</a></li>
