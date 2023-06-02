@@ -1,4 +1,10 @@
+/admin/
+/api/
+/contanst/
 /context/
-/servlet/
 /dao/
+/filter/
+/i18n/
 /model/
+/servlet/
+/support/
