@@ -29,7 +29,7 @@
 										type="hidden" name="inputQuantity" value="1"><img
 										src="${product.getImage() }" class="card-img-top" alt="..."></a>
 									<div class="card-body">
-										<a href=""><h5 class=" card-title show_txt ">
+										<a href="product?proId=${product.id }"><h5 class=" card-title show_txt ">
 												<b>${product.getName()}</b>
 											</h5></a>
 										<p class="card-text show_txt">${product.getDescreption()}</p>
@@ -48,7 +48,7 @@
 			</div>
 
 			<div style="padding-top: 50px">
-				<div style="padding-left: 750px">
+				<div style="padding-left: 600px">
 					<ul class="pagination">
 					<c:if test="${tag >1}">
 						<li class="page-item"><a class="page-link"

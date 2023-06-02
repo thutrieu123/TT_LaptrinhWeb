@@ -11,10 +11,12 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
+import contanst.MyAddress;
 import model.api.Date;
 import model.api.District;
 import model.api.Province;
 import model.api.Transport;
+import model.api.Ward;
 import support.DateTime;
 
 
@@ -266,18 +268,18 @@ public class LogicticAPI {
 	}
 	
 	//Phuong thuc lay ra xa theo ten va id cua huyen
-	public District getWardByName(String name,String district_id) throws IOException {
-		JSONArray array = getAllDitristOfProvinceByID(district_id);
-		District district = null;
+	public Ward getWardByName(String name,String district_id) throws IOException {
+		JSONArray array = getAllWardOfDistristByID(district_id);
+		Ward ward = null;
 		System.out.println(array.size());
 		
 		for (Object object : array) {
 			JSONObject o = (JSONObject) object;
 			if(name.contains(o.get("WardName").toString()) || o.get("WardName").toString().contains(name)) {
-				district = new District(o.get("WardCode").toString(), o.get("WardName").toString(),o.get("DistrictID").toString());
+				ward = new Ward(o.get("WardCode").toString(), o.get("WardName").toString(),o.get("DistrictID").toString());
 			}
 		}
-		return district;
+		return ward;
 	}
 	
 	
@@ -474,12 +476,12 @@ public class LogicticAPI {
 			JSONObject jsonObject = (JSONObject) obj;
 			JSONObject convert = (JSONObject) jsonObject.get("Transport");
 			
+			int status = Integer.parseInt(convert.get("active").toString());
 			transport = new Transport(convert.get("id").toString(), Integer.parseInt(convert.get("fee").toString()), DateTime.formatDate(convert.get("created_at").toString()), DateTime.formatDate(convert.get("updated_at").toString()));
-		}		
-		
+			transport.setActive(status == 1 ? true :false);
+		}				
 		return transport;
-		
-		
+			
 	}
 
 
@@ -502,11 +504,13 @@ public class LogicticAPI {
 //		System.out.println(logic.getProvinceByName("Tỉnh Bến Tre"));
 		
 //		System.out.println(logic.getAllDitristOfProvinceByID("201").toJSONString());
-//		System.out.println(logic.getDistrictByName("Huyện Chợ Lách", "213"));
+		System.out.println(logic.getDistrictByName("Huyện Chợ Lách", "213"));
 		
-//		System.out.println(logic.getAllWardOfDistristByID("3158"));
+		System.out.println(logic.getAllWardOfDistristByID("3158"));
 //		System.out.println(logic.getPrice("2264", "90816", "2270", "231013", 1, 100, 100, 100));
-		System.out.println(logic.registerTransport("2264", "90816", "2270", "231013", 10, 100, 100, 100));
+//		System.out.println(logic.registerTransport("2264", "90816", "2270", "231013", 10, 100, 100, 100));
+		
+		System.out.println("Ward:" +logic.getWardByName(MyAddress.WARD, "3158").getName());
 
 	}
 	

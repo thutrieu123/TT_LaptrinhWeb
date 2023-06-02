@@ -143,17 +143,25 @@
 				</div>
 			</div>
 		</div>
-		<!-- ============================================================== -->
-		<!-- End Page wrapper  -->
-		<!-- ============================================================== -->
 	</div>
+	
+	<div>
+		<div id="toast_message">
+			<div class="toast toast--access">
+				<div class="toast__icon"><i class="fas fa-check-circle"></i></div>
+				<div class="toast__body">
+					<h3 class="toast__title">Success</h3>
+					<p class="toast__msg">Đây là máy vi tính hiện đại nhất ở đây</p>
+				</div>
+				<div class="toast__close"><i class="fas fa-times"></i></div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	
 	<jsp:include page="adminFooter.html"></jsp:include>
-	<!-- ============================================================== -->
-	<!-- End Wrapper -->
-	<!-- ============================================================== -->
-	<!-- ============================================================== -->
-	<!-- All Jquery -->
-	<!-- ============================================================== -->
 	<script src="/Project_CK_LTWEB/admin/js/jquery.min.js"></script>
 	<!-- Bootstrap tether Core JavaScript -->
 	<script src="/Project_CK_LTWEB/admin/js/bootstrap.bundle.min.js"></script>
@@ -172,7 +180,7 @@
 	</script>
 	<script >
 		function changeStatus(element,proId){
-			element.closest("tr").classList.add("selected");
+			element.closest("tr").classList.add("delete");
 			$.ajax({
 				url : "/Project_CK_LTWEB/change_status",
 				data:{
@@ -180,15 +188,17 @@
 					status:1
 				},
 				success: function(data){
-					
+					var table = $('#myTable').DataTable();			 
+					var rows = table
+					    .rows( '.delete' )
+					    .remove()
+					    .draw();
 				}
 			});
 			
-			var table = $('#myTable').DataTable();			 
-			var rows = table
-			    .rows( '.selected' )
-			    .remove()
-			    .draw();
+
+			
+			
 		}
 	</script>
 

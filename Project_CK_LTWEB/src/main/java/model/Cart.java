@@ -52,25 +52,57 @@ public class Cart {
 		return 0;
 	}
 
-	public void addCart(String pro_id, String name, String image, String desciption, int price, String quantity) {
+//	public void addCart(String pro_id, String name, String image, String desciption, int price, String quantity) {
+//		int iQuantity = Integer.parseInt(quantity);
+//		CartItem cartItem = new CartItem();
+//		boolean temp = false;
+//		try {
+//			if (iQuantity > 0) {
+//				for (CartItem item : items) {
+//					if (item.getId().equals(pro_id)) {
+//						item.setQuantity(iQuantity + item.getQuantity());
+//						calculateOrderTotal();
+//						temp = true;
+//					}
+//				}
+//				if (temp == false) {
+//					cartItem.setId(pro_id);
+//					cartItem.setName(name);
+//					cartItem.setPrice(price);
+//					cartItem.setImage(image);
+//					cartItem.setDescription(desciption);
+//					cartItem.setQuantity(iQuantity);
+//					// cartItem.setTotalCost(price * iQuantity);
+//					items.add(cartItem);
+//					calculateOrderTotal();
+//				}
+//			}
+//		} catch (NumberFormatException nfe) {
+//			System.out.println("Error while parsing from String to primitive types: " + nfe.getMessage());
+//			nfe.printStackTrace();
+//		}
+//	}
+	
+	public void addCart(Product product, String quantity) {
 		int iQuantity = Integer.parseInt(quantity);
 		CartItem cartItem = new CartItem();
 		boolean temp = false;
 		try {
 			if (iQuantity > 0) {
 				for (CartItem item : items) {
-					if (item.getId().equals(pro_id)) {
+					if (item.getProduct().getId()==  product.getId()) {
 						item.setQuantity(iQuantity + item.getQuantity());
 						calculateOrderTotal();
 						temp = true;
 					}
 				}
 				if (temp == false) {
-					cartItem.setId(pro_id);
-					cartItem.setName(name);
-					cartItem.setPrice(price);
-					cartItem.setImage(image);
-					cartItem.setDescription(desciption);
+//					cartItem.setId(pro_id);
+//					cartItem.setName(name);
+//					cartItem.setPrice(price);
+//					cartItem.setImage(image);
+//					cartItem.setDescription(desciption);
+					cartItem.setProduct(product);
 					cartItem.setQuantity(iQuantity);
 					// cartItem.setTotalCost(price * iQuantity);
 					items.add(cartItem);

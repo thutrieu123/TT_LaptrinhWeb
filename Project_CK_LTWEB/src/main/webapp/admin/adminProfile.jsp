@@ -59,45 +59,10 @@
 				<!-- ============================================================== -->
 				<!-- Row -->
 				<div class="row">
-					<!-- Column -->
-					<div class="col-lg-4 col-xlg-3 col-md-12">
-						<div class="white-box">
-							<div class="user-bg">
-								<img width="100%" alt="user" src="plugins/images/large/img1.jpg">
-								<div class="overlay-box">
-									<div class="user-content">
-										<a href="javascript:void(0)"><img
-											src="plugins/images/users/genu.jpg"
-											class="thumb-lg img-circle" alt="img"></a>
-										<h4 class="text-white mt-2">${user.fullName}</h4>
-									</div>
-								</div>
-							</div>
-							<div class="user-btm-box mt-5 d-md-flex text-center">
-								<div class="col-md-4 col-sm-4">
-									<h1><%=day%>
-										/
-									</h1>
-								</div>
-								<div class="col-md-4 col-sm-4 text-center"
-									style="margin-left: -15px;">
-									<h1><%=month%>
-										/
-									</h1>
-								</div>
-								<div class="col-md-4 col-sm-4 text-center"
-									style="margin-left: -15px;">
-									<h1><%=year%></h1>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- Column -->
-					<!-- Column -->
-					<div class="col-lg-8 col-xlg-9 col-md-12">
+					<div class="col-md-12">
 						<div class="card">
 							<div class="card-body">
-								<form class="form-horizontal form-material">
+								<form action="/Project_CK_LTWEB/change_admin" method="POST" class="form-horizontal form-material">
 									<div class="form-group mb-4">
 										<label class="col-md-12 p-0"><b><fmt:message
 													key="user.fullName" bundle="${lang }"></fmt:message> </b></label>
@@ -112,23 +77,43 @@
 													key="user.userName" bundle="${lang }"></fmt:message> </b></label>
 										<div class="col-md-12 border-bottom p-0">
 											<input class="form-control p-0 border-0" name="userName"
-												value="${user.userName}" readonly>
+												value="${user.userName}" readonly id ="userName">
 										</div>
 									</div>
 									<div class="form-group mb-4">
 										<label class="col-md-12 p-0"><b><fmt:message
 													key="user.password" bundle="${lang }"></fmt:message></b></label>
 										<div class="col-md-12 border-bottom p-0" style="display: inline-flex;">
-											<input type="password" value="${user.password}"
+											<input type="password" value="${user.password}" id = "password"
 												class="form-control p-0 border-0"  readonly>
 										</div>
+									</div>
+									
+									
+									<div class="form-group mb-4" id ="hidenChangePass" style="display: none;">
+										<label class="col-md-12 p-0"><b><fmt:message
+													key="user.oldPass" bundle="${lang }"></fmt:message></b></label>
+										<div class="col-md-12 border-bottom p-0" style="display: inline-flex;">
+											<input type="password" name = "oldPass" id = "oldPass"
+												class="form-control p-0 border-0"  onchange="checkPass()">
+												
+										</div>
+										<label class="col-md-12 p-0" id = "checkpass"><b></b></label>
+										
+										<label class="col-md-12 p-0"><b><fmt:message
+													key="user.newPass" bundle="${lang }"></fmt:message></b></label>
+										<div class="col-md-12 border-bottom p-0" style="display: inline-flex;">
+											<input type="password" name = "newPass" id ="newPass"
+												class="form-control p-0 border-0"  >
+										</div>
+										<label class="col-md-12 p-0" id = "checNewPass"><b></b></label>
 									</div>
 									<div class="form-group mb-4">
 										<label class="col-md-12 p-0"><b><fmt:message
 													key="user.phone" bundle="${lang }"></fmt:message></b></label>
 										<div class="col-md-12 border-bottom p-0">
 											<input type="text" placeholder="123 456 7890"
-												class="form-control p-0 border-0" name="phone"
+												class="form-control p-0 border-0" name="phone" id = "phone"
 												value="${ user.numberPhone}" readonly>
 										</div>
 									</div>
@@ -136,7 +121,7 @@
 										<label class="col-md-12 p-0"><b>Email</b></label>
 										<div class="col-md-12 border-bottom p-0">
 											<input type="email" value="${user.email}"
-												class="form-control p-0 border-0" readonly>
+												class="form-control p-0 border-0" readonly id = "email" name = "email">
 										</div>
 									</div>
 									<div class="form-group mb-4">
@@ -146,8 +131,12 @@
 											<textarea rows="5" class="form-control p-0 border-0" readonly>${user.address}</textarea>
 										</div>
 									</div>
+									<div id ="update" style="display: none;">
+										<button type="submit" class ="btn btn-success" id ="btn_update">Cập nhật</button>
+										<a class="btn btn-info" href="/Project_CK_LTWEB/admin">Quay lại</a>
+									</div>
 								</form>
-																				<button class ="btn btn-primary" onclick="edit()">Sửa Thông tin</button>
+																				<button class ="btn btn-primary"  id="editInfor">Sửa Thông tin</button>
 							</div>
 						</div>
 					</div>
@@ -176,11 +165,88 @@
 </body>
 
 <script type="text/javascript">
-	function edit(){
-		var fullName = $("#fullName");
+
+	var check = false;
+	//function edit(){
+		//check = true;
+		//$('#fullName').attr('readonly', false); 
+		//$('#phone').attr('readonly', false); 
+		//$('#email').attr('readonly', false);
 		
-		fullName.removeAttribute('readonly');
-	}
+//	}
+	
+	$('#editInfor').click(function(){
+		check = true;
+		$('#fullName').attr('readonly', false); 
+		$('#phone').attr('readonly', false); 
+		$('#email').attr('readonly', false);
+		$('#update').css("display","block");
+		$('#editInfor').css('display',"none");
+	})
+	
+	var show = true;
+		$('#password').focus(function (){
+			if(check){
+				if(!show){
+					$('#hidenChangePass').css('display','none');
+					show = true;
+				}else {
+					$('#hidenChangePass').css('display','block');
+					show = false;
+				}
+			}
+		});
+		
+		var check_pass = false;
+		
+		function checkPass(){
+			var password = $('#oldPass').val();
+			var userName = $('#userName').val();
+			$.ajax({
+				type: "POST",
+				url : "/Project_CK_LTWEB/check_pass",
+				data:{
+					userName:userName,
+					pass:password
+				},
+				success: function(data){
+					if(data == "subcess"){
+						$('#checkpass').text("Mật khẩu chính xác");
+						$('#checkpass').css("color","green");
+						$('#btn_update').removeAttr('disabled');
+						$('#newPass').focus();
+						$('#btn_update').attr('disabled','disabled');
+						
+						$('#checNewPass').css("color","red");
+						$('#checNewPass').text('Vui lòng nhập mật khẩu mới');
+					}else if( data == "error"){
+						$('#checkpass').text("Mật khẩu không chính xác");
+						$('#checkpass').css("color","red");
+						$('#btn_update').attr('disabled','disabled');
+					}
+				}
+			});
+		}
+		
+		$('#newPass').change(function(){
+			var value = $('#newPass').val();
+				
+			if(value == ""){
+				$('#checNewPass').css("color","red");
+				$('#checNewPass').text('Vui lòng nhập mật khẩu mới');
+				$('#btn_update').attr('disabled','disabled');
+			}else if(value.length < 10){
+				$('#checNewPass').css("color","red");
+				$('#checNewPass').text('Vui lòng nhập mật khẩu dài hơn 10 kí tự');
+				$('#btn_update').attr('disabled','disabled');
+			}else {
+				$('#btn_update').removeAttr('disabled');
+				$('#checNewPass').text("");
+				$('#checNewPass').css("color","none");
+			}
+		})
+			
 </script>
+
 
 </html>

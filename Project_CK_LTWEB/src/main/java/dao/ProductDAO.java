@@ -24,14 +24,16 @@ public class ProductDAO {
 		try {
 			connect = db.getConnection();
 
-			String query = "SELECT * FROM `products` WHERE products.id = ? ;";
+			String query = "SELECT id,name,descreption,price,image,height,length,width,weigth,DanhMuc_id FROM `products` WHERE products.id = ? ;";
 			ps = connect.prepareStatement(query);
 			ps.setInt(1, id);
 			result = ps.executeQuery();
+			
 			while (result.next()) {
 				product = new Product(result.getInt(1), result.getString(2), result.getString(3), result.getInt(4),
-						result.getString(5), result.getInt(6));
+						result.getString(5), result.getInt(6),result.getInt(7),result.getInt(8),result.getInt(9),result.getInt(10));
 			}
+			result.close();
 			ps.close();
 			connect.close();
 
@@ -51,15 +53,16 @@ public class ProductDAO {
 		DBContext db = new DBContext();
 		try {
 			connect = db.getConnection();
-			String query = "SELECT * FROM `products`where status = ? ;";
+			String query = "SELECT id,name,descreption,price,image,height,length,width,weigth,DanhMuc_id FROM `products`where status = ? ;";
 			ps = connect.prepareStatement(query);
 			ps.setInt(1, status);
 			result = ps.executeQuery();
 			while (result.next()) {
-				Product product = new Product(result.getInt(1), result.getString(2), result.getString(3),
-						result.getInt(4), result.getString(5), result.getInt(6));
+				Product product = new Product(result.getInt(1), result.getString(2), result.getString(3), result.getInt(4),
+						result.getString(5), result.getInt(6),result.getInt(7),result.getInt(8),result.getInt(9),result.getInt(10));
 				list.add(product);
 			}
+			result.close();
 			ps.close();
 			connect.close();
 
@@ -80,15 +83,16 @@ public class ProductDAO {
 		DBContext db = new DBContext();
 		try {
 			connect = db.getConnection();
-			String query = "SELECT * FROM `products` where status = ?;";
+			String query = "SELECT id,name,descreption,price,image,height,length,width,weigth,DanhMuc_id FROM `products` where status = ?;";
 			ps = connect.prepareStatement(query);
 			ps.setInt(1, status);
 			result = ps.executeQuery();
 			while (result.next()) {
-				Product product = new Product(result.getInt(1), result.getString(2), result.getString(3),
-						result.getInt(4), result.getString(5), result.getInt(6));
+				Product product = new Product(result.getInt(1), result.getString(2), result.getString(3), result.getInt(4),
+						result.getString(5), result.getInt(6),result.getInt(7),result.getInt(8),result.getInt(9),result.getInt(10));
 				list.add(product);
 			}
+			result.close();
 			ps.close();
 			connect.close();
 
@@ -109,14 +113,15 @@ public class ProductDAO {
 		DBContext db = new DBContext();
 		try {
 			connect = db.getConnection();
-			String query = "SELECT * FROM `products`;";
+			String query = "SELECT id,name,descreption,price,image,height,length,width,weigth,DanhMuc_id FROM `products`;";
 			ps = connect.prepareStatement(query);
 			result = ps.executeQuery();
 			while (result.next()) {
-				Product product = new Product(result.getInt(1), result.getString(2), result.getString(3),
-						result.getInt(4), result.getString(5), result.getInt(6));
+				Product product = new Product(result.getInt(1), result.getString(2), result.getString(3), result.getInt(4),
+						result.getString(5), result.getInt(6),result.getInt(7),result.getInt(8),result.getInt(9),result.getInt(10));
 				list.add(product);
 			}
+			result.close();
 			ps.close();
 			connect.close();
 
@@ -137,16 +142,17 @@ public class ProductDAO {
 		DBContext db = new DBContext();
 		try {
 			connect = db.getConnection();
-			String query = "SELECT* FROM products WHERE products.DanhMuc_id = ? and products.status = ?";
+			String query = "SELECT id,name,descreption,price,image,height,length,width,weigth,DanhMuc_id FROM products WHERE products.DanhMuc_id = ? and products.status = ?";
 			ps = connect.prepareStatement(query);
 			ps.setInt(1, catId);
 			ps.setInt(2, status);
 			result = ps.executeQuery();
 			while (result.next()) {
-				Product product = new Product(result.getInt(1), result.getString(2), result.getString(3),
-						result.getInt(4), result.getString(5), result.getInt(6));
+				Product product = new Product(result.getInt(1), result.getString(2), result.getString(3), result.getInt(4),
+						result.getString(5), result.getInt(6),result.getInt(7),result.getInt(8),result.getInt(9),result.getInt(10));
 				list.add(product);
 			}
+			result.close();
 			ps.close();
 			connect.close();
 
@@ -196,15 +202,16 @@ public class ProductDAO {
 		DBContext db = new DBContext();
 		try {
 			connect = db.getConnection();
-			String query = "SELECT * FROM `products` where products.status = ? order BY id LIMIT 4;";
+			String query = "SELECT id,name,descreption,price,image,height,length,width,weigth,DanhMuc_id FROM `products` where products.status = ? order BY id LIMIT 4;";
 			ps = connect.prepareStatement(query);
 			ps.setInt(1, status);
 			result = ps.executeQuery();
 			while (result.next()) {
-				Product product = new Product(result.getInt(1), result.getString(2), result.getString(3),
-						result.getInt(4), result.getString(5), result.getInt(6));
+				Product product = new Product(result.getInt(1), result.getString(2), result.getString(3), result.getInt(4),
+						result.getString(5), result.getInt(6),result.getInt(7),result.getInt(8),result.getInt(9),result.getInt(10));
 				list.add(product);
 			}
+			result.close();
 			ps.close();
 			connect.close();
 
@@ -225,16 +232,17 @@ public class ProductDAO {
 		DBContext db = new DBContext();
 		try {
 			connect = db.getConnection();
-			String query = "SELECT* FROM products WHERE products.name Like ? and products.status = ?";
+			String query = "SELECT id,name,descreption,price,image,height,length,width,weigth,DanhMuc_id FROM products WHERE products.name Like ? and products.status = ?";
 			ps = connect.prepareStatement(query);
 			ps.setString(1, "%" + name + "%");
 			ps.setInt(2, status);
 			result = ps.executeQuery();
 			while (result.next()) {
-				Product product = new Product(result.getInt(1), result.getString(2), result.getString(3),
-						result.getInt(4), result.getString(5), result.getInt(6));
+				Product product = new Product(result.getInt(1), result.getString(2), result.getString(3), result.getInt(4),
+						result.getString(5), result.getInt(6),result.getInt(7),result.getInt(8),result.getInt(9),result.getInt(10));
 				list.add(product);
 			}
+			result.close();
 			ps.close();
 			connect.close();
 
@@ -255,7 +263,7 @@ public class ProductDAO {
 		DBContext db = new DBContext();
 		try {
 			connect = db.getConnection();
-			String query = "UPDATE products SET products.name = ?,products.descreption = ?,products.price = ?,products.image =?,products.DanhMuc_id = ? WHERE id = ?;";
+			String query = "UPDATE products SET products.name = ?,products.descreption = ?,products.price = ?,products.image =?,products.DanhMuc_id = ?,products.height = ?, products.length = ?,products.width = ?,products.weigth = ? WHERE id = ?;";
 			ps = connect.prepareStatement(query);
 
 			ps.setString(1, product.getName());
@@ -263,9 +271,15 @@ public class ProductDAO {
 			ps.setInt(3, product.getPrice());
 			ps.setString(4, product.getImage());
 			ps.setInt(5, product.getCatId());
-			ps.setInt(6, product.getId());
+			ps.setInt(6, product.getHeight());
+			ps.setInt(7, product.getLength());
+			ps.setInt(8, product.getWidth());
+			ps.setInt(9, product.getWeigth());
+			ps.setInt(10, product.getId());
 
 			int numberRowUpdate = ps.executeUpdate();
+			
+			System.out.println("Row:" +numberRowUpdate);
 
 			ps.close();
 			connect.close();
@@ -333,11 +347,11 @@ public class ProductDAO {
 		}
 	}
 
-	public int insert(String name, String des, int price, String image, int catId) {
+	public int insert(String name, String des, int price, String image, int catId,int height,int length,int width,int weigth) {
 		DBContext db = new DBContext();
 		try {
 			connect = db.getConnection();
-			String query = "INSERT INTO products(name,descreption,price,image,DanhMuc_id,status) VALUES(?,?,?,?,?,0);";
+			String query = "INSERT INTO products(name,descreption,price,image,DanhMuc_id,status,height,length,width,weigth) VALUES(?,?,?,?,?,0,?,?,?,?);";
 			ps = connect.prepareStatement(query);
 
 			ps.setString(1, name);
@@ -345,6 +359,10 @@ public class ProductDAO {
 			ps.setInt(3, price);
 			ps.setString(4, image);
 			ps.setInt(5, catId);
+			ps.setInt(6, height);
+			ps.setInt(7, length);
+			ps.setInt(8, width);
+			ps.setInt(9, weigth);
 			int numberRowUpdate = ps.executeUpdate();
 
 			ps.close();
@@ -374,6 +392,9 @@ public class ProductDAO {
 			while (result.next()) {
 				return result.getInt(1);
 			}
+			result.close();
+			ps.close();
+			connect.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -392,6 +413,9 @@ public class ProductDAO {
 			while (result.next()) {
 				return result.getInt(1);
 			}
+			result.close();
+			ps.close();
+			connect.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -410,6 +434,9 @@ public class ProductDAO {
 			while (result.next()) {
 				return result.getInt(1);
 			}
+			result.close();
+			ps.close();
+			connect.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -428,6 +455,9 @@ public class ProductDAO {
 			while (result.next()) {
 				return result.getInt(1);
 			}
+			result.close();
+			ps.close();
+			connect.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -438,7 +468,7 @@ public class ProductDAO {
 	public List<Product> pagingProduct(int index,int status) {
 		List<Product> list = new ArrayList<>();
 		DBContext db = new DBContext();
-		String query = "SELECT * FROM products where products.status = ? LIMIT ?,8;";
+		String query = "SELECT id,name,descreption,price,image,height,length,width,weigth,DanhMuc_id FROM products where products.status = ? LIMIT ?,8;";
 		try {
 			connect = db.getConnection();
 			ps = connect.prepareStatement(query);
@@ -447,8 +477,11 @@ public class ProductDAO {
 			result = ps.executeQuery();
 			while (result.next()) {
 				list.add(new Product(result.getInt(1), result.getString(2), result.getString(3), result.getInt(4),
-						result.getString(5)));
+						result.getString(5), result.getInt(6),result.getInt(7),result.getInt(8),result.getInt(9),result.getInt(10)));
 			}
+			result.close();
+			ps.close();
+			connect.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -458,7 +491,7 @@ public class ProductDAO {
 	public List<Product> pagingFood(int index) {
 		List<Product> list = new ArrayList<>();
 		DBContext db = new DBContext();
-		String query = "SELECT * FROM products WHERE products.DanhMuc_id = 3 and products.status = 0  LIMIT ?,12";
+		String query = "SELECT id,name,descreption,price,image,height,length,width,weigth,DanhMuc_id FROM products WHERE products.DanhMuc_id = 3 and products.status = 0  LIMIT ?,12";
 		try {
 			connect = db.getConnection();
 			ps = connect.prepareStatement(query);
@@ -466,8 +499,11 @@ public class ProductDAO {
 			result = ps.executeQuery();
 			while (result.next()) {
 				list.add(new Product(result.getInt(1), result.getString(2), result.getString(3), result.getInt(4),
-						result.getString(5)));
+						result.getString(5), result.getInt(6),result.getInt(7),result.getInt(8),result.getInt(9),result.getInt(10)));
 			}
+			result.close();
+			ps.close();
+			connect.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -477,7 +513,7 @@ public class ProductDAO {
 	public List<Product> pagingDrink(int index) {
 		List<Product> list = new ArrayList<>();
 		DBContext db = new DBContext();
-		String query = "SELECT * FROM products WHERE products.DanhMuc_id = 2 and products.status = 0  LIMIT ?,12";
+		String query = "SELECT id,name,descreption,price,image,height,length,width,weigth,DanhMuc_id FROM products WHERE products.DanhMuc_id = 2 and products.status = 0  LIMIT ?,12";
 		try {
 			connect = db.getConnection();
 			ps = connect.prepareStatement(query);
@@ -485,8 +521,11 @@ public class ProductDAO {
 			result = ps.executeQuery();
 			while (result.next()) {
 				list.add(new Product(result.getInt(1), result.getString(2), result.getString(3), result.getInt(4),
-						result.getString(5)));
+						result.getString(5), result.getInt(6),result.getInt(7),result.getInt(8),result.getInt(9),result.getInt(10)));
 			}
+			result.close();
+			ps.close();
+			connect.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -496,7 +535,7 @@ public class ProductDAO {
 	public List<Product> pagingCake(int index) {
 		List<Product> list = new ArrayList<>();
 		DBContext db = new DBContext();
-		String query = "SELECT * FROM products WHERE products.DanhMuc_id = 1 and products.status = 0  LIMIT ?,12";
+		String query = "SELECT id,name,descreption,price,image,height,length,width,weigth,DanhMuc_id FROM products WHERE products.DanhMuc_id = 1 and products.status = 0  LIMIT ?,12";
 		try {
 			connect = db.getConnection();
 			ps = connect.prepareStatement(query);
@@ -504,8 +543,11 @@ public class ProductDAO {
 			result = ps.executeQuery();
 			while (result.next()) {
 				list.add(new Product(result.getInt(1), result.getString(2), result.getString(3), result.getInt(4),
-						result.getString(5)));
+						result.getString(5), result.getInt(6),result.getInt(7),result.getInt(8),result.getInt(9),result.getInt(10)));
 			}
+			result.close();
+			ps.close();
+			connect.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -515,15 +557,18 @@ public class ProductDAO {
 	public List<Product> getTop8Product() {
 		List<Product> list = new ArrayList<>();
 		DBContext db = new DBContext();
-		String query = "SELECT * FROM products WHERE  products.status = 0 LIMIT 8";
+		String query = "SELECT id,name,descreption,price,image,height,length,width,weigth,DanhMuc_id FROM products WHERE  products.status = 0 LIMIT 8";
 		try {
 			connect = db.getConnection();
 			ps = connect.prepareStatement(query);			
 			result = ps.executeQuery();
 			while (result.next()) {
 				list.add(new Product(result.getInt(1), result.getString(2), result.getString(3), result.getInt(4),
-						result.getString(5)));
+						result.getString(5), result.getInt(6),result.getInt(7),result.getInt(8),result.getInt(9),result.getInt(10)));
 			}
+			result.close();
+			ps.close();
+			connect.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -533,7 +578,7 @@ public class ProductDAO {
 	public List<Product> getNext4Product(int amount) {
 		List<Product> list = new ArrayList<>();
 		DBContext db = new DBContext();
-		String query = "SELECT * FROM products WHERE  products.status = 0 LIMIT ?,4";
+		String query = "SELECT id,name,descreption,price,image,height,length,width,weigth,DanhMuc_id FROM products WHERE  products.status = 0 LIMIT ?,4";
 		try {
 			connect = db.getConnection();
 			ps = connect.prepareStatement(query);		
@@ -541,8 +586,11 @@ public class ProductDAO {
 			result = ps.executeQuery();
 			while (result.next()) {
 				list.add(new Product(result.getInt(1), result.getString(2), result.getString(3), result.getInt(4),
-						result.getString(5)));
+						result.getString(5), result.getInt(6),result.getInt(7),result.getInt(8),result.getInt(9),result.getInt(10)));
 			}
+			result.close();
+			ps.close();
+			connect.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

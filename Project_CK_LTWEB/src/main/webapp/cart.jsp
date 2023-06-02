@@ -130,56 +130,69 @@ td {
 						<tr>
 							<td data-th="Product">
 								<div class="row">
-									<input type='hidden' name='stt'
-										value='<c:out value="${counter.count}"/>'>
+									<input type='hidden' name='stt'	value='<c:out value="${counter.count}"/>'>
 									<div class="col-sm-2 hidden-xs">
-										<img src="${cartItem.image}" class="img-responsive"
-											width="100" height="100">
+										<img src="${cartItem.getProduct().image}" class="img-responsive"	width="100" height="100">
 									</div>
-									<input type="hidden" name="cart_pro_id" value="${cartItem.id}" />
+									<input type="hidden" name="cart_pro_id" value="${cartItem.getProduct().id}" />
 									<div class="col-sm-10">
-										<h4 class="nomargin">${cartItem.name}</h4>
-										<p>${cartItem.description }</p>
+										<h4 class="nomargin">${cartItem.getProduct().name}</h4>
+										<p>${cartItem.getProduct().descreption}</p>
 									</div>
 								</div>
 							</td>
 							<td data-th="Price">${cartItem.formatPrice()}VNĐ.</td>
-							<input type="hidden" name="price" value="${cartItem.price}" />
-							<td data-th="Quantity" style="display: inline-flex"><a href="CartController?action=update&quan=1&stt=${counter.count}&cart_pro_id=${cartItem.id}" class="btn btn-in_decrement"><i class="ti-plus"></i></a><input
-								class="form-control text-center quanlity" name="quan" value="${cartItem.quantity}"
-								type="text" readonly><a href="CartController?action=update&quan=-1&stt=${counter.count}&cart_pro_id=${cartItem.id}" class=" btn btn-in_decrement"><i class="ti-minus"></i></a>
+							<input type="hidden" name="price" value="${cartItem.getProduct().price}" />
+							<td data-th="Quantity" style="display: inline-flex">
+							<a href="CartController?action=update&quan=1&stt=${counter.count}&cart_pro_id=${cartItem.getProduct().id}" class="btn btn-in_decrement">
+								<i class="ti-plus"></i>
+							</a>
+							
+							<input class="form-control text-center quanlity" name="quan" value="${cartItem.quantity}" type="text" readonly>
+							<a href="CartController?action=update&quan=-1&stt=${counter.count}&cart_pro_id=${cartItem.getProduct().id}" class=" btn btn-in_decrement">
+								<i class="ti-minus"></i>
+							</a>
 								<!-- <button class="btn btn-success btn-block" name="action"
 									value="update">
 									<i class="fa fa-trash-o">Cập nhật</i>
 								</button> -->
 								</td>
-							<td data-th="Subtotal" class="text-center">${cartItem.formatTotal()}
-								VNĐ</td>
-							<td class="actions" data-th="">
-								<button class="btn btn-info btn-sm" name="action" value="oder"
-									onclick="oder()">
-									<i class="fa fa-edit">Đặt hàng</i>
-								</button> <script type="text/javascript">
-									function oder() {
-										alert("Đặt hàng thành công");
-									}
-								</script>
-
-								<button class="btn btn-danger btn-sm" name="action"
-									value="delete">
+							<td data-th="Subtotal" class="text-center">${cartItem.formatTotal()} VNĐ</td>
+							<td class="actions" data-th="">								<button class="btn btn-danger btn-sm" name="action"	value="delete">
 									<i class="fa fa-trash-o">Xóa</i>
 								</button>
 							</td>
-							<td></td>
 						</tr>
+						</tbody>
 				</form>
 			</c:forEach>
-			<td><a href="HomeController" class="btn btn-warning"><i
-					class="fa fa-angle-left"></i> Tiếp tục mua hàng</a></td>
-			<td colspan="2" class="hidden-xs"></td>
-			<td class="hidden-xs text-center"><strong>TỔNG:
-					${cart.formatTotal()} VNĐ.</strong></td>
-
+			<tfoot>
+				<form method="POST" action="CartController">
+				<tr>
+				<td><a href="HomeController" class="btn btn-warning">
+				<i class="fa fa-angle-left"></i> Tiếp tục mua hàng</a></td>
+				<td class="actions" data-th="">
+					<!-- <button class="btn btn-danger" name="action" value="oder" onclick="oder()">
+						<i class="fa fa-edit">Đặt hàng</i>
+					</button>  -->
+					<!--  <script type="text/javascript">
+						function oder() {
+							alert("Đặt hàng thành công");
+						}
+					</script>--></td>
+				</form>
+				<td></td>
+				<td class="hidden-xs text-center">
+				<strong>TỔNG:${cart.formatTotal()} VNĐ.</strong></td></tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td><c:if test="${cart.list.size() > 0}">
+							<a class ="btn btn-danger" href="CartController?action=submit" >Đặt hàng</a>
+						</c:if></td>
+				</tr>
 			</tfoot>
 		</table>
 	</div>

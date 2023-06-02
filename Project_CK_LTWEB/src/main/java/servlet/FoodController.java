@@ -38,10 +38,11 @@ public class FoodController extends HttpServlet {
 			endPage++;
 		}
 		
-		List<Product> listAllFood = productDAO.pagingCake(index);
+		List<Product> listAllFood = productDAO.pagingFood(index);
 		
 		request.setAttribute("listAllFood", listAllFood);
 		request.setAttribute("endPFood", endPage);
+		request.setAttribute("tag", index);
 		request.getRequestDispatcher("/food.jsp").forward(request, response);
 	}
 
