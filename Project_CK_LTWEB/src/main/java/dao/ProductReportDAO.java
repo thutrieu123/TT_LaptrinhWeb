@@ -42,6 +42,7 @@ public class ProductReportDAO {
 				ProductReport proRe = new ProductReport(result.getInt(1), result.getString(2), result.getInt(4),result.getInt(3));
 				list.add(proRe);
 			}
+			result.close();
 			ps.close();
 			connect.close();
 
@@ -80,6 +81,7 @@ public class ProductReportDAO {
 				ProductReport proRe = new ProductReport(result.getInt(1), result.getString(2), result.getInt(4),result.getInt(3));
 				list.add(proRe);
 			}
+			result.close();
 			ps.close();
 			connect.close();
 
@@ -115,6 +117,7 @@ public class ProductReportDAO {
 				RevenueReport item = new RevenueReport(DateTime.formatDate(result.getDate(1).toString()), result.getInt(2), result.getInt(3));
 				list.add(item);
 			}
+			result.close();
 			ps.close();
 			connect.close();
 

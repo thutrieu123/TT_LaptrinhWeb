@@ -29,6 +29,7 @@ public class CartDAO {
 			while (result.next()) {
 				list.add(new TempCart(result.getInt(1), result.getInt(3), result.getInt(4)));
 			}
+			result.close();
 			ps.close();
 			connect.close();
 
@@ -55,6 +56,7 @@ public class CartDAO {
 			while (result.next()) {
 				list.add(new TempCart(result.getInt(1), result.getInt(3), result.getInt(4)));
 			}
+			result.close();
 			ps.close();
 			connect.close();
 

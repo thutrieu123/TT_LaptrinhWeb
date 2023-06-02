@@ -33,6 +33,9 @@ public class ConfimDAO {
 			ps.setTimestamp(4, dateEnd);
 
 			int row = ps.executeUpdate();
+			
+			ps.close();
+			connect.close();
 			return row;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -60,6 +63,9 @@ public class ConfimDAO {
 				confim = new Confim(result.getInt(1), result.getString(2), result.getString(3), result.getTimestamp(4),
 						result.getTimestamp(5));
 			}
+			result.close();
+			ps.close();
+			connect.close();
 
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

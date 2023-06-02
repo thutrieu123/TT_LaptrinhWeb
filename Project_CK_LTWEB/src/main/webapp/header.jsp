@@ -54,9 +54,9 @@ href="themify-icons/themify-icons.css">
 				<a href="HomeController"><img id="logo" class="media-reponsive"
 					src="Image/logo.png" class="col-sm-3"></a>
 				<h1 class="name-shop">Shop Đồ Ăn Vặt Handmade</h1>
-				<form class="form-inline mt-4" action="search" method="post">
-					<input class="form-control media-reponsive search" type="search"
-						placeholder="Tìm kiếm..." aria-label="Search" name="search">
+				<form class="form-inline mt-4" action="SearchController" method="post">
+					<input oninput="searchByName(this)" value="${txts}" class="form-control media-reponsive search" type="search"
+						placeholder="Tìm kiếm..." aria-label="Search" name="txt">
 					<button class="ti-search btn btn-success my-2 my-sm-0"
 						type="submit"></button>
 

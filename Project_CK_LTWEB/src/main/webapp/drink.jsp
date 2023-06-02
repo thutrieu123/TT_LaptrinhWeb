@@ -28,7 +28,7 @@
 										type="hidden" name="inputQuantity" value="1"><img
 										src="${product.getImage() }" class="card-img-top" alt="..."></a>
 									<div class="card-body">
-										<a href=""><h5 class=" card-title show_txt ">
+										<a href="product?proId=${product.id }"><h5 class=" card-title show_txt ">
 												<b>${product.getName()}</b>
 											</h5></a>
 										<p class="card-text show_txt">${product.getDescreption()}</p>
@@ -49,14 +49,19 @@
 			<div style="padding-top: 50px">
 				<div style="padding-left: 750px">
 					<ul class="pagination">
+					<c:if test="${tag >1}">
+						<li class="page-item"><a class="page-link"
+							href="DrinkController?index=${tag-1}">Previous</a></li></c:if>
 						<c:forEach begin="1" end="${endPDrink}" var="i">
-							<li class="page-item"><a class="page-link"
-								href="DrinkController?index=${i}">${i}</a></li>
+							<li class="${tag==i?"page-item active":""}""><a
+								class="page-link" href="DrinkController?index=${i}">${i}</a></li>
 						</c:forEach>
+						<c:if test="${tag < endPDrink}">
+						<li class="page-item"><a class="page-link"
+							href="DrinkController?index=${tag+1}">Next</a></li></c:if>
 					</ul>
 				</div>
 			</div>
-
 		</div>
 	</div>
 	<jsp:include page="footer.jsp"></jsp:include>

@@ -30,6 +30,7 @@ public class UserDAO {
 				list.add(new User(result.getInt(1), result.getString(2), result.getString(3), result.getString(4),
 						result.getString(5), result.getString(6), result.getInt(7),result.getString(8)));
 			}
+			result.close();
 			ps.close();
 			connect.close();
 
@@ -59,6 +60,7 @@ public class UserDAO {
 				list.add(new User(result.getInt(1), result.getString(2), result.getString(3), result.getString(4),
 						result.getString(5), result.getString(6), result.getInt(7),result.getString(8)));
 			}
+			result.close();
 			ps.close();
 			connect.close();
 
@@ -86,6 +88,7 @@ public class UserDAO {
 				return new User(result.getInt(1),result.getString(2), result.getString(3), result.getString(4), result.getString(5),
 						result.getString(6), result.getInt(7),result.getString(8));
 			}
+			result.close();
 			ps.close();
 			connect.close();
 
@@ -113,6 +116,7 @@ public class UserDAO {
 				return new User(result.getInt(1),result.getString(2), result.getString(3), result.getString(4), result.getString(5),
 						result.getString(6), result.getInt(7),result.getString(8));
 			}
+			result.close();
 			ps.close();
 			connect.close();
 
@@ -139,6 +143,7 @@ public class UserDAO {
 				return new User(result.getInt(1),result.getString(2), result.getString(3), result.getString(4), result.getString(5),
 						result.getString(6), result.getInt(7),result.getString(8));
 			}
+			result.close();
 			ps.close();
 			connect.close();
 
