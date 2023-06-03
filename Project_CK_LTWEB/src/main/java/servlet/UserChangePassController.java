@@ -1,4 +1,4 @@
-package servlet;
+﻿package servlet;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -52,12 +52,12 @@ public class UserChangePassController extends HttpServlet {
 				System.out.println(userUpdate);
 				response.sendRedirect("/Project_CK_LTWEB/HomeController?access=Đổi mật khẩu thành công");
 			} else {
-				request.setAttribute("message", "Nhập lại mật khẩu mới không chính xác");
+				request.setAttribute("messageRe", "Nhập lại mật khẩu mới không chính xác");
 				request.getRequestDispatcher("uChangePass.jsp").forward(request, response);
 			}
 		} else {
 			request.getSession().setAttribute("langeName", "vi_VN");
-			request.setAttribute("message", "Mật khẩu không chính xác");
+			request.setAttribute("messageOld", "Mật khẩu không chính xác");
 			request.getRequestDispatcher("uChangePass.jsp").forward(request, response);
 		}
 	}

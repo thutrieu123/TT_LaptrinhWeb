@@ -63,28 +63,32 @@
 				<div class="col-md-12">
 					<div class="card">
 						<div class="card-body">
-							<form class="form-horizontal form-material" action="userChangePass"
-								method="post">
+							<form class="form-horizontal form-material"
+								action="userChangePass" method="post">
 
 								<div class="form-outline mt-3">
-										<label class="form-label" for="form3Example4cg">Mật
-											khẩu hiện tại(*):</label> <input type="password" id="form3Example4cg"
-											class="form-control " name = "oldPass" required  value = "<%=oldPass%>"/>
-									</div>
-									<p style ="color:red;">${message}</p>
+									<label class="form-label" for="form3Example4cg">Mật
+										khẩu hiện tại(*):</label> <input type="password" id="form3Example4cg"
+										class="form-control " name="oldPass" required
+										value="<%=oldPass%>" />
+								</div>
+								<p style="color: red;">${messageOld}</p>
 
-									<div class="form-outline mt-3">
-										<label class="form-label" for="form3Example4cg">Mật
-											khẩu mới(*):</label> <input type="password" id="form3Example4cg"
-											class="form-control " name = "newPass" required  value = "<%=newPass%>"/>
-									</div>
-									
-									<div class="form-outline mt-3">
-										<label class="form-label" for="form3Example4cg">Nhập lại mật
-											khẩu mới(*):</label> <input type="password" id="form3Example4cg"
-											class="form-control " name = "rePass" required  value = "<%=rePass%>"/>
-									</div>
-									<div class="form-group mb-4">
+								<div class="form-outline mt-3">
+									<label class="form-label" for="form3Example4cg">Mật
+										khẩu mới(*):</label> <input type="password" id="form3Example4cg"
+										class="form-control " name="newPass" required
+										value="<%=newPass%>" />
+								</div>
+
+								<div class="form-outline mt-3">
+									<label class="form-label" for="form3Example4cg">Nhập
+										lại mật khẩu mới(*):</label> <input type="password"
+										id="form3Example4cg" class="form-control " name="rePass"
+										required value="<%=rePass%>" />
+								</div>
+								<p style="color: red;">${messageRe}</p>
+								<div class="form-group mb-4">
 									<div class="col-sm-12">
 										<button class="btn btn-success" name="updateUser"
 											type="submit">

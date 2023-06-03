@@ -16,28 +16,28 @@
 </head>
 <body>
 	<%
-	String userName = request.getParameter("userName");
-	String password = request.getParameter("password");
-	String rePassword = request.getParameter("rePassword");
-	String fullName = request.getParameter("fullName");
-	String phone = request.getParameter("phone");
-	String addressDetail = request.getParameter("addressDetail");
-	String email = request.getParameter("email");
+		String userName = request.getParameter("userName");
+		String password = request.getParameter("password");
+		String rePassword = request.getParameter("rePassword");
+		String fullName = request.getParameter("fullName");
+		String phone = request.getParameter("phone");
+		String addressDetail = request.getParameter("addressDetail");
+		String email = request.getParameter("email");
 
-	if (userName == null)
-		userName = "";
-	if (password == null)
-		password = "";
-	if (rePassword == null)
-		rePassword = "";
-	if (fullName == null)
-		fullName = "";
-	if (phone == null)
-		phone = "";
-	if (addressDetail == null)
-		addressDetail = "";
-	if(email == null)
-		email = "";
+		if (userName == null)
+			userName = "";
+		if (password == null)
+			password = "";
+		if (rePassword == null)
+			rePassword = "";
+		if (fullName == null)
+			fullName = "";
+		if (phone == null)
+			phone = "";
+		if (addressDetail == null)
+			addressDetail = "";
+		if (email == null)
+			email = "";
 	%>
 
 
@@ -59,49 +59,45 @@
 
 									<div class="form-outline ">
 										<label class="form-label" for="form3Example1cg">Tài
-											khoản(*):</label> <input type="text" 
-											class="form-control " required name="userName"
-											value="<%=userName%>" />
+											khoản(*):</label> <input type="text" class="form-control " required
+											name="userName" value="<%=userName%>" />
 									</div>
 									<p style="color: red;">${message.get("userError")}</p>
 
 									<div class="form-outline mt-4">
 										<label class="form-label" for="form3Example4cg">Mật
-											khẩu(*):</label> <input type="password" 
-											class="form-control " required name="password"
-											value="<%=password%>" />
+											khẩu(*):</label> <input type="password" class="form-control "
+											required name="password" value="<%=password%>" />
 
 									</div>
 									<p style="color: red;">${message.get("password")}</p>
 
 									<div class="form-outline mt-4">
 										<label class="form-label" for="form3Example4cdg">Nhập
-											lại mật khẩu(*):</label> <input type="password" 
-											class="form-control" required name="rePassword"
-											value="<%=rePassword%>" />
+											lại mật khẩu(*):</label> <input type="password" class="form-control"
+											required name="rePassword" value="<%=rePassword%>" />
 
 									</div>
 									<p style="color: red;">${message.get("passwordError")}</p>
 
 									<div class="form-outline mb-4">
 										<label class="form-label" for="form3Example4cdg">Họ và
-											tên(*):</label> <input type="text" 
-											class="form-control" required name="fullName"
-											value="<%=fullName%>" />
+											tên(*):</label> <input type="text" class="form-control" required
+											name="fullName" value="<%=fullName%>" />
 
 									</div>
 
 									<div class="form-outline mb-4">
 										<label class="form-label" for="form3Example3cg">SĐT(*):</label>
-										<input type="text"  class="form-control"
-											required name="phone" value="<%=phone%>" />
+										<input type="text" class="form-control" required name="phone"
+											value="<%=phone%>" />
 
 									</div>
-									
+
 									<div class="form-outline mb-4">
 										<label class="form-label" for="form3Example3cg">Email(*):</label>
-										<input type="email"  class="form-control"
-											required name="email" value="<%=email%>" />
+										<input type="email" class="form-control" required name="email"
+											value="<%=email%>" />
 
 									</div>
 
@@ -149,7 +145,7 @@
 									</div>
 
 									<p class="text-center text-muted mt-3 mb-0">
-										Bạn có có tài khoản? <a href="login.jsp"
+										Bạn đã có tài khoản? <a href="login.jsp"
 											class="fw-bold text-body"><u>Đăng nhập tại đây</u></a>
 									</p>
 
