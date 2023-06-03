@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.AddressDAO;
 import dao.UserDAO;
+import model.Address;
 import model.User;
 
 @WebServlet("/changeInfor")
@@ -24,9 +26,9 @@ public class ChangeInforController extends HttpServlet {
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
-		// TODO Auto-generated method stub
 		// request.setCharacterEncoding("UTF-8");
 		UserDAO userDAO = new UserDAO();
+		AddressDAO addressDAO = new AddressDAO();
 		String action = request.getParameter("action");
 		String update = request.getParameter("updateUser");
 		String access = request.getParameter("access");
@@ -46,11 +48,15 @@ public class ChangeInforController extends HttpServlet {
 		} else if (update != null) {
 			String userFullname = request.getParameter("userFullname");
 			String userPhone = request.getParameter("userPhone");
-			String userAddress = request.getParameter("userAddress");
+			
+			Address cityNew = addressDAO.getProvince(request.getParameter("province"));
+			Address ditrictsNew = addressDAO.getDistrict(request.getParameter("district"));
+			Address wardNew = addressDAO.getWard(request.getParameter("ward"));
+			
+			String addressNew = request.getParameter("addressDetail") + "," + wardNew.toString() + ","
+					+ ditrictsNew.toString() + "," + cityNew.toString();
 
-			System.out.println(userAddress);
-
-			User userUpdate = new User(user.getId(), userFullname, userPhone, userAddress, user.getUserName(),
+			User userUpdate = new User(user.getId(), userFullname, userPhone, addressNew, user.getUserName(),
 					user.getPassword(), user.getRolId(), user.getEmail());
 			userDAO.updateUser(userUpdate);
 			request.getSession().setAttribute("user", userUpdate);
@@ -60,12 +66,15 @@ public class ChangeInforController extends HttpServlet {
 		} else {
 			request.getSession().setAttribute("langeName", "vi_VN");
 			request.getRequestDispatcher("/detailInfor.jsp").forward(request, response);
-
 		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);
+	}
+	
+	public static void main(String[] args) {
+		
 	}
 }

@@ -1,84 +1,104 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html lang="vi" class="h-100">
-
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="css/main.css">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Trang chi tiết sản phẩm</title>
-<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-<link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-<link rel="stylesheet" href="css/product-detail.css" type="text/css">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Details Page</title>
+<link rel="stylesheet" href="user/style.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
-
 <body>
-
-	<jsp:include page="/header.jsp"></jsp:include>
-
-	<div style="padding-top: 10px" class="container ">
-		<div class="row">
-			<div class="col">
-				<div class="card">
-					<div class="row">
-						<div class="col-md-6">
-							<div class="images p-3">
-								<div class="text-center p-4">
-									<img id="main-image" src="${product.image}" width="250" />
-								</div>
-								<div class="thumbnail text-center">
-									<img onclick="change_image(this)" src="${product.image}"
-										width="70"> <img onclick="change_image(this)"
-										src="${product.image}" width="70">
-								</div>
-							</div>
+	<jsp:include page="header.jsp"></jsp:include>
+	<section class="">
+		<form method="POST" action="CartController">
+			<div style="padding-top: 20px" class="flex-box">
+				<div class="left">
+					<input type="hidden" name="proId" value="${product.id}">
+					<div class="small mb-1">SKU: ${product.id}</div>
+					<div class="big-img">
+						<img src="${product.image}">
+					</div>
+					<div class="images">
+						<div class="small-img">
+							<img src="${product.image}" onclick="showImg(this.src)">
 						</div>
-						<div class="col-md-6">
-							<div class="product ">
-								<div class="mt-4 mb-3">
-									<h6 class="text-uppercase">Chi tiết sản phẩm</h6>
-								</div>
-								<form method="POST" action="CartController">
-									<h2 class="text-uppercase">${product.name}</h2>
-									<h6 class="text-uppercase">Mô tả:</h6>
-									<p class="about">${product.getDescreption()}</p>
-									<h6 class="text-uppercase">Loại:</h6>
-									<label class="radio"> <input type="radio" name="size"
-										value="S" checked> <span>Lớn</span>
-									</label> <label class="radio"> <input type="radio" name="size"
-										value="M"> <span>Vừa</span>
-									</label> </label> <label class="radio"> <input type="radio" name="size"
-										value="M"> <span>Nhỏ</span>
-									</label>
-									<h6>Số lượng:</h6>
-									<input class="form-control text-center me-3"
-										name="inputQuantity" type="number" value="1"
-										style="max-width: 3rem" />
-									<div>
-										<div class="price">Giá :${product.formatPrice()} vnđ</div>
-									</div>
-
-									<div style="padding-top: 20px">
-										<button class="btn btn-danger text-uppercase mr-2 px-4"
-											type="submit">Thêm vào giỏ hàng</button>
-										<i class="fa fa-heart text-muted"></i> <i
-											class="fa fa-share-alt text-muted"></i>
-									</div>
-								</form>
-							</div>
+						<div class="small-img">
+							<img src="${product.image}" onclick="showImg(this.src)">
+						</div>
+						<div class="small-img">
+							<img src="${product.image}" onclick="showImg(this.src)">
+						</div>
+						<div class="small-img">
+							<img src="${product.image}" onclick="showImg(this.src)">
 						</div>
 					</div>
 				</div>
+
+				<div class="right">
+					<div class="pname">${product.name}</div>
+					<div class="ratings">
+						<i class="fas fa-star"></i> <i class="fas fa-star"></i> <i
+							class="fas fa-star"></i> <i class="fas fa-star"></i> <i
+							class="fas fa-star-half-alt"></i>
+					</div>
+					<p class="about">${product.getDescreption()}</p>
+					<div class="price">Giá : ${product.formatPrice()} vnđ</div>
+					<div class="quantity">
+						<p>Quantity :</p>
+						<input name="inputQuantity" type="number" value="1">
+					</div>
+					<div class="btn-box">
+						<button type="submit" class="cart-btn">Add to Cart</button>
+					</div>
+				</div>
 			</div>
-		</div>
-	</div>
 
-	<jsp:include page="/footer.jsp"></jsp:include>
+           </form>
+			<div style="padding-top: 80px" class="container mt-3">
+				<h3>Đánh giá sản phẩm</h3>
+				<div class="media border p-3">
+					<div class="media">
+						<img src="img_avatar1.png" class="align-self-start mr-3"
+							style="width: 60px">
+						<div class="media-body">
+							<h4>Media Top</h4>
+							<p>Lorem ipsum...</p>
+						</div>
+					</div>
 
+
+				</div>
+				<form>
+					<div class="mb-3">
+						<label for="" class="form-label">Comment</label> 
+						<input type="text" class="form-control"
+							id="" aria-describedby="">
+						<div id="" class="form-text"></div>
+					</div>
+					
+					
+					<button type="" class="btn btn-primary">Comment</button>
+				</form>
+			</div>
+
+
+		
+	</section>
+
+
+	<jsp:include page="footer.jsp"></jsp:include>
+	<script>
+		let bigImg = document.querySelector('.big-img img');
+		function showImg(pic) {
+			bigImg.src = pic;
+		}
+	</script>
 </body>
-
 </html>
+
 

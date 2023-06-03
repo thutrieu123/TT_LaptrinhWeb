@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import contanst.Status;
 import dao.UserDAO;
 import model.User;
 
@@ -56,7 +57,7 @@ public class ManagerUser extends HttpServlet {
 //				userDAO.deleteUser(Integer.parseInt(eUserId));
 				
 				//Update trang thai cua User trong he thong thay doi trang thai status = 1 la khong hoat dong
-				int numberChang = userDAO.changStatus(Integer.parseInt(eUserId), 1);
+				int numberChang = userDAO.changStatus(Integer.parseInt(eUserId), Status.ENABLE);
 				System.out.println(numberChang);
 				response.sendRedirect("/Project_CK_LTWEB/manager_user?access=yes");
 			}
@@ -85,7 +86,7 @@ public class ManagerUser extends HttpServlet {
 			response.sendRedirect("/Project_CK_LTWEB/manager_user?access=yes");
 		} else {
 			//Lay ra danh sach User co rol la User va con hoat dong status = 0
-			List<User> listUser = userDAO.getUserByRolId(2,0);
+			List<User> listUser = userDAO.getUserByRolId(2,Status.ACTIVE);
 			request.setAttribute("listUser", listUser);
 			request.getSession().setAttribute("langeName", "vi_VN");
 			request.getRequestDispatcher("/admin/manager_user.jsp").forward(request, response);

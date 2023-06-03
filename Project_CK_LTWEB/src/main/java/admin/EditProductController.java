@@ -64,7 +64,6 @@ public class EditProductController extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		ProductDAO productDAO = new ProductDAO();
-		CategoryDAO cateDAO = new CategoryDAO();
 		
 		String proId = request.getParameter("productId");
 		String proName = request.getParameter("productName");
@@ -72,12 +71,14 @@ public class EditProductController extends HttpServlet {
 		String proDes = request.getParameter("productDes");
 		String proPrice = request.getParameter("productPrice");
 		String proKind = request.getParameter("productKind");
-		System.out.println("id " + proId + " name " + proName + " img " + proImage + " des " + proDes + " price " + proPrice
-				+ " kind " + proKind);
-
-		String upLoadFolder = "F:\\TT_LTW\\TT_LaptrinhWeb\\Project_CK_LTWEB\\src\\main\\webapp\\Image\\";// Cho nay la
-																											// lay duong
-																											// dan thu																									// muc luu
+		String proHeight = request.getParameter("height");
+		String proLength = request.getParameter("length");
+		String proWidth = request.getParameter("width");
+		String proWeigth = request.getParameter("weigth");
+		
+//		String upLoadFolder = "F:\\TT_LTW\\TT_LaptrinhWeb\\Project_CK_LTWEB\\src\\main\\webapp\\Image\\";// Cho nay la
+		//Lay realpath cua server																			// lay duong
+		String upLoadFolder = request.getServletContext().getRealPath("/Image");																									// dan thu																									// muc luu
 																											// hinh anh
 		Path upLoadPath = Paths.get(upLoadFolder);
 		Part image = request.getPart("uploadImage");
@@ -104,20 +105,12 @@ public class EditProductController extends HttpServlet {
 				image.write(Paths.get(upLoadPath.toString(), fileName).toString());
 			
 				
-				Product product = new Product(Integer.parseInt(proId), proName, proDes, Integer.parseInt(proPrice),
-						proImage, Integer.parseInt(proKind));
-				productDAO.update(product);
-				response.sendRedirect("/Project_CK_LTWEB/manager_product?access=yes");
-//			} else {
-//				Product product = productDAO.getProductById(Integer.parseInt(proId));
-//				List<Category> listCate = cateDAO.getAllCategory();
-//
-//				request.setAttribute("product", product);
-//				request.setAttribute("listCate", listCate);
-//				request.setAttribute("imageError", "File đã tồn tại");
-//				request.getRequestDispatcher("/admin/productEdit.jsp").forward(request, response);
-//			}
+		
 		}
+		Product product = new Product(Integer.parseInt(proId), proName, proDes, Integer.parseInt(proPrice),
+				proImage,Integer.parseInt(proHeight),Integer.parseInt(proLength),Integer.parseInt(proWidth),Integer.parseInt(proWeigth) ,Integer.parseInt(proKind));
+		productDAO.update(product);
+		response.sendRedirect("/Project_CK_LTWEB/manager_product?action=main&access=yes");
 		
 
 //		request.setAttribute("message", "Thay đổi thành công!");

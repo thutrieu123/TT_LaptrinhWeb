@@ -12,6 +12,9 @@
 .table {
 	
 }
+.mb-10 {
+	margin-bottom: 10px;
+}
 
 ;
 tbody {
@@ -85,6 +88,8 @@ td {
 }
 </style>
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css"
+	href="/Project_CK_LTWEB/themify-icons/themify-icons.css">
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
 
@@ -93,35 +98,32 @@ td {
 	<h2 class="text-center">Đơn đã mua</h2>
 	<div class="container">
 		<div>
-			<a href="cart.jsp" class="btn btn-info" align="right"><i
+			<a href="cart.jsp" class="btn btn-info mb-10" align="right"><i
 				class="fa fa-angle-left"></i> Giỏ hàng</a>
 		</div>
+	
 		<table id="cart" class="table table-hover table-condensed">
 			<thead>
 				<tr>
-					<th style="width: 50%">Tên sản phẩm</th>
-					<th style="width: 10%">Giá</th>
-					<th style="width: 8%">Số lượng</th>
-					<th style="width: 10%">Trình trạng</th>
+					<th style="width: 5%">Mã đơn</th>
+					<th style="width: 20%">Ngày đặt</th>
+					<th style="width: 8%">Chi tiết</th>
+					<th style="width: 10%">Tình trạng</th>
 				</tr>
 			</thead>
 			<jsp:useBean id="cart" scope="session" class="model.Cart" />
+			<tbody>
 			<c:forEach var="order" items="${listOrder}" varStatus="counter">
-				<form method="POST" action="CartController">
-					<tbody>
 						<tr>
-							<td data-th="Product">
+							<td>
 								<div class="row">
 									<div class="col-sm-10">
-										<h4 class="nomargin">${order.productName}</h4>
+										<h4 class="nomargin">#${order.orderId}</h4>
 									</div>
 								</div>
 							</td>
-							<td data-th="Price">${order.productPrice} VNĐ.</td>
-							<td data-th="Quantity"><input
-								class="form-control text-center" name="quan" value="${order.quanlity}"
-								type="number" readonly="readonly">
-								</td>
+							<td >${order.date}</td>
+							<td ><a href ="/Project_CK_LTWEB/orderUser?action=detail&orderId=${order.orderId}" class ="btn btn-primary"><i class="ti-eye" title ="Chi tiết"></i></a></td>
 							<c:if test="${order.status == 1 }">
 								<td><span class="badge badge-danger">Đang chờ xác nhận</span></td>
 							</c:if>
@@ -136,11 +138,13 @@ td {
 							</c:if>
 							
 						</tr>
-				</form>
+						
 			</c:forEach>
-			<td><a href="HomeController" class="btn btn-warning"><i
-					class="fa fa-angle-left"></i> Tiếp tục mua hàng</a></td>
-			<td colspan="2" class="hidden-xs"></td>
+			</tbody>
+			<tfoot>
+				<td><a href="HomeController" class="btn btn-warning"><i
+						class="fa fa-angle-left"></i> Tiếp tục mua hàng</a></td>
+				<td colspan="2" class="hidden-xs"></td>
 
 			</tfoot>
 		</table>

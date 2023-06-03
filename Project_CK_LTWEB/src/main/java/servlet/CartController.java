@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,58 +12,97 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.swing.text.html.HTMLDocument.HTMLReader.IsindexAction;
 
+import api.LogicticAPI;
 import dao.OderAndCTHDDAO;
+import dao.PriceTransportOrderDAO;
 import dao.CartDAO;
 import dao.ProductDAO;
 import model.Cart;
 import model.CartItem;
+import model.Location;
 import model.Product;
 import model.TempCart;
 import model.User;
 
-/**
- * Servlet implementation class CartController
- */
 @WebServlet("/CartController")
 public class CartController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 	public CartController() {
-		super();
-		// TODO Auto-generated constructor stub
+
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
+		// response.getWriter().append("Served at:
+		// ").append(request.getContextPath());
 		String iAction = request.getParameter("action");
 		HttpSession session = request.getSession();
 		Object objUser = session.getAttribute("user");
+		LogicticAPI logictic = LogicticAPI.getInstance();
 		System.out.println(iAction);
 
 		if (iAction != null && !iAction.equals("")) {
+			// Xoa mot san pham khoi gio
 			if (iAction.equals("delete")) {
-				deleteCart(request);
+				deleteProduct(request);
 				response.sendRedirect("cart.jsp");
+			}
 
-			} else if (iAction.equals("oder")) {
+			// Bam submit Dat hang, luu CTHD dong thoi xoa cart
+			else if (iAction.equals("oder")) {
 				addToCTHDandOder(request);
 				deleteCart(request);
 				response.sendRedirect("cart.jsp");
-			} else if (iAction.equals("usercart")) {
+			}
+
+			// Hien thi Cart cua nguoi dung
+			else if (iAction.equals("usercart")) {
 				reCart(request);
 				response.sendRedirect("cart.jsp");
-			} else if (iAction.equals("update")) {
+			}
+
+			// Update so luong va tong gia khi nguoi dung thao tac
+			else if (iAction.equals("update")) {
 				updateCart(request);
 				response.sendRedirect("cart.jsp");
+			}else if(iAction.equals("submit")) {
+				Cart cart = (Cart)session.getAttribute("cart");
+				User user = (User)session.getAttribute("user");
+				Location location = (Location)session.getAttribute("shopLocation");
+				
+				System.out.println("Cart:"+cart);
+				System.out.println("User:"+user);
+				
+				if(cart != null && user != null) {
+					String address = user.getAddress();
+					String[] splitAddress = address.split(",");
+					int priceTransport = 0;
+					
+					String shopProvinceId = logictic.getProvinceByName(location.getProvince()).getId();
+					String shopDistristId = logictic.getDistrictByName(location.getDistrist(), shopProvinceId).getId();
+					String shopWardId = logictic.getWardByName(location.getWard(), shopDistristId).getId();
+					
+					String userProvinceId = logictic.getProvinceByName(splitAddress[3]).getId();
+					String userDistristId = logictic.getDistrictByName(splitAddress[2], userProvinceId).getId();
+					String userWardId = logictic.getWardByName(splitAddress[1], userDistristId).getId();
+					
+					for (CartItem item : cart.getList()) {
+						Product product = item.getProduct();
+						priceTransport += logictic.getPrice(shopDistristId, shopWardId, userDistristId, userWardId,product.getHeight(),product.getLength(), product.getWidth(), product.getWeigth());						
+					}
+					Product product = cart.getList().get(0).getProduct();
+					
+					request.setAttribute("priceTransport", priceTransport);
+					request.setAttribute("dateSend", logictic.getDateSend(shopDistristId, shopWardId, userDistristId, userWardId, product.getHeight(),product.getLength(), product.getWidth(), product.getWeigth()));
+					System.out.println(priceTransport);
+//					response.sendRedirect("submitCart.jsp");
+					request.getRequestDispatcher("/submitCart.jsp").forward(request, response);
+				}else {
+					response.sendRedirect("404.html");
+				}
+				
+
 			}
 		} else {
 			if (objUser != null) {
@@ -78,34 +118,78 @@ public class CartController extends HttpServlet {
 	protected void addToCTHDandOder(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		OderAndCTHDDAO db = new OderAndCTHDDAO();
-
-		String cartId = request.getParameter("cart_pro_id");
-		String quantity = request.getParameter("quan");
-		String price = request.getParameter("price");
+		PriceTransportOrderDAO priceTransportOrderDAO = PriceTransportOrderDAO.getInstance();
+		int price_Transport = Integer.parseInt(request.getParameter("priceTransport"));
 
 		User user = null;
+		CartDAO cartdb = new CartDAO();
+		ProductDAO pd = new ProductDAO();
 
 		Object objUser = session.getAttribute("user");
 
 		if (objUser != null) {
 			user = (User) objUser;
 		}
-		Long time = System.currentTimeMillis();
-		int temp = db.insertOder(user.getId(), "", new java.sql.Date(time), 1);
-		db.insertCTHD(temp, Integer.parseInt(cartId), Integer.parseInt(price), Integer.parseInt(quantity));
-
-	}
-
-	protected void deleteCart(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		CartDAO cartdb = new CartDAO();
-		String iSTT = request.getParameter("stt");
-		String pro_id = request.getParameter("cart_pro_id");
-		String quantity = request.getParameter("quan");
 
 		Cart cartBean = null;
 
 		Object iObject = session.getAttribute("cart");
+
+		if (iObject != null) {
+			cartBean = (Cart) iObject;
+		} else {
+			cartBean = new Cart();
+		}
+
+		List<TempCart> items = cartdb.getCartByUserId(user.getId());
+
+		Long time = System.currentTimeMillis();
+		int temp = db.insertOder(user.getId(), "", new java.sql.Date(time), 1);
+		
+		priceTransportOrderDAO.insert(temp, price_Transport);
+		for (TempCart item : items) {
+			int proId = item.getProId();
+			Product product = pd.getProductById(proId);
+			int quantity = item.getQuantity();
+			int price = product.getPrice();
+
+			db.insertCTHD(temp, proId, price, quantity);
+		}
+	}
+
+	// Xoa cart khi nhan dat hang thanh cong
+	protected void deleteCart(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		CartDAO cartdb = new CartDAO();
+		Cart cartBean = null;
+		Object iObject = session.getAttribute("cart");
+
+		if (iObject != null) {
+			cartBean = (Cart) iObject;
+		} else {
+			cartBean = new Cart();
+		}
+
+		User user = null;
+		Object objUser = session.getAttribute("user");
+
+		if (objUser != null) {
+			user = (User) objUser;
+		}
+		cartBean.deleteCart();
+		cartdb.deleteCart(user.getId());
+	}
+
+	// Xoa san pham khoi gio
+	private void deleteProduct(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		CartDAO cartdb = new CartDAO();
+		Cart cartBean = null;
+
+		Object iObject = session.getAttribute("cart");
+
+		String iSTT = request.getParameter("stt");
+		String pro_id = request.getParameter("cart_pro_id");
 
 		if (iObject != null) {
 			cartBean = (Cart) iObject;
@@ -119,10 +203,9 @@ public class CartController extends HttpServlet {
 		if (objUser != null) {
 			user = (User) objUser;
 		}
-
 		System.out.println(iSTT);
-		cartBean.deleteCart(iSTT);
-		cartdb.deleteCart(user.getId(), Integer.parseInt(pro_id), Integer.parseInt(quantity));
+		cartBean.deleteProduct(iSTT);
+		cartdb.deleteProduct(user.getId(), Integer.parseInt(pro_id));
 	}
 
 	protected void addToCart(HttpServletRequest request) {
@@ -130,9 +213,10 @@ public class CartController extends HttpServlet {
 		CartDAO cartdb = new CartDAO();
 
 		String pro_id = request.getParameter("proId");
+	
 		ProductDAO pd = new ProductDAO();
 		Product product = pd.getProductById(Integer.parseInt(pro_id));
-
+		System.out.println(pro_id);
 		String iname = product.getName();
 		String iimage = product.getImage();
 		String idescription = product.getDescreption();
@@ -157,8 +241,11 @@ public class CartController extends HttpServlet {
 			cartBean = new Cart();
 			session.setAttribute("cart", cartBean);
 		}
-
-		cartBean.addCart(pro_id, iname, iimage, idescription, iPrice, iQuantity);
+		//Old addCart
+//		cartBean.addCart(pro_id, iname, iimage, idescription, iPrice, iQuantity);
+		
+		//new AddCart
+		cartBean.addCart(product, iQuantity);
 		if (cartdb.getCartByUserIdAndProductId(user.getId(), Integer.parseInt(pro_id)).size() > 0) {
 			cartdb.updateTempcart(user.getId(), Integer.parseInt(pro_id), Integer.parseInt(iQuantity));
 		} else {
@@ -183,7 +270,6 @@ public class CartController extends HttpServlet {
 		} else {
 			System.out.println("ncc");
 		}
-
 		if (objCartBean != null) {
 			objCartBean = null;
 			cartBean = new Cart();
@@ -192,7 +278,6 @@ public class CartController extends HttpServlet {
 			cartBean = new Cart();
 			session.setAttribute("cart", cartBean);
 		}
-
 		List<TempCart> list = cartdb.getCartByUserId(user.getId());
 		for (TempCart tempCart : list) {
 			Product product = pd.getProductById(tempCart.getProId());
@@ -202,8 +287,11 @@ public class CartController extends HttpServlet {
 			String idescription = product.getDescreption();
 			int iPrice = product.getPrice();
 			String iQuantity = "" + tempCart.getQuantity();
-			cartBean.addCart(ipro_id, iname, iimage, idescription, iPrice, iQuantity);
-
+			//Old AddCart
+//			cartBean.addCart(ipro_id, iname, iimage, idescription, iPrice, iQuantity);
+			
+			//newAddCart
+			cartBean.addCart(product, iQuantity);
 		}
 	}
 
@@ -230,26 +318,21 @@ public class CartController extends HttpServlet {
 		} else {
 			cartBean = new Cart();
 		}
-		int status = Integer.parseInt(iQuantity);//Sua loi
-//		cartBean.updateCart(iSTT, iQuantity);
-//		db.updateTempcart(user.getId(), Integer.parseInt(pro_id), Integer.parseInt(iQuantity));
+		int status = Integer.parseInt(iQuantity);// Sua loi
+		// cartBean.updateCart(iSTT, iQuantity);
+		// db.updateTempcart(user.getId(), Integer.parseInt(pro_id),
+		// Integer.parseInt(iQuantity));
 		int quanlity = cartBean.updateQuanlity(iSTT, status);
-		//Kiem tra xem neu so luong = 0 thi xoa khoi gio hang
-		if(quanlity == 0) {
-			db.delete(user.getId(), Integer.parseInt(pro_id));
-		}else 
-			db.updateTempcart(user.getId(), Integer.parseInt(pro_id), quanlity);	
-
+		// Kiem tra xem neu so luong = 0 thi xoa khoi gio hang
+		if (quanlity == 0) {
+			db.deleteProduct(user.getId(), Integer.parseInt(pro_id));
+		} else
+			db.updateTempcart(user.getId(), Integer.parseInt(pro_id), quanlity);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
+	
 }

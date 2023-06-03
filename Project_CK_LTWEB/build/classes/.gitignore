@@ -1,6 +1,6 @@
-<<<<<<< HEAD
 /admin/
 /api/
+/contanst/
 /context/
 /dao/
 /filter/
@@ -8,6 +8,3 @@
 /model/
 /servlet/
 /support/
-=======
-/servlet/
->>>>>>> 2db0d18ecb6a8858c63df23ef7ff6e976c1a56eb

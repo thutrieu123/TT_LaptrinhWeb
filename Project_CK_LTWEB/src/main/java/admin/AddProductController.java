@@ -68,9 +68,13 @@ public class AddProductController extends HttpServlet {
 		String proDes = request.getParameter("productDes");
 		String proPrice = request.getParameter("productPrice");
 		String proKind = request.getParameter("productKind");
+		String proHeight = request.getParameter("height");
+		String proLength = request.getParameter("length");
+		String proWidth = request.getParameter("width");
+		String proWeigth = request.getParameter("weigth");
 
-		String upLoadFolder = "F:\\TT_LTW\\TT_LaptrinhWeb\\Project_CK_LTWEB\\src\\main\\webapp\\Image\\";// Cho nay la
-																											// lay duong
+//		String upLoadFolder = "F:\\TT_LTW\\TT_LaptrinhWeb\\Project_CK_LTWEB\\src\\main\\webapp\\Image\\";// Cho nay la
+		String upLoadFolder = request.getServletContext().getRealPath("/Image");																								// lay duong
 																											// dan thu																											// muc luu
 																											// hinh anh
 		Path upLoadPath = Paths.get(upLoadFolder);
@@ -89,7 +93,7 @@ public class AddProductController extends HttpServlet {
 				proImage = "Image/" + productName;
 //				System.out.println(Paths.get(upLoadPath.toString(), imageFileName).toString());
 				image.write(Paths.get(upLoadPath.toString(), productName).toString());
-				productDAO.insert(proName, proDes, Integer.parseInt(proPrice), proImage, Integer.parseInt(proKind));
+				productDAO.insert(proName, proDes, Integer.parseInt(proPrice), proImage, Integer.parseInt(proKind),Integer.parseInt(proHeight),Integer.parseInt(proLength),Integer.parseInt(proWidth),Integer.parseInt(proWeigth));
 				response.sendRedirect("/Project_CK_LTWEB/manager_product?access=yes");
 //				request.getRequestDispatcher("/manager_product").forward(request, response);
 			}else {

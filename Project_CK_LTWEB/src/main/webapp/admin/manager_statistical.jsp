@@ -1,0 +1,168 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+<meta charset="utf-8">
+
+<title>Statistical Product</title>
+<link rel="icon" type="image/png" sizes="16x16"
+	href="/Project_CK_LTWEB/admin/Image/favicon.png">
+<!-- Custom CSS -->
+<link href="/Project_CK_LTWEB/admin/css/style.min.css" rel="stylesheet">
+<link href="/Project_CK_LTWEB/admin/css/bootstrap.min.css"
+	rel="stylesheet">
+<link href="/Project_CK_LTWEB/admin/css/jquery.dataTables.min.css"
+	rel="stylesheet">
+
+<link rel="stylesheet" type="text/css"
+	href="/Project_CK_LTWEB/themify-icons/themify-icons.css">
+</head>
+
+<body>
+	<jsp:include page="adminHeader.jsp"></jsp:include>
+
+	<fmt:setLocale value="${sessionScope.langName}" />
+	<fmt:setBundle basename="i18n.lang" var="lang" />
+
+	<!-- ============================================================== -->
+	<!-- Main wrapper - style you can find in pages.scss -->
+	<!-- ============================================================== -->
+	<div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5"
+		data-sidebartype="full" data-sidebar-position="absolute"
+		data-header-position="absolute" data-boxed-layout="full">
+		<div class="page-wrapper">
+
+			<!-- Container fluid  -->
+			<!-- ============================================================== -->
+			<div class="container-fluid">
+			<!--<c:if test="${message != null}">
+				<div class="alert alert-success"
+					style="display: none">
+					<b><fmt:message key="message.subccess"
+													bundle="${lang }"></fmt:message></b>
+				</div></c:if>-->
+				<!-- ============================================================== -->
+				<!-- Start Page Content -->
+				<!-- ============================================================== -->
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="white-box">
+							<c:if test="${message != null }">
+								<div class="alert alert-danger">
+									<fmt:message key="message.chooseDate" bundle="${lang }"></fmt:message>
+								</div>
+							</c:if>
+
+							<h3 class="box-title text-uppercase text-center">
+								<fmt:message key="sta.product" bundle="${lang }"></fmt:message>
+							</h3>
+							<!--  <a href="/Project_CK_LTWEB/manager_product?action=add"
+								class="btn btn-success text-white mt-2 mb-2"
+								style="text-align: end; margin-right: 20px;"><fmt:message
+									key="product.add" bundle="${lang }"></fmt:message></a>-->
+									
+									
+						
+									
+							<div class="table-responsive">
+							<div style="display:flex;width: 100%; justify-content: space-between;">							
+									 <a href="/Project_CK_LTWEB/print?page=sta_product&date_start=${date_start }&date_end=${date_end}"
+								class="btn btn-success text-white mt-2 mb-2"
+								style="text-align: end; margin-right: 20px;"><fmt:message
+									key="menu.PrintExcel" bundle="${lang }"></fmt:message></a>
+								
+								<form action="statistical" method ="GET" style="margin: 8px 20px 8px 0px;">
+									<label>Từ:</label>
+									<input type="date" name = "date_start" value = "${date_start }">
+									<label>Đến:</label>
+									<input type="date" name = "date_end" value = "${date_end}">
+									<input type ="hidden" value ="sta_product" name ="page">
+									<button type= "submit" class = "btn btn-primary ml-2">Xem Thống Kê</button>				
+								</form>
+								</div>
+								
+								<table class="table text-nowrap" id="myTable">
+									<thead>
+										<tr>
+											<th class="border-top-0"><fmt:message key="product.id"
+													bundle="${lang }"></fmt:message></th>
+											<th class="border-top-0"><fmt:message key="product.name"
+													bundle="${lang }"></fmt:message></th>
+											<th class="border-top-0"><fmt:message key="product.quanlity_sold"
+													bundle="${lang }"></fmt:message></th>
+											<th class="border-top-0"><fmt:message key="order.price"
+													bundle="${lang }"></fmt:message></th>
+				
+										</tr>
+									</thead>
+									<tbody>
+										<c:forEach var="product" items="${listProductReport }">
+											<tr>
+												<td>${product.id }</td>
+												<td>${product.name }</td>
+												<td style="padding: 0px 50px;">${product.quanliSoldOut}</td>
+												<td style="padding: 0px 25px;">${product.price}</td>
+
+											</tr>
+
+										</c:forEach>
+
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- ============================================================== -->
+		<!-- End Page wrapper  -->
+		<!-- ============================================================== -->
+	</div>
+	<jsp:include page="adminFooter.html"></jsp:include>
+	<!-- ============================================================== -->
+	<!-- End Wrapper -->
+	<!-- ============================================================== -->
+	<!-- ============================================================== -->
+	<!-- All Jquery -->
+	<!-- ============================================================== -->
+	<script src="/Project_CK_LTWEB/admin/js/jquery.min.js"></script>
+	<!-- Bootstrap tether Core JavaScript -->
+	<script src="/Project_CK_LTWEB/admin/js/bootstrap.bundle.min.js"></script>
+	<script src="/Project_CK_LTWEB/admin/js/app-style-switcher.js"></script>
+	<!--Wave Effects -->
+	<script src="/Project_CK_LTWEB/admin/js/waves.js"></script>
+	<!--Menu sidebar -->
+	<script src="/Project_CK_LTWEB/admin/js/sidebarmenu.js"></script>
+	<!--Custom JavaScript -->
+	<script src="/Project_CK_LTWEB/admin/js/custom.js"></script>
+	<script src="/Project_CK_LTWEB/admin/js/jquery.dataTables.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('#myTable').DataTable();
+		});
+	</script>
+	<script >
+		function changeStatus(proId){
+			$.ajax({
+				url : "/Project_CK_LTWEB/change_status",
+				data:{
+					id:proId,
+					status:1
+				},
+				success: function(data){
+					
+				}
+			});
+		}
+	</script>
+
+
+
+</body>
+
+</html>

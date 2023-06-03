@@ -17,6 +17,8 @@
 	rel="stylesheet">
 <link href="/Project_CK_LTWEB/admin/css/jquery.dataTables.min.css"
 	rel="stylesheet">
+<link href="/Project_CK_LTWEB/admin/css/main.css"
+	rel="stylesheet">
 
 <link rel="stylesheet" type="text/css"
 	href="/Project_CK_LTWEB/themify-icons/themify-icons.css">
@@ -71,12 +73,17 @@
 								style="text-align: end; margin-right: 20px;"><fmt:message
 									key="product.add" bundle="${lang }"></fmt:message></a>-->
 									
-									
-									<a href="/Project_CK_LTWEB/add_product"
-								class="btn btn-success text-white mt-2 mb-2"
-								style="text-align: end; margin-right: 20px;"><fmt:message
-									key="product.add" bundle="${lang }"></fmt:message></a>
-									
+									<div class = "justify_bettwen">
+										<a href="/Project_CK_LTWEB/add_product"
+									class="btn btn-success text-white mt-2 mb-2"
+									style="text-align: end; margin-right: 20px;"><fmt:message
+										key="product.add" bundle="${lang }"></fmt:message></a>
+										
+										<a href="/Project_CK_LTWEB/manager_product?action=trash"
+									class="btn btn-danger text-white mt-2 mb-2"
+									style="text-align: end; margin-right: 20px;"><fmt:message
+										key="menu.Trash" bundle="${lang }"></fmt:message></a>
+									</div>
 							<div class="table-responsive">
 								<table class="table text-nowrap" id="myTable">
 									<thead>
@@ -103,9 +110,12 @@
 												<td><img src="${product.image}"
 													style="width: 80px; height: 80px;"></td>
 												<td>${product.formatPrice() }VND</td>
-												<td><c:if test="${product.catId == 1 }">Đồ ăn vặt</c:if>
+												<td>
+													<!--<c:if test="${product.catId == 1 }">Đồ ăn vặt</c:if>
 													<c:if test="${product.catId == 2 }">Đồ ăn</c:if> <c:if
-														test="${product.catId == 3 }">Nước Uống</c:if></td>
+														test="${product.catId == 3 }">Nước Uống</c:if></td> -->
+													${categories.get(product.catId-1).getName()}
+													</td>
 												<td>
 												<!-- <a
 													href="/Project_CK_LTWEB/manager_product?action=edit&proId=${product.id }"
@@ -118,7 +128,7 @@
 													href="/Project_CK_LTWEB/change_s?action=trash&proId=${product.id }"
 													class="btn btn-danger text-white"><i class="ti-trash"></i></a>-->
 													
-													<button onclick="changeStatus(${product.id})" class = "btn btn-danger text-white"><i class="ti-trash"></i></button>
+													<button onclick="changeStatus(this,${product.id})" class = "btn btn-danger text-white"><i class="ti-trash"></i></button>
 												</td>
 
 											</tr>
@@ -133,17 +143,25 @@
 				</div>
 			</div>
 		</div>
-		<!-- ============================================================== -->
-		<!-- End Page wrapper  -->
-		<!-- ============================================================== -->
 	</div>
+	
+	<div>
+		<div id="toast_message">
+			<div class="toast toast--access">
+				<div class="toast__icon"><i class="fas fa-check-circle"></i></div>
+				<div class="toast__body">
+					<h3 class="toast__title">Success</h3>
+					<p class="toast__msg">Đây là máy vi tính hiện đại nhất ở đây</p>
+				</div>
+				<div class="toast__close"><i class="fas fa-times"></i></div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	
 	<jsp:include page="adminFooter.html"></jsp:include>
-	<!-- ============================================================== -->
-	<!-- End Wrapper -->
-	<!-- ============================================================== -->
-	<!-- ============================================================== -->
-	<!-- All Jquery -->
-	<!-- ============================================================== -->
 	<script src="/Project_CK_LTWEB/admin/js/jquery.min.js"></script>
 	<!-- Bootstrap tether Core JavaScript -->
 	<script src="/Project_CK_LTWEB/admin/js/bootstrap.bundle.min.js"></script>
@@ -161,7 +179,8 @@
 		});
 	</script>
 	<script >
-		function changeStatus(proId){
+		function changeStatus(element,proId){
+			element.closest("tr").classList.add("delete");
 			$.ajax({
 				url : "/Project_CK_LTWEB/change_status",
 				data:{
@@ -169,9 +188,17 @@
 					status:1
 				},
 				success: function(data){
-					
+					var table = $('#myTable').DataTable();			 
+					var rows = table
+					    .rows( '.delete' )
+					    .remove()
+					    .draw();
 				}
 			});
+			
+
+			
+			
 		}
 	</script>
 

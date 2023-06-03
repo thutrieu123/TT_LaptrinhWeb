@@ -9,7 +9,6 @@ import java.util.List;
 
 import context.DBContext;
 import model.TempCart;
-import model.User;
 
 public class CartDAO {
 	Connection connect = null;
@@ -30,19 +29,19 @@ public class CartDAO {
 			while (result.next()) {
 				list.add(new TempCart(result.getInt(1), result.getInt(3), result.getInt(4)));
 			}
+			result.close();
 			ps.close();
 			connect.close();
 
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return list;
 	}
-	public List<TempCart> getCartByUserIdAndProductId(int user_id,int pro_id) {
+
+	public List<TempCart> getCartByUserIdAndProductId(int user_id, int pro_id) {
 		List<TempCart> list = new ArrayList<>();
 		DBContext db = new DBContext();
 
@@ -57,14 +56,13 @@ public class CartDAO {
 			while (result.next()) {
 				list.add(new TempCart(result.getInt(1), result.getInt(3), result.getInt(4)));
 			}
+			result.close();
 			ps.close();
 			connect.close();
 
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return list;
@@ -85,15 +83,12 @@ public class CartDAO {
 			ps.close();
 			connect.close();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-
 			e.printStackTrace();
-
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+
 	public void updateTempcart(int user_id, int pro_id, int quantity) {
 		DBContext db = new DBContext();
 		try {
@@ -109,42 +104,34 @@ public class CartDAO {
 			ps.close();
 			connect.close();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-
 			e.printStackTrace();
-
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-
-	public void deleteCart(int user_id,int pro_id,int quantity) {
+	// Xoa cart khi nhan dat hang thanh cong
+	public void deleteCart(int user_id) {
 		DBContext db = new DBContext();
 		try {
 			connect = db.getConnection();
-			String query = "Delete from cart where user_id=? and pro_id=? and quantity=?;";
+			String query = "Delete from cart where user_id=?;";
 			ps = connect.prepareStatement(query);
 
 			ps.setInt(1, user_id);
-			ps.setInt(2, pro_id);
-			ps.setInt(3, quantity);
 			int numberRowUpdate = ps.executeUpdate();
 
 			ps.close();
 			connect.close();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	//Xoa bo san pham khoi gio
-	public int delete(int user_id,int pro_id) {
+
+	// Xoa bo san pham khoi gio
+	public int deleteProduct(int user_id, int pro_id) {
 		DBContext db = new DBContext();
 		int numberRowUpdate = 0;
 		try {
@@ -159,18 +146,10 @@ public class CartDAO {
 			ps.close();
 			connect.close();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return numberRowUpdate;
 	}
-
-	public static void main(String[] args) {
-		
-	}
-
 }

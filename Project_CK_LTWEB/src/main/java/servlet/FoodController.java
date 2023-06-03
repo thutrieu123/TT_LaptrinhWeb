@@ -32,16 +32,17 @@ public class FoodController extends HttpServlet {
 		}
 		int index = Integer.parseInt(indexPage);
 		
-		int count = productDAO.getTotalFood();
+		int count = productDAO.getTotalFood(0);
 		int endPage = count / 12;
 		if (count % 12 != 0) {
 			endPage++;
 		}
 		
-		List<Product> listAllFood = productDAO.pagingCake(index);
+		List<Product> listAllFood = productDAO.pagingFood(index);
 		
 		request.setAttribute("listAllFood", listAllFood);
 		request.setAttribute("endPFood", endPage);
+		request.setAttribute("tag", index);
 		request.getRequestDispatcher("/food.jsp").forward(request, response);
 	}
 

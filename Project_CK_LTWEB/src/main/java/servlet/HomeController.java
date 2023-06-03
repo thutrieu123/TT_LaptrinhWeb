@@ -9,8 +9,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import contanst.MyAddress;
+import dao.LogDAO;
 import dao.ProductDAO;
+import model.Location;
+import model.Log;
 import model.Product;
 
 @WebServlet("/HomeController")
@@ -24,32 +29,22 @@ public class HomeController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		ProductDAO productDAO = new ProductDAO();
-		String indexPage = request.getParameter("index");
-		if(indexPage==null) {
-			indexPage="1";
-		}
-		int index = Integer.parseInt(indexPage);
-		
-		int count = productDAO.getTotalProduct();
-		int endPage = count / 8;
-		if (count % 8 != 0) {
-			endPage++;
-		}
 
-		List<Product> listProductNew = productDAO.getNewProduct();
-		List<Product> listPaging = productDAO.pagingProduct(index);
+		ProductDAO productDAO = new ProductDAO();
+		LogDAO logDB = new LogDAO();
+		HttpSession session = request.getSession(true);
 		
-		System.out.println(listPaging.size());
+		List<Product> listProductNew = productDAO.getNewProduct(0);
+		List<Product> list = productDAO.getTop8Product();		
 		
-		request.setAttribute("listProductNew", listProductNew);	
-		
+		Location location = new Location(MyAddress.WARD, MyAddress.DISTRIST, MyAddress.PROVINCE);
+		session.setAttribute("shopLocation", location);
+		request.setAttribute("listProductNew", listProductNew);
+
 		request.setAttribute("maintitle", "Tất cả sản phẩm");
-		request.setAttribute("ListAllProduct", listPaging);
-		request.setAttribute("endP", endPage);
-		request.setAttribute("tag", index);
+		request.setAttribute("ListAllProduct", list);
 		request.getRequestDispatcher("home.jsp").forward(request, response);
+//		logDB.insert(new Log(Log.INFO, 0, getServletName(), getServletInfo(), 0));
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

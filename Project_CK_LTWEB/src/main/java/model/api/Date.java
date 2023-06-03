@@ -10,6 +10,14 @@ public class Date {
 		this.month = month;
 		this.year = year;
 	}
+	
+	
+	public Date(int month, int year) {
+		super();
+		this.month = month;
+		this.year = year;
+	}
+
 	public int getDay() {
 		return day;
 	}

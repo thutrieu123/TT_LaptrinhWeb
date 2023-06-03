@@ -60,6 +60,16 @@
 							</c:if>
 							<h3 class="box-title text-uppercase text-center mb-3"><fmt:message key="menu.ManagerUser"
 										bundle="${lang }"></fmt:message></h3>
+										
+										
+							<div class = "justify_bettwen">
+										
+										<a href="/Project_CK_LTWEB/TrashUser"
+									class="btn btn-danger text-white mt-2 mb-2"
+									style="text-align: end; margin-right: 20px;"><fmt:message
+										key="menu.Trash" bundle="${lang }"></fmt:message></a>
+							</div>
+									
 							<div class="table-responsive">
 								<table class="table text-nowrap" id="myTable">
 									<thead>
