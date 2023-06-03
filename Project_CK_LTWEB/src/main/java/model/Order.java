@@ -175,7 +175,14 @@ public class Order {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-
+	
+	public int getPrice() {
+		int price = 0;
+		for (OrderItem orderItem : listOrderItem) {
+			price += orderItem.getProduct().getPrice() * orderItem.getQuanlity();
+		}
+		return price;
+	}
 
 
 	@Override
