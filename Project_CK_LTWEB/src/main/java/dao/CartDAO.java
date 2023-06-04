@@ -17,7 +17,8 @@ public class CartDAO {
 
 	public List<TempCart> getCartByUserId(int id) {
 		List<TempCart> list = new ArrayList<>();
-		DBContext db = new DBContext();
+//		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 
 		try {
 			connect = db.getConnection();
@@ -43,7 +44,8 @@ public class CartDAO {
 
 	public List<TempCart> getCartByUserIdAndProductId(int user_id, int pro_id) {
 		List<TempCart> list = new ArrayList<>();
-		DBContext db = new DBContext();
+//		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 
 		try {
 			connect = db.getConnection();
@@ -69,7 +71,8 @@ public class CartDAO {
 	}
 
 	public void insertTempcart(int user_id, int pro_id, int quantity) {
-		DBContext db = new DBContext();
+//		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		try {
 			connect = db.getConnection();
 			String query = "INSERT INTO `cart`(`user_id`, `pro_id`, `quantity`) VALUES (?,?,?);";
@@ -90,7 +93,8 @@ public class CartDAO {
 	}
 
 	public void updateTempcart(int user_id, int pro_id, int quantity) {
-		DBContext db = new DBContext();
+		//DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		try {
 			connect = db.getConnection();
 			String query = "UPDATE `cart` SET `quantity`=? WHERE `user_id`=? and `pro_id`=?";
@@ -112,7 +116,8 @@ public class CartDAO {
 
 	// Xoa cart khi nhan dat hang thanh cong
 	public void deleteCart(int user_id) {
-		DBContext db = new DBContext();
+//		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		try {
 			connect = db.getConnection();
 			String query = "Delete from cart where user_id=?;";
@@ -132,7 +137,8 @@ public class CartDAO {
 
 	// Xoa bo san pham khoi gio
 	public int deleteProduct(int user_id, int pro_id) {
-		DBContext db = new DBContext();
+		//DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		int numberRowUpdate = 0;
 		try {
 			connect = db.getConnection();

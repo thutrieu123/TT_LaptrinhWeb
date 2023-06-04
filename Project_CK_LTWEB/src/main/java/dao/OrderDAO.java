@@ -21,7 +21,7 @@ public class OrderDAO {
 
 //	public List<Order> getOrderByStatus(int status) {
 //		List<Order> list = new ArrayList<>();
-//		DBContext db = new DBContext();
+//		DBContext db = DBContext.getInstance();
 //		try {
 //			connect = db.getConnection();
 //			String query = "SELECT (order.id),user.userName,user.email,products.name,cthd.price,cthd.quanlity FROM `order`,user,products,cthd\r\n"
@@ -50,7 +50,7 @@ public class OrderDAO {
 	
 	public List<OrderItem> getOrderItemByOrderId(int orderId){
 		List<OrderItem> list = new ArrayList<>();
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		
 		try {
 			connect = db.getConnection();
@@ -80,7 +80,7 @@ public class OrderDAO {
 	
 	public List<Order> getOrderByStatus(int status){		
 		List<Order> list = new ArrayList<>();
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		try {
 			connect = db.getConnection();
 			String query = "SELECT (order.id),user.userName,(order.orderDate),(order.status) FROM `order` join user on `order`.user_id = user.id"
@@ -106,7 +106,7 @@ public class OrderDAO {
 	}
 	
 	public Order getOrderByID(int id) {
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		Order order = null;
 		try {
 			connect = db.getConnection();
@@ -134,7 +134,7 @@ public class OrderDAO {
 
 //	public Order getOrderByID(int id) {
 //		Order order = null;
-//		DBContext db = new DBContext();
+//		DBContext db = DBContext.getInstance();
 //		try {
 //			connect = db.getConnection();
 //			String query = "SELECT (order.id),user.userName,user.email,products.name,cthd.price,cthd.quanlity FROM `order`,user,products,cthd\r\n"
@@ -162,7 +162,7 @@ public class OrderDAO {
 	
 	public List<Order> getOrderByUserID(int id) {
 		List<Order> list = new ArrayList<>();
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		try {
 			connect = db.getConnection();
 			String query = "SELECT (order.id),user.userName,(order.orderDate),(order.status) FROM `order` join user on `order`.user_id = user.id"
@@ -189,7 +189,7 @@ public class OrderDAO {
 	
 	public User getUserOfOrder(int orderId) {
 		
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		try {
 			connect = db.getConnection();
 			String query = "SELECT user.fullName,user.phone,user.address,user.userName,user.password,user.rol_id,user.email,user.status "
@@ -217,7 +217,7 @@ public class OrderDAO {
 	}
 //	public List<Order> getOrderByUserID(int id) {
 //		List<Order> list = new ArrayList<>();
-//		DBContext db = new DBContext();
+//		DBContext db = DBContext.getInstance();
 //		try {
 //			connect = db.getConnection();
 //			String query = "SELECT (order.id),user.userName,user.email,products.name,cthd.price,cthd.quanlity,(order.status) FROM `order`,user,products,cthd\r\n"
@@ -245,7 +245,7 @@ public class OrderDAO {
 //	}
 
 	public int changeStatusOrder(int orderId, int status) {
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		int numberRowChange = 0;
 		try {
 			connect = db.getConnection();
@@ -265,7 +265,7 @@ public class OrderDAO {
 	}
 
 	public int delete(int orderId) {
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		int numberRowChange = 0;
 		try {
 			connect = db.getConnection();

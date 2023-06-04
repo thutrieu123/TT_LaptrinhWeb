@@ -25,9 +25,11 @@
 }
 
 #toast_message {
+	padding:10px;
 	position: fixed;
 	right: 32px;
-	top: 32px;	
+	bottom: 20px;
+	
 	
 }
 @keyframes fadeIn {
@@ -46,8 +48,7 @@
 		opacity: 0;
 	}
 }
-
-.toast {
+.toast-item {
 	display: flex;
 	align-items: center;
 	background-color: #fff;
@@ -56,8 +57,6 @@
 	border-left: 4px solid;
 	box-shadow: 0 5px 8px rgba(0, 0, 0, .08);
 	margin: 12px;
-	animation: fadeIn ease 0.3s,fadeOut linear 3s 1s forwards;
-	
 
 }
 .toast__icon,
@@ -99,4 +98,10 @@
 }
 .toast__close :hover {
 	color: #333;
+}
+.icon-subccess {
+	padding: 3px;
+    background-color: #4BEB2A;
+    border-radius: 50%;
+    color: #fff;
 }

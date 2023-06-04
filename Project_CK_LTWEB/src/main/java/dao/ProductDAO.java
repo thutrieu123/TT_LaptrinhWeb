@@ -19,7 +19,7 @@ public class ProductDAO {
 	ResultSet result = null;
 
 	public Product getProductById(int id) {
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		Product product = null;
 		try {
 			connect = db.getConnection();
@@ -50,7 +50,7 @@ public class ProductDAO {
 
 	public List<Product> getProductSell(int status) {
 		List<Product> list = new ArrayList<>();
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		try {
 			connect = db.getConnection();
 			String query = "SELECT id,name,descreption,price,image,height,length,width,weigth,DanhMuc_id FROM `products`where status = ? ;";
@@ -80,7 +80,7 @@ public class ProductDAO {
 	// Lay tat ca san pham
 	public List<Product> getAllProduct(int status) {
 		List<Product> list = new ArrayList<>();
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		try {
 			connect = db.getConnection();
 			String query = "SELECT id,name,descreption,price,image,height,length,width,weigth,DanhMuc_id FROM `products` where status = ?;";
@@ -110,7 +110,7 @@ public class ProductDAO {
 	// Lay tat ca san pham
 	public List<Product> getAllProduct() {
 		List<Product> list = new ArrayList<>();
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		try {
 			connect = db.getConnection();
 			String query = "SELECT id,name,descreption,price,image,height,length,width,weigth,DanhMuc_id FROM `products`;";
@@ -139,7 +139,7 @@ public class ProductDAO {
 	// Lay theo danh muc
 	public List<Product> getProductByCategory(int catId,int status) {
 		List<Product> list = new ArrayList<>();
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		try {
 			connect = db.getConnection();
 			String query = "SELECT id,name,descreption,price,image,height,length,width,weigth,DanhMuc_id FROM products WHERE products.DanhMuc_id = ? and products.status = ?";
@@ -171,7 +171,7 @@ public class ProductDAO {
 
 //	public List<Product> getProductSell() {
 //		List<Product> list = new ArrayList<>();
-//		DBContext db = new DBContext();
+//		DBContext db = DBContext.getInstance();
 //		try {
 //			connect = db.getConnection();
 //			String query = "SELECT * FROM `products`;";
@@ -199,7 +199,7 @@ public class ProductDAO {
 	// Lay ra san pham moi
 	public List<Product> getNewProduct(int status) {
 		List<Product> list = new ArrayList<>();
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		try {
 			connect = db.getConnection();
 			String query = "SELECT id,name,descreption,price,image,height,length,width,weigth,DanhMuc_id FROM `products` where products.status = ? order BY id LIMIT 4;";
@@ -229,7 +229,7 @@ public class ProductDAO {
 	// Lay san pham theo ten
 	public List<Product> getProductByName(String name,int status) {
 		List<Product> list = new ArrayList<>();
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		try {
 			connect = db.getConnection();
 			String query = "SELECT id,name,descreption,price,image,height,length,width,weigth,DanhMuc_id FROM products WHERE products.name Like ? and products.status = ?";
@@ -260,7 +260,7 @@ public class ProductDAO {
 	
 
 	public int update(Product product) {
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		try {
 			connect = db.getConnection();
 			String query = "UPDATE products SET products.name = ?,products.descreption = ?,products.price = ?,products.image =?,products.DanhMuc_id = ?,products.height = ?, products.length = ?,products.width = ?,products.weigth = ? WHERE id = ?;";
@@ -297,7 +297,7 @@ public class ProductDAO {
 	}
 
 	public int changeStatus(int id, int status) {
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		try {
 			connect = db.getConnection();
 			String query = "UPDATE products SET status = ? WHERE id = ?;";
@@ -323,7 +323,7 @@ public class ProductDAO {
 	}
 
 	public int delete(int id) {
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		try {
 			connect = db.getConnection();
 			String query = "Delete from products where id = ?;";
@@ -348,7 +348,7 @@ public class ProductDAO {
 	}
 
 	public int insert(String name, String des, int price, String image, int catId,int height,int length,int width,int weigth) {
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		try {
 			connect = db.getConnection();
 			String query = "INSERT INTO products(name,descreption,price,image,DanhMuc_id,status,height,length,width,weigth) VALUES(?,?,?,?,?,0,?,?,?,?);";
@@ -382,7 +382,7 @@ public class ProductDAO {
 
     // Lấy ra tổng số sản phẩm
 	public int getTotalProduct(int status) {
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		String query = "select COUNT(*) from products where products.status = ?";
 		try {
 			connect = db.getConnection();
@@ -403,7 +403,7 @@ public class ProductDAO {
 	}
     // Lấy ra tổng số thức ăn
 	public int getTotalFood(int status ) {
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		String query = "select COUNT(*) from products WHERE products.DanhMuc_id = 3 and products.status = ?";
 		try {
 			connect = db.getConnection();
@@ -424,7 +424,7 @@ public class ProductDAO {
 	}
 	// Lấy ra tổng số thức uống
 	public int getTotalDrink(int status) {
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		String query = "select COUNT(*) from products WHERE products.DanhMuc_id = 2 and product.status = ?";
 		try {
 			connect = db.getConnection();
@@ -445,7 +445,7 @@ public class ProductDAO {
 	}
 	// Lấy ra tổng số bánh ngọt
 	public int getTotalCake(int status) {
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		String query = "select COUNT(*) from products WHERE products.DanhMuc_id = 1 and products.status = ?";
 		try {
 			connect = db.getConnection();
@@ -467,7 +467,7 @@ public class ProductDAO {
 
 	public List<Product> pagingProduct(int index,int status) {
 		List<Product> list = new ArrayList<>();
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		String query = "SELECT id,name,descreption,price,image,height,length,width,weigth,DanhMuc_id FROM products where products.status = ? LIMIT ?,8;";
 		try {
 			connect = db.getConnection();
@@ -490,7 +490,7 @@ public class ProductDAO {
 
 	public List<Product> pagingFood(int index) {
 		List<Product> list = new ArrayList<>();
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		String query = "SELECT id,name,descreption,price,image,height,length,width,weigth,DanhMuc_id FROM products WHERE products.DanhMuc_id = 3 and products.status = 0  LIMIT ?,12";
 		try {
 			connect = db.getConnection();
@@ -512,7 +512,7 @@ public class ProductDAO {
 
 	public List<Product> pagingDrink(int index) {
 		List<Product> list = new ArrayList<>();
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		String query = "SELECT id,name,descreption,price,image,height,length,width,weigth,DanhMuc_id FROM products WHERE products.DanhMuc_id = 2 and products.status = 0  LIMIT ?,12";
 		try {
 			connect = db.getConnection();
@@ -534,7 +534,7 @@ public class ProductDAO {
 
 	public List<Product> pagingCake(int index) {
 		List<Product> list = new ArrayList<>();
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		String query = "SELECT id,name,descreption,price,image,height,length,width,weigth,DanhMuc_id FROM products WHERE products.DanhMuc_id = 1 and products.status = 0  LIMIT ?,12";
 		try {
 			connect = db.getConnection();
@@ -556,7 +556,7 @@ public class ProductDAO {
 	// Lấy ra top 8 sản phẩm
 	public List<Product> getTop8Product() {
 		List<Product> list = new ArrayList<>();
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		String query = "SELECT id,name,descreption,price,image,height,length,width,weigth,DanhMuc_id FROM products WHERE  products.status = 0 LIMIT 8";
 		try {
 			connect = db.getConnection();
@@ -577,7 +577,7 @@ public class ProductDAO {
 	// Lấy ra 4 sản phẩm tiếp theo trong danh sách sản phẩm
 	public List<Product> getNext4Product(int amount) {
 		List<Product> list = new ArrayList<>();
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		String query = "SELECT id,name,descreption,price,image,height,length,width,weigth,DanhMuc_id FROM products WHERE  products.status = 0 LIMIT ?,4";
 		try {
 			connect = db.getConnection();

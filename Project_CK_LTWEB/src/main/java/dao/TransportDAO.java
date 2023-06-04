@@ -27,7 +27,7 @@ public class TransportDAO {
 	}
 	
 	public int insert(Transport item) {
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		try {
 			connect = db.getConnection();
 			String query = "INSERT INTO transport(id,order_id,product_id,fee,create_at,update_at,status) VALUES(?,?,?,?,?,?,?);";
