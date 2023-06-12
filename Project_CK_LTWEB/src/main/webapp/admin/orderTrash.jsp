@@ -81,8 +81,8 @@
 
 											<th class="border-top-0"><fmt:message key="order.status"
 													bundle="${lang }"></fmt:message></th>
-											<th class="border-top-0"><fmt:message
-													key="user.function" bundle="${lang }"></fmt:message></th>
+											<!-- <th class="border-top-0"><fmt:message
+													key="user.function" bundle="${lang }"></fmt:message></th> -->
 
 										</tr>
 									</thead>
@@ -97,10 +97,11 @@
 												
 												<td><span class="badge badge badge-danger"><fmt:message
 															key="order.destroyName" bundle="${lang }"></fmt:message></span></td>
-												<td><a
+												
+												<!--  <td><a
 													href="/Project_CK_LTWEB/oderAction?action=destroy&orderID=${o.orderId}"
 													class="btn btn-danger"><fmt:message key="btn.destroy"
-															bundle="${lang }"></fmt:message></a></td>
+															bundle="${lang }"></fmt:message></a></td>-->
 
 											</tr>
 

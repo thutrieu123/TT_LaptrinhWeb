@@ -247,7 +247,7 @@
 							class="sidebar-link waves-effect waves-dark sidebar-link"
 							href="/Project_CK_LTWEB/admin/map.jsp" aria-expanded="false">
 								<i class="ti-map-alt" aria-hidden="true"></i> <span
-								class="hide-menu">Google Map</span>
+								class="hide-menu">Log</span>
 						</a></li>
 						<li class="sidebar-item"><a
 							class="sidebar-link waves-effect waves-dark sidebar-link"

@@ -23,6 +23,8 @@
 
 <link rel="stylesheet" type="text/css"
 	href="/Project_CK_LTWEB/themify-icons/themify-icons.css">
+	<link href="/Project_CK_LTWEB/admin/css/main.css"
+	rel="stylesheet">
 
 </head>
 
@@ -96,7 +98,7 @@
 												<td>${eUser.numberPhone }</td>
 												<td>${eUser.userName }</td>
 												<td>${eUser.rolId == 1 ? "Admin":"User" }</td>
-												<td><button onclick="changeStatus(this,${eUser.id})" class = "btn btn-primary text-white"><i class="ti-reload"></i></button>
+												<td><button onclick="changeStatus(this,${eUser.id})" class = "btn btn-primary text-white"><i class="ti-unlock"></i></button>
 												</td>
 
 											</tr>
@@ -111,9 +113,12 @@
 				</div>
 			</div>
 		</div>
-		<!-- ============================================================== -->
-		<!-- End Page wrapper  -->
-		<!-- ============================================================== -->
+		
+	</div>
+		<div>
+		<div id="toast_message">
+			
+		</div>
 	</div>
 	<jsp:include page="adminFooter.html"></jsp:include>
 
@@ -147,11 +152,35 @@
 				}
 			});
 			
-			var table = $('#myTable').DataTable();			 
+			var table = $('#myTable').DataTable();
+			var current = table.page.info().page;
 			var rows = table
 			    .rows( '.selected' )
 			    .remove()
-			    .draw();
+			    .page(current)
+			    .draw('page');
+			toast();
+		}
+		
+		function toast(){
+			const main = document.getElementById('toast_message');
+			if(main){
+				const toast = document.createElement('div');
+				toast.classList.add('toast-item');
+				toast.style.animation = ` fadeIn ease 0.3s,fadeOut linear 1s 2s forwards`;
+				toast.innerHTML =`
+					<div class="toast__icon"><i class="ti-check icon-subccess"></i></div>
+					<div class="toast__body">
+						<h3 class="toast__title">Success</h3>
+						<p class="toast__msg">Mở khoá User thành công</p>
+					</div>
+					<div class="toast__close"><i class="ti-close"></i></div>
+				`;
+				main.appendChild(toast);
+				setTimeout(() => {
+					main.removeChild(toast);
+				}, 2000);
+			}
 		}
 	</script>
 </body>

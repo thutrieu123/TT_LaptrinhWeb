@@ -14,7 +14,7 @@ public class OderAndCTHDDAO {
 	ResultSet result = null;
 
 	public void insertCTHD(int order_id, int product_id, int price, int quantity) {
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		try {
 			connect = db.getConnection();
 			String query = "INSERT INTO `cthd`(`oder_id`,`product_id`, `price`, `quanlity`) " + "VALUES (?,?,?,?);";
@@ -36,7 +36,7 @@ public class OderAndCTHDDAO {
 	}
 
 	public int insertOder(int user_id, String note, Date orderDate, int status) {
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		int temp = 0;
 		try {
 			connect = db.getConnection();
@@ -70,7 +70,7 @@ public class OderAndCTHDDAO {
 	}
 
 	public int getOderId() {
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		int temp = 0;
 		try {
 			connect = db.getConnection();

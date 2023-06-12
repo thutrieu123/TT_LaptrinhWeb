@@ -22,7 +22,7 @@ public class ProductReportDAO {
 	
 	public List<ProductReport> getAllProductReport(){
 		List<ProductReport> list = new ArrayList<>();	
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		
 		try {
 			connect = db.getConnection();
@@ -59,7 +59,7 @@ public class ProductReportDAO {
 	
 	public List<ProductReport> getProductReportByDate(String start,String end){
 		List<ProductReport> list = new ArrayList<>();	
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		
 		try {
 			connect = db.getConnection();
@@ -98,7 +98,7 @@ public class ProductReportDAO {
 	
 	public List<RevenueReport> getRevenueByDate(String start,String end){
 		List<RevenueReport> list = new ArrayList<>();	
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		
 		try {
 			connect = db.getConnection();

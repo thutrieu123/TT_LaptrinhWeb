@@ -57,35 +57,8 @@
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
                 <!-- Row -->
-                <div class="row">
-                    <!-- Column -->
-                    <div class="col-lg-4 col-xlg-3 col-md-12">
-                        <div class="white-box">
-                            <div class="user-bg"> <img width="100%" alt="User" src="/Project_CK_LTWEB/admin/plugins/images/large/img1.jpg">
-                                <div class="overlay-box">
-                                    <div class="user-content">
-                                        <a href="javascript:void(0)"><img src="/Project_CK_LTWEB/admin/plugins/images/users/profile.png"
-                                                class="thumb-lg img-circle" alt="img"></a>
-                                        <h4 class="text-white mt-2">${eUser.fullName}</h4>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="eUser-btm-box mt-5 d-md-flex">
-                                <div class="col-md-4 col-sm-4 text-center">
-                                    <h1><%=day %>  /</h1>
-                                </div>
-                                <div class="col-md-4 col-sm-4 text-center" style="margin-left: -15px;">
-                                    <h1><%=month %>  /</h1>
-                                </div>
-                                <div class="col-md-4 col-sm-4 text-center" style="margin-left: -15px;">
-                                    <h1><%=year %></h1>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Column -->
-                    <!-- Column -->
-                    <div class="col-lg-8 col-xlg-9 col-md-12">
+                <div class="row"> 
+                    <div class="col-md-12">
                         <div class="card">
                             <div class="card-body">
                                 <form class="form-horizontal form-material">
