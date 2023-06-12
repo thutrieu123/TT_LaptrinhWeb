@@ -58,36 +58,37 @@
 				</div>
 			</div>
 
-           </form>
-			<div style="padding-top: 80px" class="container mt-3">
-				<h3>Đánh giá sản phẩm</h3>
+		</form>
+		<div style="padding-top: 80px" class="container mt-3">
+			<h3>Đánh giá sản phẩm</h3>
+
+			<c:forEach var="comment" items="${listComment}">
 				<div class="media border p-3">
-					<div class="media">
-						<img src="img_avatar1.png" class="align-self-start mr-3"
-							style="width: 60px">
-						<div class="media-body">
-							<h4>Media Top</h4>
-							<p>Lorem ipsum...</p>
-						</div>
+					<img src="Image/download.png" class="align-self-start mr-3"
+						style="width: 60px">
+					<div class="media-body">
+						<h5>${comment.name}</h5>
+						<p>${comment.comment}</p>
+						<p>${comment.time}</p>
 					</div>
-
-
 				</div>
-				<form>
-					<div class="mb-3">
-						<label for="" class="form-label">Comment</label> 
-						<input type="text" class="form-control"
-							id="" aria-describedby="">
-						<div id="" class="form-text"></div>
-					</div>
-					
-					
-					<button type="" class="btn btn-primary">Comment</button>
-				</form>
-			</div>
+			</c:forEach>
 
 
-		
+
+			<form method="POST" action="CommentController">
+				<div class="mb-3">
+					<input type="hidden" name="proId" value="${product.id}"> <label
+						for="" class="form-label">Comment</label> <input type="text"
+						class="form-control" name="comment" aria-describedby="">
+					<div id="" class="form-text"></div>
+				</div>
+				<button type="submit" class="btn btn-primary">Comment</button>
+			</form>
+
+
+		</div>
+
 	</section>
 
 
