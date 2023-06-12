@@ -94,7 +94,7 @@ public class AddProductController extends HttpServlet {
 //				System.out.println(Paths.get(upLoadPath.toString(), imageFileName).toString());
 				image.write(Paths.get(upLoadPath.toString(), productName).toString());
 				productDAO.insert(proName, proDes, Integer.parseInt(proPrice), proImage, Integer.parseInt(proKind),Integer.parseInt(proHeight),Integer.parseInt(proLength),Integer.parseInt(proWidth),Integer.parseInt(proWeigth));
-				response.sendRedirect("/Project_CK_LTWEB/manager_product?access=yes");
+				response.sendRedirect("/Project_CK_LTWEB/manager_product?access=yes&action=main");
 //				request.getRequestDispatcher("/manager_product").forward(request, response);
 			}else {
 				request.setAttribute("listCate", listCate);

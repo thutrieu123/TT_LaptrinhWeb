@@ -17,7 +17,7 @@ public class UserDAO {
 	ResultSet result = null;
 
 	public List<User> getUserByRolId(int rolId) {
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		List<User> list = new ArrayList<>();
 		try {
 			connect = db.getConnection();
@@ -46,7 +46,7 @@ public class UserDAO {
 	}
 	//Lay ra nhung user co rol va status chi dinh
 	public List<User> getUserByRolId(int rolId,int status) {
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		List<User> list = new ArrayList<>();
 		try {
 			connect = db.getConnection();
@@ -76,7 +76,7 @@ public class UserDAO {
 	}
 
 	public User getUser(String userName) {
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		try {
 			connect = db.getConnection();
 
@@ -103,7 +103,7 @@ public class UserDAO {
 	}
 	
 	public User getUser(String userName,int status) {
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		try {
 			connect = db.getConnection();
 
@@ -131,7 +131,7 @@ public class UserDAO {
 	}
 
 	public User getUser(int id) {
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		try {
 			connect = db.getConnection();
 
@@ -158,7 +158,7 @@ public class UserDAO {
 	}
 
 	public int insertUser(User user) {
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		int id = 0;
 		try {
 			connect = db.getConnection();
@@ -197,7 +197,7 @@ public class UserDAO {
 	}
 
 	public int updateUser(User user) {
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		try {
 			connect = db.getConnection();
 			String query = "UPDATE user SET user.fullName = ?,user.phone = ?,user.address =? ,user.password =?,user.rol_id = ? where user.id = ?;";
@@ -227,7 +227,7 @@ public class UserDAO {
 	}
 	
 	public int changPassword(String userName,String  newPass) {
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		try {
 			connect = db.getConnection();
 			String query = "UPDATE user SET user.password =? where user.userName = ?;";
@@ -251,7 +251,7 @@ public class UserDAO {
 		}
 	}
 	public int changStatus(int id,int status) {
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		try {
 			connect = db.getConnection();
 			String query = "UPDATE user SET  user.status= ? where  user.id= ?;";
@@ -276,7 +276,7 @@ public class UserDAO {
 	}
 
 	public int deleteUser(int id) {
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		try {
 			connect = db.getConnection();
 			String query = "Delete from user where id = ?;";

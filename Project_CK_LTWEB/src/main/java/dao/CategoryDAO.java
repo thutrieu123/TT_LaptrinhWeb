@@ -17,7 +17,7 @@ public class CategoryDAO {
 
 	public List<Category> getAllCategory() {
 		List<Category> list = new ArrayList<>();
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		try {
 			connect = db.getConnection();
 			String query = "SELECT * FROM `categories`;";
