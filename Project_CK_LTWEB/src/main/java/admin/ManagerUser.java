@@ -51,16 +51,17 @@ public class ManagerUser extends HttpServlet {
 
 				request.setAttribute("eUser", user);
 				request.getRequestDispatcher("/admin/userEdit.jsp").forward(request, response);
-
-			} else if (action.equals("trash")) {
-				String eUserId = request.getParameter("eUserId");
-//				userDAO.deleteUser(Integer.parseInt(eUserId));
-				
-				//Update trang thai cua User trong he thong thay doi trang thai status = 1 la khong hoat dong
-				int numberChang = userDAO.changStatus(Integer.parseInt(eUserId), Status.ENABLE);
-				System.out.println(numberChang);
-				response.sendRedirect("/Project_CK_LTWEB/manager_user?access=yes");
 			}
+
+//			} else if (action.equals("trash")) {
+//				String eUserId = request.getParameter("eUserId");
+////				userDAO.deleteUser(Integer.parseInt(eUserId));
+//				
+//				//Update trang thai cua User trong he thong thay doi trang thai status = 1 la khong hoat dong
+//				int numberChang = userDAO.changStatus(Integer.parseInt(eUserId), Status.ENABLE);
+//				System.out.println(numberChang);
+//				response.sendRedirect("/Project_CK_LTWEB/manager_user?access=yes");
+//			}
 			else if(action.equals("detail")) {
 				String eUserId = request.getParameter("eUserId");
 				User user = userDAO.getUser(Integer.parseInt(eUserId));

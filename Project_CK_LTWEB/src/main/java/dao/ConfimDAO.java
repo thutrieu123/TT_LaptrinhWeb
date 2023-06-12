@@ -16,7 +16,7 @@ public class ConfimDAO {
 	ResultSet result = null;
 
 	public int insert(String userName, String code) {
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		try {
 			connect = db.getConnection();
 			String query = "INSERT INTO confim(userName,code,dateCreate,dateEnd) VALUES (?,?,?,?)";
@@ -50,7 +50,7 @@ public class ConfimDAO {
 	}
 
 	public Confim getConfimNew(String userName) {
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		Confim confim = null;
 		try {
 			connect = db.getConnection();

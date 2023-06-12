@@ -10,11 +10,22 @@ public class DBContext {
 	private final String portNumber = "3306";
 	private final String user = "root";
 	private final String password = "";
+	private static  DBContext instance;
 
 	public Connection getConnection() throws ClassNotFoundException, SQLException {
 		String url = "jdbc:mysql://" + serverName + ":" + portNumber + "/" + dbName;
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		return DriverManager.getConnection(url, user, password);
+	}
+	private DBContext() {
+		
+	}
+	
+	public static DBContext getInstance() {
+		if(instance == null) {
+			instance = new DBContext();
+		}
+		return instance;
 	}
 	public static void main(String[] args) {
 		DBContext db  = new DBContext();

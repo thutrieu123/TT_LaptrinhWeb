@@ -14,7 +14,7 @@ public class LogDAO {
 	ResultSet result = null;
 
 	public int insert(Log log) {
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		try {
 			connect = db.getConnection();
 			String query = "INSERT INTO log (level, user, src, content, createAt, status) VALUES(?,?,?,?,NOW(),?)";

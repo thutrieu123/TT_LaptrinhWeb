@@ -30,7 +30,7 @@ public class PriceTransportOrderDAO {
 	
 	
 	public int insert(int orderId,int priceTransport) {
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		try {
 			connect = db.getConnection();
 			String query = "INSERT INTO price_transport(order_id,price) VALUES (?,?)";
@@ -56,7 +56,7 @@ public class PriceTransportOrderDAO {
 	}
 	
 	public int getPriceTransportOfOrder(int orderId) {
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		try {
 			connect = db.getConnection();
 			String query = "Select price from price_transport where order_id = ?";

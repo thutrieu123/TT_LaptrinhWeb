@@ -16,7 +16,7 @@ public class DAO {
 	
 	
 	public void testConnect() {
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		try {
 			connect = db.getConnection();
 			String query = "SELECT * FROM `product`;";

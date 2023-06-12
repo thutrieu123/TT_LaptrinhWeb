@@ -17,7 +17,7 @@ public class FeedbackDAO {
 	ResultSet result = null;
 
 	public int insert(String fullName, String phone, String subject, String note) {
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		try {
 			connect = db.getConnection();
 			String query = "INSERT INTO feedback(fullName,phone,subject,note_) VALUES (?,?,?,?)";
@@ -44,7 +44,7 @@ public class FeedbackDAO {
 	}
 
 	public int delete(int idFeed) {
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		try {
 			connect = db.getConnection();
 			String query = "Delete from feedback where id = ?;";
@@ -69,7 +69,7 @@ public class FeedbackDAO {
 	}
 
 	public Feedback get(int idFeed) {
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		Feedback feed = null;
 		try {
 			connect = db.getConnection();
@@ -101,7 +101,7 @@ public class FeedbackDAO {
 	}
 
 	public List<Feedback> getAllFeedBack() {
-		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		List<Feedback> resultList = new ArrayList<>();
 
 		try {

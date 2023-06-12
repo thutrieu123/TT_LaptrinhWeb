@@ -18,7 +18,8 @@ public class AddressDAO {
 	ResultSet result = null;
 
 	public Address getProvince(String id) {
-		DBContext db = new DBContext();
+//		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		try {
 			connect = db.getConnection();
 
@@ -43,7 +44,8 @@ public class AddressDAO {
 	}
 
 	public Address getDistrict(String id) {
-		DBContext db = new DBContext();
+		//DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 
 		try {
 			connect = db.getConnection();
@@ -69,7 +71,8 @@ public class AddressDAO {
 	}
 
 	public Address getWard(String id) {
-		DBContext db = new DBContext();
+//		DBContext db = new DBContext();
+		DBContext db = DBContext.getInstance();
 		try {
 			connect = db.getConnection();
 
