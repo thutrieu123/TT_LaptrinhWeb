@@ -1,9 +1,4 @@
-/model/
-/support/
-/admin/
-/api/
-/contanst/
 /context/
+/model/
 /dao/
-/filter/
 /servlet/
