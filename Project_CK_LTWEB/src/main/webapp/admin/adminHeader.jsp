@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -55,12 +55,6 @@
 							alt="homepage" />
 						</span>
 					</div>
-					<!-- ============================================================== -->
-					<!-- End Logo -->
-					<!-- ============================================================== -->
-					<!-- ============================================================== -->
-					<!-- toggle and nav items -->
-					<!-- ============================================================== -->
 					<a
 						class="nav-toggler waves-effect waves-light text-dark d-block d-md-none"
 						href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
@@ -86,7 +80,7 @@
 							href="?lang=vi_VN">Tieng Viet</a> <input type="submit"
 							style="display: none" id="changeLangue">-->
 
-							<div class="dropdown" style="z-index: 1000;">
+							<!-- <div class="dropdown" style="z-index: 1000;">
 								<button type="button" class="btn btn-primary dropdown-toggle"
 									data-toggle="dropdown">
 									<fmt:message key="choose.langue" bundle="${lang }"></fmt:message>
@@ -98,7 +92,7 @@
 										class="dropdown-item" href="?lang=vi_VN"><fmt:message
 											key="select.VietNamese" bundle="${lang }"></fmt:message></a>
 								</div>
-							</div>
+							</div>-->
 						</li>
 						<li>
 							<div class="profile-pic">
@@ -130,8 +124,7 @@
 						<li class="sidebar-item pt-2"><a
 							class="sidebar-link waves-effect waves-dark sidebar-link"
 							href="/Project_CK_LTWEB/admin" aria-expanded="false"> <i
-								class="ti-info" aria-hidden="true"></i> <span class="hide-menu"><fmt:message
-										key="menu.Infor" bundle="${lang }"></fmt:message></span>
+								class="ti-info" aria-hidden="true"></i> <span class="hide-menu">Thông tin</span>
 						</a></li>
 						
 						<!-- <li class="sidebar-item pt-2"><a
@@ -149,8 +142,7 @@
 							aria-expanded="false" data-toggle="collapse"
 							href="#demo" role="button" aria-expanded="false"
 							aria-controls="#demo"> <i
-								class="ti-receipt" aria-hidden="true"></i> <span class="hide-menu"><fmt:message
-										key="menu.ManagerStatistical" bundle="${lang }"></fmt:message></span>
+								class="ti-receipt" aria-hidden="true"></i> <span class="hide-menu">Quản lí thống kê</span>
 						</a></li>
 
 						<ul class="collapse" id="demo">
@@ -158,15 +150,13 @@
 								class="sidebar-link waves-effect waves-dark sidebar-link"
 								href="/Project_CK_LTWEB/statistical?page=sta_product" aria-expanded="false"> <i
 									class="ti-control-record" aria-hidden="true"></i> <span
-									class="hide-menu"><fmt:message key="sta.product"
-											bundle="${lang }"></fmt:message></span>
+									class="hide-menu">Thống kê sản phẩm bán ra</span>
 							</a></li>
 							<li class="sidebar-item" style="margin-left: 5px"><a
 								class="sidebar-link waves-effect waves-dark sidebar-link"
 								href="/Project_CK_LTWEB//statistical?page=revenue" aria-expanded="false"> <i
 									class="ti-control-record" aria-hidden="true"></i> <span
-									class="hide-menu"><fmt:message key="sta.revenue"
-											bundle="${lang }"></fmt:message></span>
+									class="hide-menu">Thống kê doanh thu</span>
 							</a></li>
 							
 						</ul>
@@ -176,15 +166,13 @@
 							class="sidebar-link waves-effect waves-dark sidebar-link"
 							href="/Project_CK_LTWEB/manager_product?action=main" aria-expanded="false">
 								<i class="ti-palette" aria-hidden="true"></i> <span
-								class="hide-menu"><fmt:message key="menu.MangerProduct"
-										bundle="${lang }"></fmt:message></span>
+								class="hide-menu">Quản lí sản phẩm</span>
 						</a></li>
 						<li class="sidebar-item"><a
 							class="sidebar-link waves-effect waves-dark sidebar-link"
 							href="/Project_CK_LTWEB/manager_user" aria-expanded="false">
 								<i class="ti-user" aria-hidden="true"></i> <span
-								class="hide-menu"><fmt:message key="menu.ManagerUser"
-										bundle="${lang }"></fmt:message></span>
+								class="hide-menu">Quản lí người dùng</span>
 						</a></li>
 						<li class="sidebar-item"><a
 							class="sidebar-link  waves-dark sidebar-link"
@@ -192,8 +180,7 @@
 							href="#collapseExample" role="button" aria-expanded="false"
 							aria-controls="collapseExample"> <i
 								class="ti-shopping-cart-full" aria-hidden="true"></i> <span
-								class="hide-menu"><fmt:message key="menu.ManagerOrder"
-										bundle="${lang }"></fmt:message></span>
+								class="hide-menu">Quản lí đơn hàng</span>
 						</a></li>
 
 						<ul class="collapse" id="collapseExample">
@@ -201,37 +188,32 @@
 								class="sidebar-link waves-effect waves-dark sidebar-link"
 								href="/Project_CK_LTWEB/order?action=accept" aria-expanded="false"> <i
 									class="ti-control-record" aria-hidden="true"></i> <span
-									class="hide-menu"><fmt:message key="order.accept"
-											bundle="${lang }"></fmt:message></span>
+									class="hide-menu">Chờ xác nhận</span>
 							</a></li>
 							<li class="sidebar-item" style="margin-left: 5px"><a
 								class="sidebar-link waves-effect waves-dark sidebar-link"
 								href="/Project_CK_LTWEB/order?action=wating" aria-expanded="false"> <i
 									class="ti-control-record" aria-hidden="true"></i> <span
-									class="hide-menu"><fmt:message key="order.wattingMove"
-											bundle="${lang }"></fmt:message></span>
+									class="hide-menu">Chờ vận chuyển</span>
 							</a></li>
 							<li class="sidebar-item" style="margin-left: 5px"><a
 								class="sidebar-link waves-effect waves-dark sidebar-link"
 								href="/Project_CK_LTWEB/order?action=move" aria-expanded="false"> <i
 									class="ti-control-record" aria-hidden="true"></i> <span
-									class="hide-menu"><fmt:message key="order.move"
-											bundle="${lang }"></fmt:message></span>
+									class="hide-menu">Đang vận chuyển</span>
 							</a></li>
 							<li class="sidebar-item" style="margin-left: 5px"><a
 								class="sidebar-link waves-effect waves-dark sidebar-link"
 								href="/Project_CK_LTWEB/order?action=finish" aria-expanded="false"> <i
 									class="ti-control-record" aria-hidden="true"></i> <span
-									class="hide-menu"><fmt:message key="order.finish"
-											bundle="${lang }"></fmt:message></span>
+									class="hide-menu">Hoàn thành</span>
 							</a></li>
 							
 							<li class="sidebar-item" style="margin-left: 5px"><a
 								class="sidebar-link waves-effect waves-dark sidebar-link"
 								href="/Project_CK_LTWEB/order?action=destroy" aria-expanded="false"> <i
 									class="ti-control-record" aria-hidden="true"></i> <span
-									class="hide-menu"><fmt:message key="order.destroy"
-											bundle="${lang }"></fmt:message></span>
+									class="hide-menu">Đơn đã huỷ</span>
 							</a></li>
 						</ul>
 
@@ -240,8 +222,7 @@
 							class="sidebar-link waves-effect waves-dark sidebar-link"
 							href="/Project_CK_LTWEB/ManagerFeedback" aria-expanded="false">
 								<i class="ti-ruler-pencil" aria-hidden="true"></i> <span
-								class="hide-menu"><fmt:message key="menu.ManagerFeedBack"
-										bundle="${lang }"></fmt:message></span>
+								class="hide-menu">Quản lí phản hồi</span>
 						</a></li>
 						<li class="sidebar-item"><a
 							class="sidebar-link waves-effect waves-dark sidebar-link"
@@ -258,8 +239,7 @@
 						<li class="text-center p-20 upgrade-btn"><c:set var="logOut"
 								scope="session" value="logOut" /><a
 							href="/Project_CK_LTWEB/login?logOut=${logOut}"
-							class="btn d-grid btn-danger text-white"> <fmt:message
-									key="select.logOut" bundle="${lang }"></fmt:message></a></li>
+							class="btn d-grid btn-danger text-white"> Đăng xuất</a></li>
 					</ul>
 
 				</nav>
@@ -267,12 +247,7 @@
 			</div>
 			<!-- End Sidebar scroll-->
 		</aside>
-		<!-- ============================================================== -->
-		<!-- End Left Sidebar - style you can find in sidebar.scss  -->
-		<!-- ============================================================== -->
-		<!-- ============================================================== -->
-		<!-- Page wrapper  -->
-		<!-- ============================================================== -->
+
 		<div class="page-wrapper">
 			<!-- ============================================================== -->
 			<!-- Bread crumb and right sidebar toggle -->
@@ -288,8 +263,7 @@
 								<li><a href="#" class="fw-normal"></a></li>
 							</ol>
 							<a href="/Project_CK_LTWEB/login?logOut=${logOut}"
-								class="btn btn-danger  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white"><fmt:message
-									key="select.logOut" bundle="${lang }"></fmt:message></a>
+								class="btn btn-danger  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Đăng xuất</a>
 						</div>
 					</div>
 				</div>

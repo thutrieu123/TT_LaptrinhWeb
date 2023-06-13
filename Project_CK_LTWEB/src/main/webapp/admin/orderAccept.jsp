@@ -36,9 +36,7 @@
 			<div class="lds-pos"></div>
 		</div>
 	</div>
-	<!-- ============================================================== -->
-	<!-- Main wrapper - style you can find in pages.scss -->
-	<!-- ============================================================== -->
+
 	<div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5"
 		data-sidebartype="full" data-sidebar-position="absolute"
 		data-header-position="absolute" data-boxed-layout="full">
@@ -55,16 +53,16 @@
 						<div class="white-box">
 							<c:if test="${access != null }">
 								<div class="alert alert-success">
-									<fmt:message key="message.accept" bundle="${lang }"></fmt:message>
+									Xác nhận thành công
 								</div>
 							</c:if>
 							<c:if test="${delete != null }">
 								<div class="alert alert-success">
-									<fmt:message key="message.delete" bundle="${lang }"></fmt:message>
+									Huỷ đơn thành công
 								</div>
 							</c:if>
 							<h3 class="box-title text-uppercase text-center mb-3">
-								<fmt:message key="order.accept" bundle="${lang }"></fmt:message>
+								Đơn hàng chờ xác nhận
 							</h3>
 							<div class="alert alert-success"
 								<c:if test="${ sucess ==null}">style="display: none"</c:if>>
@@ -74,20 +72,14 @@
 								<table class="table text-nowrap" id="myTable">
 									<thead>
 										<tr>
-											<th class="border-top-0"><fmt:message
-													key="order.orderId" bundle="${lang }"></fmt:message></th>
-											<th class="border-top-0"><fmt:message
-													key="user.userName" bundle="${lang }"></fmt:message></th>
-											<th class="border-top-0"><fmt:message key="order.date"
-													bundle="${lang }"></fmt:message></th>
+											<th class="border-top-0">Mã đơn hàng</th>
+											<th class="border-top-0">Tài khoản</th>
+											<th class="border-top-0">Ngày Đặt</th>
 													
-											<th class="border-top-0"><fmt:message key="order.detail"
-													bundle="${lang }"></fmt:message></th>
+											<th class="border-top-0">Chi tiết</th>
 
-											<th class="border-top-0"><fmt:message key="order.status"
-													bundle="${lang }"></fmt:message></th>
-											<th class="border-top-0"><fmt:message
-													key="user.function" bundle="${lang }"></fmt:message></th>
+											<th class="border-top-0">Trình trạng</th>
+											<th class="border-top-0">Chức năng</th>
 
 										</tr>
 									</thead>
@@ -97,17 +89,13 @@
 												<td>#${o.orderId}</td>
 												<td>${o.userName }</td>
 												<td>${o.date }</td>
-												<td><a href ="/Project_CK_LTWEB/order?action=detail&orderId=${o.orderId }&previous=accept" class = "btn btn-primary"><i class="ti-eye" title= "<fmt:message key="order.detail"
-													bundle="${lang }"></fmt:message>"></i></a></td>
-												<td><span class="badge badge-danger"><fmt:message
-															key="order.acceptName" bundle="${lang }"></fmt:message></span></td>
+												<td><a href ="/Project_CK_LTWEB/order?action=detail&orderId=${o.orderId }&previous=accept" class = "btn btn-primary"><i class="ti-eye" title= "Xem"></i></a></td>
+												<td><span class="badge badge-danger">Chờ xác nhận</span></td>
 												<td><a
 													href="/Project_CK_LTWEB/oderAction?action=confim&orderID=${o.orderId}"
-													class="btn btn-primary"><fmt:message key="btn.accept"
-															bundle="${lang }"></fmt:message></a> <a
+													class="btn btn-primary">Xác nhận</a> <a
 													href="/Project_CK_LTWEB/oderAction?action=delete&orderID=${o.orderId}"
-													class="btn btn-info btn-danger text-white"><fmt:message
-															key="btn.destroy" bundle="${lang }"></fmt:message></a></td>
+													class="btn btn-info btn-danger text-white">Huỷ</a></td>
 
 											</tr>
 
@@ -121,9 +109,7 @@
 				</div>
 			</div>
 		</div>
-		<!-- ============================================================== -->
-		<!-- End Page wrapper  -->
-		<!-- ============================================================== -->
+
 	</div>
 	<jsp:include page="adminFooter.html"></jsp:include>
 

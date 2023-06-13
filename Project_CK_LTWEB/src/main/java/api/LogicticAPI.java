@@ -476,7 +476,8 @@ public class LogicticAPI {
 			JSONObject jsonObject = (JSONObject) obj;
 			JSONObject convert = (JSONObject) jsonObject.get("Transport");
 			
-			int status = Integer.parseInt(convert.get("active").toString());
+//			int status = Integer.parseInt(convert.get("active").toString());
+			int status = convert.get("active").toString().equals("true") ? 1:0;
 			transport = new Transport(convert.get("id").toString(), Integer.parseInt(convert.get("fee").toString()), DateTime.formatDate(convert.get("created_at").toString()), DateTime.formatDate(convert.get("updated_at").toString()));
 			transport.setActive(status == 1 ? true :false);
 		}				

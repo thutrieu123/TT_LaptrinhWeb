@@ -64,21 +64,18 @@
                                 <form class="form-horizontal form-material">
                                 	 <div class="form-group mb-4">
                                         <div class="col-sm-12" align="right">
-                                            <a class="btn btn-primary" href ="/Project_CK_LTWEB/manager_user"><fmt:message key="select.cancel"
-										bundle="${lang }"></fmt:message></a>
+                                            <a class="btn btn-primary" href ="/Project_CK_LTWEB/manager_user">Trở về</a>
                                         </div>
                                     </div>
                                 
                                     <div class="form-group mb-4">
-                                        <label class="col-md-12 p-0"><b><fmt:message key="user.fullName"
-										bundle="${lang }"></fmt:message></b></label>
+                                        <label class="col-md-12 p-0"><b>Họ và tên</b></label>
                                         <div class="col-md-12 border-bottom p-0">
                                             <input type="text" placeholder="Johnathan Doe"
                                                 class="form-control p-0 border-0" value ="${eUser.fullName }" name ="fullName" readonly> </div>
                                     </div>
                                     <div class="form-group mb-4">
-                                        <label for="example-email" class="col-md-12 p-0"><b><fmt:message key="user.userName"
-										bundle="${lang }"></fmt:message></b></label>
+                                        <label for="example-email" class="col-md-12 p-0"><b>Tài khoản</b></label>
                                         <div class="col-md-12 border-bottom p-0">
                                             <input
                                                 class="form-control p-0 border-0" name="eUserName" value ="${eUser.userName}" readonly>
@@ -92,8 +89,7 @@
                                         </div>
                                     </div>-->
                                     <div class="form-group mb-4">
-                                        <label class="col-md-12 p-0"><b><fmt:message key="user.phone"
-										bundle="${lang }"></fmt:message></b></label>
+                                        <label class="col-md-12 p-0"><b>Số điện thoại</b></label>
                                         <div class="col-md-12 border-bottom p-0">
                                             <input type="text" placeholder="123 456 7890"
                                                 class="form-control p-0 border-0" name ="phone" value ="${ eUser.numberPhone}" readonly>
@@ -106,8 +102,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group mb-4">
-                                        <label class="col-md-12 p-0"><b><fmt:message key="user.address"
-										bundle="${lang }"></fmt:message></b></label>
+                                        <label class="col-md-12 p-0"><b>Địa chỉ</b></label>
                                         <div class="col-md-12 border-bottom p-0">
                                             <textarea rows="5" class="form-control p-0 border-0" readonly>${eUser.address}</textarea>
                                         </div>

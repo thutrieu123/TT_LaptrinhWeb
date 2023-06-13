@@ -55,49 +55,45 @@
 						<div class="white-box">
 							<c:if test="${access != null }">
 								<div class="alert alert-success">
-									<fmt:message key="message.delete" bundle="${lang }"></fmt:message>
+									Xoá thành công
 								</div>
 							</c:if>
 							<a href = "/Project_CK_LTWEB/order?action=${previous }" class = "btn btn-primary">Quay về</a>
 							<h3 class="box-title text-uppercase text-center mb-3">
-								<fmt:message key="order.detail" bundle="${lang }"></fmt:message>
+								Chi tiết đơn hàng
 							</h3>
 							
-							<h5>Mã đơn: #${order.orderId }</h5>
-							<h5>Ngày đặt: ${order.date }</h5>
-							<h5>Tài khoản đặt: ${order.userName }</h5>
-							<h5>Trình trạng:
+							<h5><b>Mã đơn:</b> #${order.orderId }</h5>
+							<h5><b>Ngày đặt:</b> ${order.date }</h5>
+							<h5><b>Tài khoản đặt:</b> ${order.userName }</h5>
+							<h5><b>Trình trạng:</b>
 								<c:if test="${order.status == 0}">
-									<label class ="badge badge-danger"><fmt:message key="order.destroy" bundle="${lang }"></fmt:message></label>
+									<label class ="badge badge-danger">Đơn hàng đã huỷ</label>
 								</c:if>
 								<c:if test="${order.status == 1}">
-									<label class ="badge badge-danger"><fmt:message key="order.accept" bundle="${lang }"></fmt:message></label>
+									<label class ="badge badge-danger">Chờ xác nhận</label>
 								</c:if>
 								<c:if test="${order.status == 2}">
-									<label class ="badge badge badge-primary"><fmt:message key="order.wattingMove" bundle="${lang }"></fmt:message></label>
+									<label class ="badge badge badge-primary">Chờ vận chuyển</label>
 								</c:if>
 								<c:if test="${order.status == 3}">
-									<label class ="badge badge-info"><fmt:message key="order.move" bundle="${lang }"></fmt:message></label>
+									<label class ="badge badge-info">Đang vận chuyển</label>
 								</c:if>
 								<c:if test="${order.status == 4}">
-									<label class ="badge badge-success"><fmt:message key="order.finish" bundle="${lang }"></fmt:message></label>
+									<label class ="badge badge-success">Đã giao</label>
 								</c:if>
 							</h5>
-							<h5>Phí vận chuyển: ${priceTransport } VND</h5>
+							<h5><b>Phí vận chuyển:</b> ${priceTransport } VND</h5>
 							
 							<div class="table-responsive">
 								<table class="table text-nowrap" id="myTable">
 									<thead>
 										<tr>
-											<th class="border-top-0"><fmt:message
-													key="product.name" bundle="${lang }"></fmt:message></th>
-											<th class="border-top-0"><fmt:message
-													key="product.img" bundle="${lang }"></fmt:message></th>
-											<th class="border-top-0"><fmt:message key="product.price"
-													bundle="${lang }"></fmt:message></th>
+											<th class="border-top-0">Tên sản phẩm</th>
+											<th class="border-top-0">Hình sản phẩm</th>
+											<th class="border-top-0">Giá</th>
 													
-											<th class="border-top-0"><fmt:message key="order.quanlity"
-													bundle="${lang }"></fmt:message></th>
+											<th class="border-top-0">Số lượng</th>
 
 										</tr>
 									</thead>

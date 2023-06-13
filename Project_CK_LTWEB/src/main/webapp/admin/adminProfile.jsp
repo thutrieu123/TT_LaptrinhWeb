@@ -51,13 +51,8 @@
 		data-header-position="absolute" data-boxed-layout="full">
 		<div class="page-wrapper">
 
-			<!-- Container fluid  -->
-			<!-- ============================================================== -->
 			<div class="container-fluid">
-				<!-- ============================================================== -->
-				<!-- Start Page Content -->
-				<!-- ============================================================== -->
-				<!-- Row -->
+
 				<div class="row">
 					<div class="col-md-12">
 						<div class="card">

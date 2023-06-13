@@ -48,11 +48,11 @@ public class ChangeInforController extends HttpServlet {
 		} else if (update != null) {
 			String userFullname = request.getParameter("userFullname");
 			String userPhone = request.getParameter("userPhone");
-			
+
 			Address cityNew = addressDAO.getProvince(request.getParameter("province"));
 			Address ditrictsNew = addressDAO.getDistrict(request.getParameter("district"));
 			Address wardNew = addressDAO.getWard(request.getParameter("ward"));
-			
+
 			String addressNew = request.getParameter("addressDetail") + "," + wardNew.toString() + ","
 					+ ditrictsNew.toString() + "," + cityNew.toString();
 
@@ -73,8 +73,8 @@ public class ChangeInforController extends HttpServlet {
 			throws ServletException, IOException {
 		doGet(request, response);
 	}
-	
+
 	public static void main(String[] args) {
-		
+
 	}
 }

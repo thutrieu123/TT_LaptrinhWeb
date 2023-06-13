@@ -57,27 +57,20 @@
 						<div class="white-box">
 							<c:if test="${message != null }">
 								<div class="alert alert-danger">
-									<fmt:message key="message.chooseDate" bundle="${lang }"></fmt:message>
+									Vui lòng chọn thời gian xem thống kê chính xác
 								</div>
 							</c:if>
 
 							<h3 class="box-title text-uppercase text-center">
-								<fmt:message key="sta.revenue" bundle="${lang }"></fmt:message>
+								Thống kê doanh thu
 							</h3>
-							<!--  <a href="/Project_CK_LTWEB/manager_product?action=add"
-								class="btn btn-success text-white mt-2 mb-2"
-								style="text-align: end; margin-right: 20px;"><fmt:message
-									key="product.add" bundle="${lang }"></fmt:message></a>-->
-									
-									
-						
-									
+
+
 							<div class="table-responsive">
 							<div >							
 									 <a href="/Project_CK_LTWEB/print?page=revenue&date_start=${date_start_revenue }&date_end=${date_end_revenue}"
 								class="btn btn-success text-white mt-2 mb-2"
-								style="text-align: end; margin-right: 20px;"><fmt:message
-									key="menu.PrintExcel" bundle="${lang }"></fmt:message></a>
+								style="text-align: end; margin-right: 20px;">In ra file Excel</a>
 								
 								<form action="${pageContext.request.contextPath}/statistical" method ="GET" style="margin: 8px 20px 8px 0px;">
 									<div style="display:flex;width: 100%; justify-content: end;" class="mb-3">
@@ -98,12 +91,9 @@
 								<table class="table text-nowrap" id="myTable">
 									<thead>
 										<tr>
-											<th class="border-top-0"><fmt:message key="revenue.date"
-													bundle="${lang }"></fmt:message></th>
-											<th class="border-top-0"><fmt:message key="revenue.quanlity"
-													bundle="${lang }"></fmt:message></th>
-											<th class="border-top-0"><fmt:message key="revenue.price"
-													bundle="${lang }"></fmt:message></th>
+											<th class="border-top-0">Thời gian</th>
+											<th class="border-top-0">Số lượng sản phẩm bán ra</th>
+											<th class="border-top-0">Tổng tiền bán ra</th>
 				
 										</tr>
 									</thead>
@@ -131,11 +121,7 @@
 		<!-- ============================================================== -->
 	</div>
 	<jsp:include page="adminFooter.html"></jsp:include>
-	<!-- ============================================================== -->
-	<!-- End Wrapper -->
-	<!-- ============================================================== -->
-	<!-- ============================================================== -->
-	<!-- All Jquery -->
+
 	<!-- ============================================================== -->
 	<script src="/Project_CK_LTWEB/admin/js/jquery.min.js"></script>
 	<!-- Bootstrap tether Core JavaScript -->

@@ -38,26 +38,15 @@
 			<div class="lds-pos"></div>
 		</div>
 	</div>
-	<!-- ============================================================== -->
-	<!-- Main wrapper - style you can find in pages.scss -->
-	<!-- ============================================================== -->
+
 	<div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5"
 		data-sidebartype="full" data-sidebar-position="absolute"
 		data-header-position="absolute" data-boxed-layout="full">
 		<div class="page-wrapper">
 
-			<!-- Container fluid  -->
-			<!-- ============================================================== -->
+
 			<div class="container-fluid">
-			<!--<c:if test="${message != null}">
-				<div class="alert alert-success"
-					style="display: none">
-					<b><fmt:message key="message.subccess"
-													bundle="${lang }"></fmt:message></b>
-				</div></c:if>-->
-				<!-- ============================================================== -->
-				<!-- Start Page Content -->
-				<!-- ============================================================== -->
+
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="white-box">
@@ -68,35 +57,25 @@
 							</c:if>
 
 							<h3 class="box-title text-uppercase text-center">
-								<fmt:message key="product.trash" bundle="${lang }"></fmt:message>
+								Quản lí sản phẩm xoá
 							</h3>
-							<!--  <a href="/Project_CK_LTWEB/manager_product?action=add"
-								class="btn btn-success text-white mt-2 mb-2"
-								style="text-align: end; margin-right: 20px;"><fmt:message
-									key="product.add" bundle="${lang }"></fmt:message></a>-->
+
 									
 									
 									<a href="/Project_CK_LTWEB/manager_product?action=main"
 								class="btn btn-primary text-white mt-2 mb-2"
-								style="text-align: end; margin-right: 20px;"><fmt:message
-									key="btn.back" bundle="${lang}"></fmt:message></a>
+								style="text-align: end; margin-right: 20px;">Quay về</a>
 									
 							<div class="table-responsive">
 								<table class="table text-nowrap" id="myTable">
 									<thead>
 										<tr>
-											<th class="border-top-0"><fmt:message key="product.id"
-													bundle="${lang }"></fmt:message></th>
-											<th class="border-top-0"><fmt:message key="product.name"
-													bundle="${lang }"></fmt:message></th>
-											<th class="border-top-0"><fmt:message key="product.img"
-													bundle="${lang }"></fmt:message></th>
-											<th class="border-top-0"><fmt:message
-													key="product.price" bundle="${lang }"></fmt:message></th>
-											<th class="border-top-0"><fmt:message key="product.kind"
-													bundle="${lang }"></fmt:message></th>
-											<th class="border-top-0"><fmt:message
-													key="product.function" bundle="${lang }"></fmt:message></th>
+											<th class="border-top-0">Mã SP</th>
+											<th class="border-top-0">Tên sản phẩm</th>
+											<th class="border-top-0">Hình sản phẩm</th>
+											<th class="border-top-0">Giá</th>
+											<th class="border-top-0">Loại Sản Phẩm</th>
+											<th class="border-top-0">Chức năng</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -114,15 +93,9 @@
 													${categories.get(product.catId-1).getName()}
 												</td>
 												<td>
-												<!-- <a
-													href="/Project_CK_LTWEB/manager_product?action=edit&proId=${product.id }"
-													class="btn btn-primary"><i class="ti-pencil-alt"></i></a>  -->
+
 													
-													<!--  <a
-													href="/Project_CK_LTWEB/change_s?action=trash&proId=${product.id }"
-													class="btn btn-danger text-white"><i class="ti-trash"></i></a>-->
-													
-													<button onclick="changeStatus(this,${product.id})" class = "btn btn-primary text-white"><i class="ti-reload"></i></button>
+													<button onclick="changeStatus(this,${product.id})" class = "btn btn-primary text-white" title="Phục hồi"><i class="ti-reload"></i></button>
 												</td>
 
 											</tr>

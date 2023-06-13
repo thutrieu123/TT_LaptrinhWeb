@@ -46,10 +46,7 @@
 		<!-- ============================================================== -->
 
 		<div class="page-wrapper">
-			<!-- ============================================================== -->
-			<!-- ============================================================== -->
-			<!-- Container fluid  -->
-			<!-- ============================================================== -->
+
 			<div class="container-fluid">
 
 				<div class="col-md-12">
@@ -59,8 +56,7 @@
 								action="edit_product" method="POST"
 								enctype="multipart/form-data">
 								<div class="form-group mb-4">
-									<label class="col-md-12 p-0"><fmt:message key="product.id"
-										bundle="${lang }"></fmt:message></label>
+									<label class="col-md-12 p-0">Mã</label>
 									<div class="col-md-12 border-bottom p-0">
 										<input type="text" 
 											class="form-control p-0 border-0" readonly
@@ -69,8 +65,7 @@
 								</div>
 
 								<div class="form-group mb-4">
-									<label class="col-md-12 p-0"><fmt:message key="product.name"
-										bundle="${lang }"></fmt:message></label>
+									<label class="col-md-12 p-0">Tên sản phẩm</label>
 									<div class="col-md-12 border-bottom p-0">
 										<input type="text" placeholder="Johnathan Doe"
 											class="form-control p-0 border-0" 
@@ -79,8 +74,7 @@
 								</div>
 								
 								<div class="form-group mb-4">
-									<label class="col-md-12 p-0"><fmt:message key="product.img"
-										bundle="${lang }"></fmt:message></label>
+									<label class="col-md-12 p-0">Hình sản phẩm</label>
 									<div class="col-md-12 border-bottom p-0">
 										<img src="${product.image}" style="width: 80px; height: 80px;" id = "picture"name ="picture">
 										<input type="hidden" value="${product.image}"
@@ -92,8 +86,7 @@
 								</div>
 
 								<div class="form-group mb-4">
-									<label class="col-md-12 p-0"><fmt:message key="product.detail"
-										bundle="${lang }"></fmt:message></label>
+									<label class="col-md-12 p-0">Mô tả</label>
 									<div class="col-md-12 border-bottom p-0">
 										<textarea rows="5" class="form-control p-0 border-0"
 											name="productDes" required="required">${product.descreption}</textarea>
@@ -102,13 +95,11 @@
 								
 								<div class="form-group mb-4">
 									<div class="form-group ">
-										<label for="example-email" class="col-md-12 p-0"><fmt:message key="product.parameter"
-											bundle="${lang }"></fmt:message></label>
+										<label for="example-email" class="col-md-12 p-0">Thông số</label>
 									</div>
 									<div class="justify_bettwen ml-3">
 										<div class = "item-para">
-											<label  class=""><fmt:message key="product.height"
-											bundle="${lang }"></fmt:message></label>
+											<label  class="">Chiều cao</label>
 											<div class="col-md-12">
 												<input type="number" value="${product.height}"
 													name="height" required="required"> cm
@@ -116,8 +107,7 @@
 										</div>
 										
 										<div class = "item-para">
-											<label  class=""><fmt:message key="product.length"
-											bundle="${lang }"></fmt:message></label>
+											<label  class="">Chiều dài</label>
 											<div class="col-md-12">
 												<input type="number" value="${product.length}"
 													name="length" required="required"> cm
@@ -125,8 +115,7 @@
 										</div>
 										
 										<div class = "item-para">
-											<label  class=""><fmt:message key="product.width"
-											bundle="${lang }"></fmt:message></label>
+											<label  class="">Chiều rộng</label>
 											<div class="col-md-12">
 												<input type="number" value="${product.width}"
 													name="width" required="required"> cm
@@ -134,8 +123,7 @@
 										</div>
 										
 										<div class = "item-para">
-											<label  class=""><fmt:message key="product.weigth"
-											bundle="${lang }"></fmt:message></label>
+											<label  class="">Cân nặng</label>
 											<div class="col-md-12">
 												<input type="number" value="${product.weigth}"
 													name="weigth" required="required"> gram
@@ -145,8 +133,7 @@
 								</div>
 
 								<div class="form-group mb-4">
-									<label for="example-email" class="col-md-12 p-0"><fmt:message key="product.price"
-										bundle="${lang }"></fmt:message></label>
+									<label for="example-email" class="col-md-12 p-0">Giá</label>
 									<div class="col-md-12 border-bottom p-0">
 										<input type="number" 
 											class="form-control p-0 border-0" 
@@ -154,8 +141,7 @@
 									</div>
 								</div>
 								<div class="form-group mb-4">
-									<label class="col-sm-12"><fmt:message key="product.kind"
-										bundle="${lang }"></fmt:message></label>
+									<label class="col-sm-12">Loại Sản Phẩm</label>
 
 									<div class="col-sm-12 border-bottom">
 										<select name="productKind"
@@ -170,11 +156,9 @@
 								</div>
 								<div class="form-group mb-4">
 									<div class="col-sm-12">
-										<button class="btn btn-success"  type="submit"><fmt:message key="select.update"
-										bundle="${lang }"></fmt:message></button>
+										<button class="btn btn-success"  type="submit">Cập nhật</button>
 										<a class="btn btn-primary"
-											href="/Project_CK_LTWEB/manager_product?action=main"><fmt:message key="select.cancel"
-										bundle="${lang }"></fmt:message></a>
+											href="/Project_CK_LTWEB/manager_product?action=main">Trở về</a>
 									</div>
 								</div>
 							</form>
