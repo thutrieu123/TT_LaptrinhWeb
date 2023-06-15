@@ -50,23 +50,20 @@
 			<!--<c:if test="${message != null}">
 				<div class="alert alert-success"
 					style="display: none">
-					<b><fmt:message key="message.subccess"
-													bundle="${lang }"></fmt:message></b>
+					<b>Thêm thành công</b>
 				</div></c:if>-->
-				<!-- ============================================================== -->
-				<!-- Start Page Content -->
-				<!-- ============================================================== -->
+
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="white-box">
 							<c:if test="${access != null }">
 								<div class="alert alert-success">
-									<fmt:message key="message.subccess" bundle="${lang }"></fmt:message>
+									Thêm thành công
 								</div>
 							</c:if>
 
 							<h3 class="box-title text-uppercase text-center">
-								<fmt:message key="menu.MangerProduct" bundle="${lang }"></fmt:message>
+								Quản lí sản phẩm
 							</h3>
 							<!--  <a href="/Project_CK_LTWEB/manager_product?action=add"
 								class="btn btn-success text-white mt-2 mb-2"
@@ -76,36 +73,28 @@
 									<div class = "justify_bettwen">
 										<a href="/Project_CK_LTWEB/add_product"
 									class="btn btn-success text-white mt-2 mb-2"
-									style="text-align: end; margin-right: 20px;"><fmt:message
-										key="product.add" bundle="${lang }"></fmt:message></a>
+									style="text-align: end; margin-right: 20px;">Thêm sản phẩm</a>
 										
 										<a href="/Project_CK_LTWEB/manager_product?action=trash"
 									class="btn btn-danger text-white mt-2 mb-2"
-									style="text-align: end; margin-right: 20px;"><fmt:message
-										key="menu.Trash" bundle="${lang }"></fmt:message></a>
+									style="text-align: end; margin-right: 20px;">Thùng rác</a>
 									</div>
 							<div class="table-responsive">
 								<table class="table text-nowrap" id="myTable">
 									<thead>
 										<tr>
-											<th class="border-top-0"><fmt:message key="product.id"
-													bundle="${lang }"></fmt:message></th>
-											<th class="border-top-0"><fmt:message key="product.name"
-													bundle="${lang }"></fmt:message></th>
-											<th class="border-top-0"><fmt:message key="product.img"
-													bundle="${lang }"></fmt:message></th>
-											<th class="border-top-0"><fmt:message
-													key="product.price" bundle="${lang }"></fmt:message></th>
-											<th class="border-top-0"><fmt:message key="product.kind"
-													bundle="${lang }"></fmt:message></th>
-											<th class="border-top-0"><fmt:message
-													key="product.function" bundle="${lang }"></fmt:message></th>
+											<th class="border-top-0">Mã sản phẩm</th>
+											<th class="border-top-0">Tên sản phẩm</th>
+											<th class="border-top-0">Hình</th>
+											<th class="border-top-0">Giá</th>
+											<th class="border-top-0">Loại</th>
+											<th class="border-top-0">Chức năng</th>
 										</tr>
 									</thead>
 									<tbody>
 										<c:forEach var="product" items="${listProduct }">
 											<tr>
-												<td>${product.id }</td>
+												<td>#${product.id }</td>
 												<td>${product.name }</td>
 												<td><img src="${product.image}"
 													style="width: 80px; height: 80px;"></td>
@@ -122,13 +111,13 @@
 													class="btn btn-primary"><i class="ti-pencil-alt"></i></a>  -->
 													<a
 													href="/Project_CK_LTWEB/edit_product?proId=${product.id}"
-													class="btn btn-primary"><i class="ti-pencil-alt"></i></a>
+													class="btn btn-primary" title="Sửa"><i class="ti-pencil-alt"></i></a>
 													
 													<!--  <a
 													href="/Project_CK_LTWEB/change_s?action=trash&proId=${product.id }"
 													class="btn btn-danger text-white"><i class="ti-trash"></i></a>-->
 													
-													<button onclick="changeStatus(this,${product.id})" class = "btn btn-danger text-white"><i class="ti-trash"></i></button>
+													<button onclick="changeStatus(this,${product.id})" class = "btn btn-danger text-white" title="Xoá"><i class="ti-trash"></i></button>
 												</td>
 
 											</tr>

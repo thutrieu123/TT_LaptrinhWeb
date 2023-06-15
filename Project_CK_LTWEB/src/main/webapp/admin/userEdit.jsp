@@ -30,9 +30,7 @@
 			<div class="lds-pos"></div>
 		</div>
 	</div>
-	<!-- ============================================================== -->
-	<!-- Main wrapper - style you can find in pages.scss -->
-	<!-- ============================================================== -->
+
 	<div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5"
 		data-sidebartype="full" data-sidebar-position="absolute"
 		data-header-position="absolute" data-boxed-layout="full">
@@ -44,14 +42,16 @@
 		<div class="page-wrapper">
 			<div class="container-fluid">
 
+
 				<div class="col-md-12">
+
 					<div class="card">
+					<h3 class="box-title text-uppercase text-center mb-3 mt-3">Chỉnh sửa người dùng</h3>
 						<div class="card-body">
 							<form class="form-horizontal form-material"
 								action="manager_user" method="post">
 								<div class="form-group mb-4">
-									<label class="col-md-12 p-0"><fmt:message key="user.id"
-										bundle="${lang }"></fmt:message></label>
+									<label class="col-md-12 p-0">Mã</label>
 									<div class="col-md-12 border-bottom p-0">
 										<input type="text"
 											class="form-control p-0 border-0" readonly
@@ -60,8 +60,7 @@
 								</div>
 
 								<div class="form-group mb-4">
-									<label class="col-md-12 p-0"><fmt:message key="user.fullName"
-										bundle="${lang }"></fmt:message></label>
+									<label class="col-md-12 p-0">Họ và tên</label>
 									<div class="col-md-12 border-bottom p-0">
 										<input type="text" placeholder="Johnathan Doe"
 											class="form-control p-0 border-0" value="${eUser.fullName}"
@@ -69,16 +68,14 @@
 									</div>
 								</div>
 								<div class="form-group mb-4">
-									<label class="col-md-12 p-0"><fmt:message key="user.phone"
-										bundle="${lang }"></fmt:message></label>
+									<label class="col-md-12 p-0">Số điện thoại</label>
 									<div class="col-md-12 border-bottom p-0"> <input type="text"
 											class="form-control p-0 border-0" value="${eUser.numberPhone}" name="userPhone">
 									</div>
 								</div>
 
 								<div class="form-group mb-4">
-									<label class="col-md-12 p-0"><fmt:message key="user.address"
-										bundle="${lang }"></fmt:message></label>
+									<label class="col-md-12 p-0">Địa chỉ</label>
 									<div class="col-md-12 border-bottom p-0">
 										<textarea rows="5" class="form-control p-0 border-0"
 											name="userAddress">${eUser.address}</textarea>
@@ -86,8 +83,7 @@
 								</div>
 
 								<div class="form-group mb-4">
-									<label for="example-email" class="col-md-12 p-0"><fmt:message key="user.userName"
-										bundle="${lang }"></fmt:message></label>
+									<label for="example-email" class="col-md-12 p-0">Tài khoản</label>
 									<div class="col-md-12 border-bottom p-0">
 										<input type="text" 
 											class="form-control p-0 border-0" 
@@ -97,8 +93,7 @@
 								
 								<!--  
 								<div class="form-group mb-4">
-									<label for="example-email" class="col-md-12 p-0"><fmt:message key="user.password"
-										bundle="${lang }"></fmt:message></label>
+									<label for="example-email" class="col-md-12 p-0">Mật khẩu</label>
 									<div class="col-md-12 border-bottom p-0">
 										<input type="text" placeholder="johnathan@admin.com"
 											class="form-control p-0 border-0" 
@@ -107,8 +102,7 @@
 								</div>-->
 								
 								<div class="form-group mb-4">
-									<label class="col-sm-12"><fmt:message key="user.role"
-										bundle="${lang }"></fmt:message></label>
+									<label class="col-sm-12">Vai trò</label>
 
 									<div class="col-sm-12 border-bottom">
 										<select name="userRole"
@@ -120,11 +114,9 @@
 								</div>
 								<div class="form-group mb-4">
 									<div class="col-sm-12">
-										<button class="btn btn-success" name="updateUser" type="submit"><fmt:message key="select.update"
-										bundle="${lang }"></fmt:message></button>
+										<button class="btn btn-success" name="updateUser" type="submit">Cập nhật</button>
 										<a class="btn btn-primary"
-											href="/Project_CK_LTWEB/manager_user"><fmt:message key="select.cancel"
-										bundle="${lang }"></fmt:message></a>
+											href="/Project_CK_LTWEB/manager_user">Trở về</a>
 									</div>
 								</div>
 							</form>

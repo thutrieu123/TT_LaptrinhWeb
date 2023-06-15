@@ -40,53 +40,35 @@
 			<div class="lds-pos"></div>
 		</div>
 	</div>
-	<!-- ============================================================== -->
-	<!-- Main wrapper - style you can find in pages.scss -->
-	<!-- ============================================================== -->
+
 	<div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5"
 		data-sidebartype="full" data-sidebar-position="absolute"
 		data-header-position="absolute" data-boxed-layout="full">
 		<div class="page-wrapper">
 
-			<!-- Container fluid  -->
-			<!-- ============================================================== -->
+
 			<div class="container-fluid">
-				<!-- ============================================================== -->
-				<!-- Start Page Content -->
-				<!-- ============================================================== -->
+
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="white-box">
-							<c:if test="${access != null }">
-								<div class="alert alert-success">
-									<fmt:message key="message.subccess" bundle="${lang }"></fmt:message>
-								</div>
-							</c:if>
-							<h3 class="box-title text-uppercase text-center mb-3"><fmt:message key="menu.Trash"
-										bundle="${lang }"></fmt:message></h3>
+							<h3 class="box-title text-uppercase text-center mb-3">Tài khoản bị khoá</h3>
 										
 							<a
 							class="btn btn-info mb-4"
 							href="/Project_CK_LTWEB/manager_user" aria-expanded="false"><span
-								class="hide-menu"><fmt:message key="btn.back"
-										bundle="${lang }"></fmt:message></span>
+								class="hide-menu">Quay về</span>
 							</a>
 							<div class="table-responsive">
 								<table class="table text-nowrap" id="myTable">
 									<thead>
 										<tr>
-											<th class="border-top-0"><fmt:message key="user.id"
-										bundle="${lang }"></fmt:message></th>
-											<th class="border-top-0"><fmt:message key="user.fullName"
-										bundle="${lang }"></fmt:message></th>
-											<th class="border-top-0"><fmt:message key="user.phone"
-										bundle="${lang }"></fmt:message></th>
-											<th class="border-top-0"><fmt:message key="user.userName"
-										bundle="${lang }"></fmt:message></th>
-											<th class="border-top-0"><fmt:message key="user.role"
-										bundle="${lang }"></fmt:message></th>
-											<th class="border-top-0"><fmt:message key="user.function"
-										bundle="${lang }"></fmt:message></th>
+											<th class="border-top-0">Mã</th>
+											<th class="border-top-0">Họ và tên</th>
+											<th class="border-top-0">Số điện thoại</th>
+											<th class="border-top-0">Tài khoản</th>
+											<th class="border-top-0"><Vai trò</th>
+											<th class="border-top-0">Chức năng</th>
 
 										</tr>
 									</thead>
@@ -98,7 +80,7 @@
 												<td>${eUser.numberPhone }</td>
 												<td>${eUser.userName }</td>
 												<td>${eUser.rolId == 1 ? "Admin":"User" }</td>
-												<td><button onclick="changeStatus(this,${eUser.id})" class = "btn btn-primary text-white"><i class="ti-unlock"></i></button>
+												<td><button onclick="changeStatus(this,${eUser.id})" class = "btn btn-primary text-white" title="Bỏ khoá"><i class="ti-unlock"></i></button>
 												</td>
 
 											</tr>

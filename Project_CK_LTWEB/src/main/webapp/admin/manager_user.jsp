@@ -38,9 +38,7 @@
 			<div class="lds-pos"></div>
 		</div>
 	</div>
-	<!-- ============================================================== -->
-	<!-- Main wrapper - style you can find in pages.scss -->
-	<!-- ============================================================== -->
+
 	<div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5"
 		data-sidebartype="full" data-sidebar-position="absolute"
 		data-header-position="absolute" data-boxed-layout="full">
@@ -57,37 +55,29 @@
 						<div class="white-box">
 							<c:if test="${access != null }">
 								<div class="alert alert-success">
-									<fmt:message key="message.subccess" bundle="${lang }"></fmt:message>
+									Thực hiện thành công
 								</div>
 							</c:if>
-							<h3 class="box-title text-uppercase text-center mb-3"><fmt:message key="menu.ManagerUser"
-										bundle="${lang }"></fmt:message></h3>
+							<h3 class="box-title text-uppercase text-center mb-3">Quản lí người dùng</h3>
 										
 										
 							<div class = "justify_bettwen">
 										
 										<a href="/Project_CK_LTWEB/TrashUser"
 									class="btn btn-danger text-white mt-2 mb-2"
-									style="text-align: end; margin-right: 20px;"><fmt:message
-										key="menu.Trash" bundle="${lang }"></fmt:message></a>
+									style="text-align: end; margin-right: 20px;">Thùng rác</a>
 							</div>
 									
 							<div class="table-responsive">
 								<table class="table text-nowrap" id="myTable">
 									<thead>
 										<tr>
-											<th class="border-top-0"><fmt:message key="user.id"
-										bundle="${lang }"></fmt:message></th>
-											<th class="border-top-0"><fmt:message key="user.fullName"
-										bundle="${lang }"></fmt:message></th>
-											<th class="border-top-0"><fmt:message key="user.phone"
-										bundle="${lang }"></fmt:message></th>
-											<th class="border-top-0"><fmt:message key="user.userName"
-										bundle="${lang }"></fmt:message></th>
-											<th class="border-top-0"><fmt:message key="user.role"
-										bundle="${lang }"></fmt:message></th>
-											<th class="border-top-0"><fmt:message key="user.function"
-										bundle="${lang }"></fmt:message></th>
+											<th class="border-top-0">Mã</th>
+											<th class="border-top-0">Họ và tên</th>
+											<th class="border-top-0">Số điện thoại</th>
+											<th class="border-top-0">Tài khoản</th>
+											<th class="border-top-0">Vai trò</th>
+											<th class="border-top-0">Chức năng</th>
 
 										</tr>
 									</thead>
@@ -101,14 +91,14 @@
 												<td>${eUser.rolId == 1 ? "Admin":"User" }</td>
 												<td><a
 													href="/Project_CK_LTWEB/manager_user?action=edit&eUserId=${eUser.id}"
-													class="btn btn-primary"><i class="ti-pencil-alt"></i></a>
+													class="btn btn-primary" title="Sửa"><i class="ti-pencil-alt"></i></a>
 													<a
 													href="/Project_CK_LTWEB/manager_user?action=detail&eUserId=${eUser.id }"
-													class="btn btn-info text-white"><i class="ti-eye"></i></a>
+													class="btn btn-info text-white" title = "Xem"><i class="ti-eye"></i></a>
 													<!--  <a
 													href="/Project_CK_LTWEB/manager_user?action=trash&eUserId=${eUser.id}"
 													class="btn btn-danger text-white"><i class="ti-trash"></i></a> -->
-													<button onclick="changeStatus(this,${eUser.id})" class = "btn btn btn-danger text-white"><i class="ti-lock"></i></button>
+													<button onclick="changeStatus(this,${eUser.id})" class = "btn btn btn-danger text-white" title ="Khoá"><i class="ti-lock"></i></button>
 												</td>
 
 											</tr>

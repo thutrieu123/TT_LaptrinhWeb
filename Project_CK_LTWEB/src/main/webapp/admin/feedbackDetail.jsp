@@ -33,9 +33,7 @@
 			<div class="lds-pos"></div>
 		</div>
 	</div>
-	<!-- ============================================================== -->
-	<!-- Main wrapper - style you can find in pages.scss -->
-	<!-- ============================================================== -->
+
 	<div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5"
 		data-sidebartype="full" data-sidebar-position="absolute"
 		data-header-position="absolute" data-boxed-layout="full">
@@ -45,10 +43,7 @@
 		<!-- ============================================================== -->
 
 		<div class="page-wrapper">
-			<!-- ============================================================== -->
-			<!-- ============================================================== -->
-			<!-- Container fluid  -->
-			<!-- ============================================================== -->
+
 			<div class="container-fluid">
 
 
@@ -61,14 +56,12 @@
 							<div class="form-group mb-4">
 								<div class="col-sm-12" align="right">
 									<a class="btn btn-primary"
-										href="/Project_CK_LTWEB/ManagerFeedback"><b><fmt:message
-												key="select.cancel" bundle="${lang }"></fmt:message></b></a>
+										href="/Project_CK_LTWEB/ManagerFeedback"><b>Trở về</b></a>
 								</div>
 							</div>
 
 							<div class="form-group mb-4">
-								<label class="col-md-12 p-0"><b><fmt:message
-											key="feedback.id" bundle="${lang }"></fmt:message></b></label>
+								<label class="col-md-12 p-0"><b>Mã Phản Hồi</b></label>
 								<div class="col-md-12 border-bottom p-0">
 									<input type="text" class="form-control p-3 border-0" readonly
 										value="${feed.id}">
@@ -76,8 +69,7 @@
 							</div>
 
 							<div class="form-group mb-4">
-								<label class="col-md-12 p-0"><b><fmt:message
-											key="feedback.fullName" bundle="${lang }"></fmt:message></b></label>
+								<label class="col-md-12 p-0"><b>Họ và tên</b></label>
 								<div class="col-md-12 border-bottom p-0">
 									<input type="text" placeholder="Johnathan Doe"
 										class="form-control p-3 border-0" value="${feed.fullName}"
@@ -85,8 +77,7 @@
 								</div>
 							</div>
 							<div class="form-group mb-4">
-								<label class="col-md-12 p-0"><b><fmt:message
-											key="feedback.phone" bundle="${lang }"></fmt:message></b></label>
+								<label class="col-md-12 p-0"><b>Số điện thoại</b></label>
 								<div class="col-md-12 border-bottom p-0">
 									<input type="text" class="form-control p-3 border-0"
 										value="${feed.phone}" name="userPhone" readonly>
@@ -94,8 +85,7 @@
 							</div>
 
 							<div class="form-group mb-4">
-								<label class="col-md-12 p-0"><b><fmt:message
-											key="feedback.title" bundle="${lang }"></fmt:message></b></label>
+								<label class="col-md-12 p-0"><b>Tiêu đề</b></label>
 								<div class="col-md-12 border-bottom p-0">
 									<input type="text" class="form-control p-3 border-0"
 										value="${feed.title}" name="userPhone" readonly>
@@ -103,8 +93,7 @@
 							</div>
 
 							<div class="form-group mb-4">
-								<label class="col-md-12 p-0"><b><fmt:message
-											key="feedback.descreption" bundle="${lang }"></fmt:message></b></label>
+								<label class="col-md-12 p-0"><b>Nội Dung</b></label>
 								<div class="col-md-12 border-bottom p-0">
 									<textarea rows="5" class="form-control p-3 border-0"
 										name="userAddress" readonly>${feed.descreption}</textarea>

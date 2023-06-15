@@ -39,12 +39,7 @@
 			<!-- Container fluid  -->
 			<!-- ============================================================== -->
 			<div class="container-fluid">
-			<!--<c:if test="${message != null}">
-				<div class="alert alert-success"
-					style="display: none">
-					<b><fmt:message key="message.subccess"
-													bundle="${lang }"></fmt:message></b>
-				</div></c:if>-->
+
 				<!-- ============================================================== -->
 				<!-- Start Page Content -->
 				<!-- ============================================================== -->
@@ -53,27 +48,20 @@
 						<div class="white-box">
 							<c:if test="${message != null }">
 								<div class="alert alert-danger">
-									<fmt:message key="message.chooseDate" bundle="${lang }"></fmt:message>
+									Vui lòng chọn thời gian xem thống kê chính xác
 								</div>
 							</c:if>
 
 							<h3 class="box-title text-uppercase text-center">
-								<fmt:message key="sta.product" bundle="${lang }"></fmt:message>
+								Thống kê sản phẩm bán ra
 							</h3>
-							<!--  <a href="/Project_CK_LTWEB/manager_product?action=add"
-								class="btn btn-success text-white mt-2 mb-2"
-								style="text-align: end; margin-right: 20px;"><fmt:message
-									key="product.add" bundle="${lang }"></fmt:message></a>-->
-									
-									
-						
-									
+
+
 							<div class="table-responsive">
 							<div style="display:flex;width: 100%; justify-content: space-between;">							
 									 <a href="/Project_CK_LTWEB/print?page=sta_product&date_start=${date_start }&date_end=${date_end}"
 								class="btn btn-success text-white mt-2 mb-2"
-								style="text-align: end; margin-right: 20px;"><fmt:message
-									key="menu.PrintExcel" bundle="${lang }"></fmt:message></a>
+								style="text-align: end; margin-right: 20px;">In ra file Excel</a>
 								
 								<form action="statistical" method ="GET" style="margin: 8px 20px 8px 0px;">
 									<label>Từ:</label>
@@ -88,14 +76,10 @@
 								<table class="table text-nowrap" id="myTable">
 									<thead>
 										<tr>
-											<th class="border-top-0"><fmt:message key="product.id"
-													bundle="${lang }"></fmt:message></th>
-											<th class="border-top-0"><fmt:message key="product.name"
-													bundle="${lang }"></fmt:message></th>
-											<th class="border-top-0"><fmt:message key="product.quanlity_sold"
-													bundle="${lang }"></fmt:message></th>
-											<th class="border-top-0"><fmt:message key="order.price"
-													bundle="${lang }"></fmt:message></th>
+											<th class="border-top-0">Mã</th>
+											<th class="border-top-0">Tên sản phẩm</th>
+											<th class="border-top-0">Số lượng bán ra</th>
+											<th class="border-top-0">Tổng giá trị bán ra</th>
 				
 										</tr>
 									</thead>
@@ -124,12 +108,6 @@
 		<!-- ============================================================== -->
 	</div>
 	<jsp:include page="adminFooter.html"></jsp:include>
-	<!-- ============================================================== -->
-	<!-- End Wrapper -->
-	<!-- ============================================================== -->
-	<!-- ============================================================== -->
-	<!-- All Jquery -->
-	<!-- ============================================================== -->
 	<script src="/Project_CK_LTWEB/admin/js/jquery.min.js"></script>
 	<!-- Bootstrap tether Core JavaScript -->
 	<script src="/Project_CK_LTWEB/admin/js/bootstrap.bundle.min.js"></script>

@@ -36,9 +36,7 @@
 			<div class="lds-pos"></div>
 		</div>
 	</div>
-	<!-- ============================================================== -->
-	<!-- Main wrapper - style you can find in pages.scss -->
-	<!-- ============================================================== -->
+
 	<div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5"
 		data-sidebartype="full" data-sidebar-position="absolute"
 		data-header-position="absolute" data-boxed-layout="full">
@@ -55,11 +53,11 @@
 						<div class="white-box">
 							<c:if test="${access != null }">
 								<div class="alert alert-success">
-									<fmt:message key="message.delete" bundle="${lang }"></fmt:message>
+									Xoá thành công
 								</div>
 							</c:if>
 							<h3 class="box-title text-uppercase text-center mb-3">
-								<fmt:message key="order.destroy" bundle="${lang }"></fmt:message>
+								Đơn hàng đã huỷ
 							</h3>
 							<div class="alert alert-success"
 								<c:if test="${ sucess ==null}">style="display: none"</c:if>>
@@ -69,18 +67,13 @@
 								<table class="table text-nowrap" id="myTable">
 									<thead>
 										<tr>
-											<th class="border-top-0"><fmt:message
-													key="order.orderId" bundle="${lang }"></fmt:message></th>
-											<th class="border-top-0"><fmt:message
-													key="user.userName" bundle="${lang }"></fmt:message></th>
-											<th class="border-top-0"><fmt:message key="order.date"
-													bundle="${lang }"></fmt:message></th>
+											<th class="border-top-0">Mã đơn hàng</th>
+											<th class="border-top-0">Tài khoản</th>
+											<th class="border-top-0">Ngày đặt</th>
 													
-											<th class="border-top-0"><fmt:message key="order.detail"
-													bundle="${lang }"></fmt:message></th>
+											<th class="border-top-0">Chi tiết</th>
 
-											<th class="border-top-0"><fmt:message key="order.status"
-													bundle="${lang }"></fmt:message></th>
+											<th class="border-top-0">Trình trạng</th>
 											<!-- <th class="border-top-0"><fmt:message
 													key="user.function" bundle="${lang }"></fmt:message></th> -->
 
@@ -95,8 +88,7 @@
 												<td><a href ="/Project_CK_LTWEB/order?action=detail&orderId=${o.orderId }&previous=destroy"  class = "btn btn-primary"><i class="ti-eye" title= "<fmt:message key="order.detail"
 													bundle="${lang }"></fmt:message>"></i></a></td>
 												
-												<td><span class="badge badge badge-danger"><fmt:message
-															key="order.destroyName" bundle="${lang }"></fmt:message></span></td>
+												<td><span class="badge badge badge-danger">Đã Huỷ</span></td>
 												
 												<!--  <td><a
 													href="/Project_CK_LTWEB/oderAction?action=destroy&orderID=${o.orderId}"
@@ -115,9 +107,7 @@
 				</div>
 			</div>
 		</div>
-		<!-- ============================================================== -->
-		<!-- End Page wrapper  -->
-		<!-- ============================================================== -->
+
 	</div>
 	<jsp:include page="adminFooter.html"></jsp:include>
 

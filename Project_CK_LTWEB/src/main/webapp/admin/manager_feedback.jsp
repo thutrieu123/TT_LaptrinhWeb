@@ -36,9 +36,7 @@
 			<div class="lds-pos"></div>
 		</div>
 	</div>
-	<!-- ============================================================== -->
-	<!-- Main wrapper - style you can find in pages.scss -->
-	<!-- ============================================================== -->
+
 	<div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5"
 		data-sidebartype="full" data-sidebar-position="absolute"
 		data-header-position="absolute" data-boxed-layout="full">
@@ -55,37 +53,31 @@
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="white-box">
-							<h3 class="box-title text-uppercase text-center mb-3"><fmt:message key="menu.ManagerFeedBack"
-										bundle="${lang }"></fmt:message></h3>
+							<h3 class="box-title text-uppercase text-center mb-3">Quản lí phản hồi</h3>
 							<div class="table-responsive">
 								<table class="table text-nowrap" id="myTable">
 									<thead>
 										<tr>
-											<th class="border-top-0"><fmt:message key="feedback.id"
-										bundle="${lang }"></fmt:message></th>
-											<th class="border-top-0"><fmt:message key="feedback.fullName"
-										bundle="${lang }"></fmt:message></th>
-											<th class="border-top-0"><fmt:message key="feedback.phone"
-										bundle="${lang }"></fmt:message></th>
-											<th class="border-top-0"><fmt:message key="feedback.title"
-										bundle="${lang }"></fmt:message></th>
-											<th class="border-top-0"><fmt:message key="feedback.function"
-										bundle="${lang }"></fmt:message></th>
+											<th class="border-top-0">Mã phản hồi</th>
+											<th class="border-top-0">Họ và tên</th>
+											<th class="border-top-0">Số điện thoại</th>
+											<th class="border-top-0">Tiêu đề</th>
+											<th class="border-top-0">Chức năng</th>
 
 										</tr>
 									</thead>
 									<tbody>
 										<c:forEach var="feed" items="${listFeedback}">
 											<tr>
-												<td>${feed.id}</td>
+												<td>#${feed.id}</td>
 												<td>${feed.fullName }</td>
 												<td>${feed.phone }</td>
 												<td>${feed.title }</td>
 												<td><a
 													href="/Project_CK_LTWEB/ManagerFeedback?action=show&feedId=${feed.id}"
-													class="btn btn-primary"><i class="ti-eye"></i></a> <a
+													class="btn btn-primary" title = "Xem"><i class="ti-eye"></i></a> <a
 													href="/Project_CK_LTWEB/ManagerFeedback?action=trash&feedId=${feed.id}"
-													class="btn btn-danger text-white"><i class="ti-trash"></i></a>
+													class="btn btn-danger text-white" title="Xoá"><i class="ti-trash"></i></a>
 												</td>
 
 											</tr>
@@ -100,9 +92,7 @@
 				</div>
 			</div>
 		</div>
-		<!-- ============================================================== -->
-		<!-- End Page wrapper  -->
-		<!-- ============================================================== -->
+
 	</div>
 	<jsp:include page="adminFooter.html"></jsp:include>
 
