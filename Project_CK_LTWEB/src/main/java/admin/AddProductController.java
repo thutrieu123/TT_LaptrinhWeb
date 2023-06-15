@@ -74,9 +74,10 @@ public class AddProductController extends HttpServlet {
 		String proWeigth = request.getParameter("weigth");
 
 //		String upLoadFolder = "F:\\TT_LTW\\TT_LaptrinhWeb\\Project_CK_LTWEB\\src\\main\\webapp\\Image\\";// Cho nay la
+		
+		// Lay ra duong dan real path noi luu Image
 		String upLoadFolder = request.getServletContext().getRealPath("/Image");																								// lay duong
-																											// dan thu																											// muc luu
-																											// hinh anh
+																											
 		Path upLoadPath = Paths.get(upLoadFolder);
 		Part image = request.getPart("uploadImage");
 		System.out.println(image.getSize());

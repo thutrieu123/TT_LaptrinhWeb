@@ -27,7 +27,20 @@ public class ChangeStatusProduct extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		int proid =  Integer.parseInt(request.getParameter("id"));
+//		int status = Integer.parseInt(request.getParameter("status"));
+//		
+//		ProductDAO productDAO = new ProductDAO();
+//		
+//		int row = productDAO.changeStatus(proid, status);
+//		System.out.println(row);
+//	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int proid =  Integer.parseInt(request.getParameter("id"));
 		int status = Integer.parseInt(request.getParameter("status"));
 		
@@ -35,14 +48,6 @@ public class ChangeStatusProduct extends HttpServlet {
 		
 		int row = productDAO.changeStatus(proid, status);
 		System.out.println(row);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

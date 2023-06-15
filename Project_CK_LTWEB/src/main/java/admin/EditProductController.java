@@ -76,10 +76,10 @@ public class EditProductController extends HttpServlet {
 		String proWidth = request.getParameter("width");
 		String proWeigth = request.getParameter("weigth");
 		
-//		String upLoadFolder = "F:\\TT_LTW\\TT_LaptrinhWeb\\Project_CK_LTWEB\\src\\main\\webapp\\Image\\";// Cho nay la
-		//Lay realpath cua server																			// lay duong
+
+		//Lay realpath cua server																			
 		String upLoadFolder = request.getServletContext().getRealPath("/Image");																									// dan thu																									// muc luu
-																											// hinh anh
+																											
 		Path upLoadPath = Paths.get(upLoadFolder);
 		Part image = request.getPart("uploadImage");
 		System.out.println("Image:" + image);

@@ -47,6 +47,7 @@ public class ChangeInforAdmin extends HttpServlet {
 		UserDAO userDAO = new UserDAO();
 		User user = (User)request.getSession().getAttribute("user");
 		
+		//Kiem tra nguoi dung co thay doi mat khau hay khong
 		if(oldPass != null && !oldPass.equals("")) {
 			String newPass = request.getParameter("newPass");
 			System.out.println(newPass);
@@ -61,6 +62,7 @@ public class ChangeInforAdmin extends HttpServlet {
 			user.setNumberPhone(phone);
 			
 		}
+		//Kiem tra xem update thanh cong hay that bai
 		if(userDAO.updateUser(user) > 0) {
 			request.setAttribute("message", "Thay đổi thành công");
 		}else {

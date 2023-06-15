@@ -7,6 +7,7 @@ import model.api.Date;
 
 public class DateTime {
 	
+	//Ham convert chuoi sang chuoi ngay
 	public static Date formatDate(String date) {
 		String[] splitDate = formartDateString(date).split("-");
 		
@@ -19,6 +20,7 @@ public class DateTime {
         return dateTime;
 	}
 	
+	//Ham lay ra chuoi ngay trong chuoi ki tu
 	public static String formartDateString(String date) {
 		Pattern pattern = Pattern.compile("\\d{4}[-]\\d{2}[-]\\d{2}");
         Matcher matcher = pattern.matcher(date);

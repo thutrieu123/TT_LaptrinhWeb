@@ -56,7 +56,7 @@ public class ManagerOrder extends HttpServlet {
 				listOrder = orderDAO.getOrderByStatus(TransportStatus.CANCEL);// Status = 0 don bi huy
 				request.setAttribute("listOrder", listOrder);
 				request.getRequestDispatcher("/admin/orderTrash.jsp").forward(request, response);
-			}else if(action.trim().equals("detail")) {
+			}else if(action.trim().equals("detail")) { //Xem thong tin don hang
 				String orderId = request.getParameter("orderId");
 				Order order = orderDAO.getOrderByID(Integer.parseInt(orderId));
 				String previous = request.getParameter("previous");

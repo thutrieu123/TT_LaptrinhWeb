@@ -89,7 +89,7 @@ public class CartController extends HttpServlet {
 					
 					for (CartItem item : cart.getList()) {
 						Product product = item.getProduct();
-						priceTransport += logictic.getPrice(shopDistristId, shopWardId, userDistristId, userWardId,product.getHeight(),product.getLength(), product.getWidth(), product.getWeigth());						
+						priceTransport += logictic.getPrice(shopDistristId, shopWardId, userDistristId, userWardId,product.getHeight(),product.getLength(), product.getWidth(), product.getWeigth()) * item.getQuantity();						
 					}
 					Product product = cart.getList().get(0).getProduct();
 					
@@ -281,11 +281,11 @@ public class CartController extends HttpServlet {
 		List<TempCart> list = cartdb.getCartByUserId(user.getId());
 		for (TempCart tempCart : list) {
 			Product product = pd.getProductById(tempCart.getProId());
-			String ipro_id = tempCart.getProId() + "";
-			String iname = product.getName();
-			String iimage = product.getImage();
-			String idescription = product.getDescreption();
-			int iPrice = product.getPrice();
+//			String ipro_id = tempCart.getProId() + "";
+//			String iname = product.getName();
+//			String iimage = product.getImage();
+//			String idescription = product.getDescreption();
+//			int iPrice = product.getPrice();
 			String iQuantity = "" + tempCart.getQuantity();
 			//Old AddCart
 //			cartBean.addCart(ipro_id, iname, iimage, idescription, iPrice, iQuantity);

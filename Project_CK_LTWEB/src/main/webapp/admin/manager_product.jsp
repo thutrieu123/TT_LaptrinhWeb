@@ -170,6 +170,7 @@
 			element.closest("tr").classList.add("delete");
 			$.ajax({
 				url : "/Project_CK_LTWEB/change_status",
+				type:"POST",
 				data:{
 					id:proId,
 					status:1

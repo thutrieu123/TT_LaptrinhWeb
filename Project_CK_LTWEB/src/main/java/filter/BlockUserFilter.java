@@ -55,9 +55,8 @@ public class BlockUserFilter extends HttpFilter implements Filter {
 	    	 if(user.getStatus() != userDAO.getUser(user.getUserName()).getStatus()) {
 	    		 resp.sendRedirect("/Project_CK_LTWEB/login?error=" + LoginError.LOGIN_AGAINN);
 	    	 }
-	     }else {
-	    	 chain.doFilter(request, response);
 	     }
+	     chain.doFilter(req, resp);
 	     
 		
 	}
