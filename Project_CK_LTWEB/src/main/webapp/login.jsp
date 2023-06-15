@@ -38,6 +38,7 @@
 										<p style="color:red;">
 										<c:if test="${error == 1 }">Vui lòng đăng nhập</c:if>
 										<c:if test="${error == 2 }">Vui lòng đăng nhập với vai trò là admin</c:if>
+										<c:if test="${error == 2 }">Vui lòng đăng nhập lại</c:if>
 										</p>
 										</c:if>
 									<c:if test="${access != null }"><p style="color:green;">${access}</p></c:if>

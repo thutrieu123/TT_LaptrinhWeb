@@ -290,6 +290,8 @@ public class LogicticAPI {
 		
 		String urlParameters  = "from_district_id="+from_district_id+"&from_ward_id="+form_ward_id+"&to_district_id=" +to_district_id
 				+"&to_ward_id="+to_ward_id+"&height="+height+"&length="+height+"&width="+width+"&weight="+weigth;
+		
+		//Method Post phai gui du lieu theo tung byte
 		byte[] postData    = urlParameters.getBytes(StandardCharsets.UTF_8);
 		int    postDataLength = postData.length;
 		
@@ -421,6 +423,7 @@ public class LogicticAPI {
 		
 	}
 	
+	//Phuong thuc dang ki giao hang
 	
 	public Transport registerTransport(String from_district_id,String form_ward_id,String to_district_id,String to_ward_id,int height,int length,int width,int weigth ) throws IOException {
 	

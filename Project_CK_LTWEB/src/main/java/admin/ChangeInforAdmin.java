@@ -55,14 +55,19 @@ public class ChangeInforAdmin extends HttpServlet {
 			user.setEmail(email);
 			user.setNumberPhone(phone);
 			user.setPassword(newPass);
-			userDAO.updateUser(user);
 		}else {
 			user.setFullName(fullName);
 			user.setEmail(email);
 			user.setNumberPhone(phone);
-			userDAO.updateUser(user);
+			
 		}
-		response.sendRedirect("/Project_CK_LTWEB/admin/adminProfile.jsp");		
+		if(userDAO.updateUser(user) > 0) {
+			request.setAttribute("message", "Thay đổi thành công");
+		}else {
+			request.setAttribute("error", "Thay đổi thất bại");
+		}
+		request.getRequestDispatcher("/admin/adminProfile.jsp").forward(request, response);
+		
 		
 		
 	}
