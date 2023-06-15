@@ -57,6 +57,16 @@
 					<div class="col-md-12">
 						<div class="card">
 							<div class="card-body">
+							<c:if test="${message != null }">
+								<div class="alert alert-success">
+									${message }
+								</div>
+							</c:if>
+							<c:if test="${error != null }">
+								<div class="alert alert-danger">
+									${error}
+								</div>
+							</c:if>
 								<form action="/Project_CK_LTWEB/change_admin" method="POST" class="form-horizontal form-material">
 									<div class="form-group mb-4">
 										<label class="col-md-12 p-0"><b><fmt:message

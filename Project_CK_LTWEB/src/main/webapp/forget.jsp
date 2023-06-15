@@ -18,6 +18,12 @@
 <body>
 	<% String userName = request.getParameter("userName"); 
 		if(userName == null) userName ="";
+		
+		String password = request.getParameter("password");
+		if(password == null) password ="";
+		
+		String repass = request.getParameter("repass");
+		if(repass == null) repass ="";
 
 	
 	%>
@@ -56,11 +62,11 @@
 									<input type = "hidden" value ="${userName}" name = "userName">
 									<div class="form-outline">
 										<label class="form-label" for="form3Example1cg">Nhập mật khẩu mới(*):</label> <input type="password"
-											class="form-control " required name = "password" />
+											class="form-control " required name = "password"  value=<%=password %>/>
 									</div>
 									<div class="form-outline">
 										<label class="form-label" for="form3Example1cg">Nhập lại mật khẩu (*):</label> <input type="password"
-											class="form-control " required name = "repass" />
+											class="form-control " required name = "repass" value = <%=repass %> />
 									</div>
 									<p style ="color:red;">${message}</p>
 

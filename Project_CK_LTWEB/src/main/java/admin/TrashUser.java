@@ -1,13 +1,17 @@
 package admin;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.mysql.cj.x.protobuf.MysqlxDatatypes.Array;
 
 import dao.UserDAO;
 import model.User;
@@ -46,6 +50,8 @@ public class TrashUser extends HttpServlet {
 		UserDAO userDAO = new UserDAO();
 		int eid = Integer.parseInt(request.getParameter("id"));
 		int status = Integer.parseInt(request.getParameter("status"));
+
+		
 		userDAO.changStatus(eid, status);
 	}
 

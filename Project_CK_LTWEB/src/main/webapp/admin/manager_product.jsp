@@ -61,6 +61,11 @@
 									Thêm thành công
 								</div>
 							</c:if>
+							<c:if test="${update != null }">
+								<div class="alert alert-success">
+									Thay đổi thành công
+								</div>
+							</c:if>
 
 							<h3 class="box-title text-uppercase text-center">
 								Quản lí sản phẩm
@@ -165,6 +170,7 @@
 			element.closest("tr").classList.add("delete");
 			$.ajax({
 				url : "/Project_CK_LTWEB/change_status",
+				type:"POST",
 				data:{
 					id:proId,
 					status:1

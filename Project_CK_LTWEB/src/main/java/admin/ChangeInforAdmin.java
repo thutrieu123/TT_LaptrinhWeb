@@ -47,6 +47,7 @@ public class ChangeInforAdmin extends HttpServlet {
 		UserDAO userDAO = new UserDAO();
 		User user = (User)request.getSession().getAttribute("user");
 		
+		//Kiem tra nguoi dung co thay doi mat khau hay khong
 		if(oldPass != null && !oldPass.equals("")) {
 			String newPass = request.getParameter("newPass");
 			System.out.println(newPass);
@@ -55,14 +56,20 @@ public class ChangeInforAdmin extends HttpServlet {
 			user.setEmail(email);
 			user.setNumberPhone(phone);
 			user.setPassword(newPass);
-			userDAO.updateUser(user);
 		}else {
 			user.setFullName(fullName);
 			user.setEmail(email);
 			user.setNumberPhone(phone);
-			userDAO.updateUser(user);
+			
 		}
-		response.sendRedirect("/Project_CK_LTWEB/admin/adminProfile.jsp");		
+		//Kiem tra xem update thanh cong hay that bai
+		if(userDAO.updateUser(user) > 0) {
+			request.setAttribute("message", "Thay đổi thành công");
+		}else {
+			request.setAttribute("error", "Thay đổi thất bại");
+		}
+		request.getRequestDispatcher("/admin/adminProfile.jsp").forward(request, response);
+		
 		
 		
 	}

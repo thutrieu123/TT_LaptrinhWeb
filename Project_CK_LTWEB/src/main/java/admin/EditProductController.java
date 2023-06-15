@@ -76,12 +76,13 @@ public class EditProductController extends HttpServlet {
 		String proWidth = request.getParameter("width");
 		String proWeigth = request.getParameter("weigth");
 		
-//		String upLoadFolder = "F:\\TT_LTW\\TT_LaptrinhWeb\\Project_CK_LTWEB\\src\\main\\webapp\\Image\\";// Cho nay la
-		//Lay realpath cua server																			// lay duong
+
+		//Lay realpath cua server																			
 		String upLoadFolder = request.getServletContext().getRealPath("/Image");																									// dan thu																									// muc luu
-																											// hinh anh
+																											
 		Path upLoadPath = Paths.get(upLoadFolder);
 		Part image = request.getPart("uploadImage");
+		System.out.println("Image:" + image);
 		String imageFileName = null;
 		if(image != null) {
 			imageFileName = Path.of(image.getSubmittedFileName()).getFileName().toString();
@@ -96,7 +97,7 @@ public class EditProductController extends HttpServlet {
 			
 				//Lay duong dan de xoa file cu
 				File deleteFile = new File(
-						"F:\\TT_LTW\\TT_LaptrinhWeb\\Project_CK_LTWEB\\src\\main\\webapp\\" + proImage);
+						upLoadFolder+ File.separator + proImage);
 				proImage = "Image/" + fileName;
 				boolean check = deleteFile.delete();
 				System.out.print("check " + check);
@@ -110,11 +111,8 @@ public class EditProductController extends HttpServlet {
 		Product product = new Product(Integer.parseInt(proId), proName, proDes, Integer.parseInt(proPrice),
 				proImage,Integer.parseInt(proHeight),Integer.parseInt(proLength),Integer.parseInt(proWidth),Integer.parseInt(proWeigth) ,Integer.parseInt(proKind));
 		productDAO.update(product);
-		response.sendRedirect("/Project_CK_LTWEB/manager_product?action=main&access=yes");
+		response.sendRedirect("/Project_CK_LTWEB/manager_product?action=main&update=yes");
 		
-
-//		request.setAttribute("message", "Thay đổi thành công!");
-//		request.getRequestDispatcher("/manager_product").forward(request, response);
 
 	}
 }

@@ -56,13 +56,14 @@ public class OrderAction extends HttpServlet {
 				int count = 1;
 				
 				for(OrderItem item:order.getListOrderItem()) {
-					listProduct+= count +" " + item.getProduct().getName() +". Số lượng:" + item.getQuanlity() +". \n";
+					listProduct+= "<p>"+count +" " + item.getProduct().getName() +". Số lượng:" + item.getQuanlity() +". </p>";
 					count++;
 				}
 				
-				String content = "Dear " + order.getUserName() + "\n\nĐơn hàng (ID order): " + order.getOrderId() + ",Sản phẩm : "
-						+ listProduct + " đã được xác nhận.\n\n"
-						+ "Đơn hàng sẽ được giao đến quý khách một ngày sớm nhất.\n\nCảm ơn quý khách đã tin tưởng!. <3";
+				String content = "<p><b>Dear: </b> " + order.getUserName() +"</p>"
+									+ "<p><b>Đơn hàng (ID order):</b>" + order.getOrderId() + "</p><p><b>Sản phẩm : </b></p>"
+						+ listProduct + " <p>đã được xác nhận.</p>"
+						+ "<p>Đơn hàng sẽ được giao đến quý khách một ngày sớm nhất.\n\nCảm ơn quý khách đã tin tưởng!. <3 </p>";
 
 				mail.sendEmail(orderDAO.getUserOfOrder(order.getOrderId()).getEmail(), subject, content);
 

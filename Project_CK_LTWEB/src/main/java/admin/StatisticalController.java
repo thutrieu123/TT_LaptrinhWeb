@@ -86,6 +86,8 @@ public class StatisticalController extends HttpServlet {
 					List<RevenueReport> listRevenue;
 					String dateStart = request.getParameter("date_start_revenue");
 					String dateEnd = request.getParameter("date_end_revenue");
+					
+					//Lay ra cac dong thong ke theo ngay duoc chi dinh
 				if(dateStart != null && dateEnd != null) {
 						if(!dateStart.equals("") && !dateEnd.equals("")) {
 							
@@ -95,7 +97,7 @@ public class StatisticalController extends HttpServlet {
 							listRevenue = productReportDAO.getRevenueByDate(dateStart, dateEnd);
 							request.setAttribute("listRevenue", listRevenue);
 							request.getRequestDispatcher("/admin/manager_revenue.jsp").forward(request, response);
-						}else {
+						}else { //Thong bao nguoi dung phai chon ngay xem thong ke
 							request.setAttribute("message", "Vui lòng chọn thời gian chính xác");
 							request.getRequestDispatcher("/admin/manager_revenue.jsp").forward(request, response);
 						}

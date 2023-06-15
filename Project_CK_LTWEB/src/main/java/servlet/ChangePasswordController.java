@@ -55,7 +55,7 @@ public class ChangePasswordController extends HttpServlet {
 		System.out.println(userName);
 		if(newPass.equals(rePass)) {
 			newPass = Endcoding.encrypt(newPass);
-			userDAO.changPassword(userName,newPass);
+			System.out.println("Change Password:" + userDAO.changPassword(userName,newPass));
 			response.sendRedirect("/Project_CK_LTWEB/login?access=Đổi mật khẩu thành công");
 		}else {
 			request.setAttribute("message", "Nhập lại mật khẩu không chính xác");

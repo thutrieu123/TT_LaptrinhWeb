@@ -67,7 +67,7 @@
 											<th class="border-top-0">Họ và tên</th>
 											<th class="border-top-0">Số điện thoại</th>
 											<th class="border-top-0">Tài khoản</th>
-											<th class="border-top-0"><Vai trò</th>
+											<th class="border-top-0">Vai trò</th>
 											<th class="border-top-0">Chức năng</th>
 
 										</tr>

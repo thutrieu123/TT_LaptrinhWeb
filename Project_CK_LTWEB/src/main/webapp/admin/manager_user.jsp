@@ -138,27 +138,30 @@
 		});
 		
 		function changeStatus(element,eId){
-			element.closest("tr").classList.add("selected");
+			element.closest("tr").classList.add("delete");
 			$.ajax({
 				type:"POST",
 				url : "/Project_CK_LTWEB/TrashUser",
 				data:{
+					
 					id:eId,
-					status:1
+					status:1,
+
 				},
 				success: function(data){
+					var table = $('#myTable').DataTable();	
+					var current = table.page.info().page;
+					var rows = table
+					    .rows( '.delete' )
+					    .remove()
+					    .page(current)
+						.draw('page');
+					toast();
 					
 				}
 			});
 			
-			var table = $('#myTable').DataTable();	
-			var current = table.page.info().page;
-			var rows = table
-			    .rows( '.selected' )
-			    .remove()
-			    .page(current)
-				.draw('page');
-			toast();
+			
 		}
 		
 		function toast(){

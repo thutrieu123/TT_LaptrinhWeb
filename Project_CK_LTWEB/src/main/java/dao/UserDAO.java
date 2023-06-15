@@ -235,6 +235,7 @@ public class UserDAO {
 			ps.setString(1, newPass);
 			ps.setString(2, userName);
 			int numberRowUpdate = ps.executeUpdate();
+			
 
 			ps.close();
 			connect.close();
