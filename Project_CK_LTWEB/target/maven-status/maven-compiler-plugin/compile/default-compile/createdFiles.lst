@@ -49,14 +49,12 @@ model\CartItem.class
 dao\PriceTransportOrderDAO.class
 model\Cart.class
 dao\CartDAO.class
-support\Book.class
 support\DateTime.class
 model\TempComment.class
 model\Log.class
 servlet\FeedBackController.class
 servlet\RegisterController.class
 dao\TransportDAO.class
-admin\DeleteProduct.class
 model\api\Transport.class
 servlet\SearchAjaxController.class
 api\LogicticAPI.class
@@ -66,7 +64,6 @@ servlet\ChangeInforController.class
 admin\RevenueController.class
 admin\StatisticalController.class
 context\DBContext.class
-admin\LangeController.class
 model\api\Date.class
 model\api\Ward.class
 servlet\CakeController.class

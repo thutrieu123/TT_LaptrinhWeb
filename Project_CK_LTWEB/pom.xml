@@ -113,7 +113,11 @@
             <version>1.2</version>
         </dependency>
 
-
+        <dependency>
+            <groupId>org.jdbi</groupId>
+            <artifactId>jdbi3-core</artifactId>
+            <version>3.39.1</version>
+        </dependency>
 
 
     </dependencies>
