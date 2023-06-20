@@ -23,23 +23,7 @@ public class ProductController extends HttpServlet {
 		// TODO Auto-generated constructor stub
 	}
 
-//	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-//			throws ServletException, IOException {
-//		int productId = Integer.parseInt(request.getParameter("proId"));
-//		ProductDAO productDAO = new ProductDAO();
-//		CommentDAO commentDAO = new CommentDAO();
-//		Product product = productDAO.getProductById(productId);
-//
-//		List<TempComment> listComment = commentDAO.getCommentByProductId(productId);
-//
-//		request.setAttribute("listComment", listComment);
-//		request.setAttribute("product", product);
-//		request.setAttribute(getServletInfo(), product);
-//		request.getRequestDispatcher("/detail.jsp").forward(request, response);
-//	}
-
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		int productId = Integer.parseInt(request.getParameter("proId"));
 		ProductDAO productDAO = new ProductDAO();
@@ -52,6 +36,23 @@ public class ProductController extends HttpServlet {
 		request.setAttribute("product", product);
 		request.setAttribute(getServletInfo(), product);
 		request.getRequestDispatcher("/detail.jsp").forward(request, response);
+	}
+
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+//		int productId = Integer.parseInt(request.getParameter("proId"));
+//		ProductDAO productDAO = new ProductDAO();
+//		CommentDAO commentDAO = new CommentDAO();
+//		Product product = productDAO.getProductById(productId);
+//
+//		List<TempComment> listComment = commentDAO.getCommentByProductId(productId);
+//
+//		request.setAttribute("listComment", listComment);
+//		request.setAttribute("product", product);
+//		request.setAttribute(getServletInfo(), product);
+//		request.getRequestDispatcher("/
+		doGet(request, response);
 	}
 
 }
