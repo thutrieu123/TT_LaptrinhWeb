@@ -76,6 +76,7 @@ public class LoginController extends HttpServlet {
 		} else if (user != null) {
 			password = Endcoding.encrypt(password);
 			if (user.getPassword().equals(password)) {
+				
 				session.setAttribute("user", user);
 				CartController cart = new CartController();
 				cart.reCart(request);
